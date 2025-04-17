@@ -1,0 +1,62 @@
+using AutoMapper;
+using Entities.DTOs.AssemblyFailureStateDto;
+using Entities.DTOs.AssemblyManuelDto;
+using Entities.DTOs.AssemblyNoteDto;
+using Entities.DTOs.AssemblySuccessStateDto;
+using Entities.DTOs.DepartmentDto;
+using Entities.DTOs.LogDto;
+using Entities.DTOs.ProductDto;
+using Entities.DTOs.ServicesDto;
+using Entities.DTOs.UserDto;
+using Entities.DTOs.UserPermissionDto;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
+
+namespace DijitalErpAPI.Utilities.AutoMapper
+{
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<AssemblyFailureStateDtoForUpdate, AssemblyFailureState>().ReverseMap();
+            CreateMap<AssemblyFailureState, AssemblyFailureStateDto>();
+            CreateMap<AssemblyFailureStateDtoForInsertion, AssemblyFailureState>();
+
+            CreateMap<AssemblyManuelDtoForUpdate, AssemblyManuel>().ReverseMap();
+            CreateMap<AssemblyManuel, AssemblyManuelDto>();
+            CreateMap<AssemblyManuelDtoForInsertion, AssemblyManuel>();
+
+            CreateMap<AssemblyNoteDtoForUpdate, AssemblyNote>().ReverseMap();
+            CreateMap<AssemblyNote, AssemblyNoteDto>();
+            CreateMap<AssemblyNoteDtoForInsertion, AssemblyNote>();
+
+            CreateMap<AssemblySuccessStateDtoForUpdate, AssemblySuccessState>().ReverseMap();
+            CreateMap<AssemblySuccessState, AssemblySuccessStateDto>();
+            CreateMap<AssemblySuccessStateDtoForInsertion, AssemblySuccessState>();
+
+            CreateMap<DepartmentDtoForUpdate, Department>().ReverseMap();
+            CreateMap<Department, DepartmentDto>();
+            CreateMap<DepartmentDtoForInsertion, Department>();
+
+            CreateMap<LogDtoForInsertion, Log>();
+            CreateMap<Log, LogDto>();
+
+            CreateMap<ProductDtoForUpdate, Product>().ReverseMap();
+            CreateMap<Product, ProductDto>();
+            CreateMap<ProductDtoForInsertion, Product>();
+
+            CreateMap<ServicesDtoForUpdate, Entities.Models.Services>().ReverseMap();
+            CreateMap<Entities.Models.Services, ServicesDto>();
+            CreateMap<ServicesDtoForInsertion, Entities.Models.Services>();
+
+            CreateMap<UserForRegisterDto, User>();
+            CreateMap<UserDtoForUpdate, User>().ReverseMap();
+            CreateMap<User, UserDto>();
+            CreateMap<IdentityResult, UserDto>().ReverseMap();
+
+            CreateMap<UserPermissionDtoForUpdate, UserPermission>().ReverseMap();
+            CreateMap<UserPermission, UserPermissionDto>();
+            CreateMap<UserPermissionDtoForInsertion, UserPermission>();
+        }
+    }
+}
