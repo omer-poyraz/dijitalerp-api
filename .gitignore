@@ -18,6 +18,8 @@
 # Except for specific files and directories
 # Ignore everything in DijitalErpAPI directory
 DijitalErpAPI/*
+DijitalErpAPI/wwwroot/
+DijitalErpAPI/Migrations/
 
 # Except for specific files and directories
 !DijitalErpAPI/.gitignore
@@ -25,8 +27,6 @@ DijitalErpAPI/*
 !DijitalErpAPI/Extensions/
 !DijitalErpAPI/Properties/
 !DijitalErpAPI/Utilities/
-DijitalErpAPI/wwwroot/
-DijitalErpAPI/Migrations/
 !DijitalErpAPI/DijitalErpAPI.csproj
 !DijitalErpAPI/DijitalErpAPI.csproj.user
 !DijitalErpAPI/DijitalErpAPI.http
