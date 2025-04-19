@@ -39,6 +39,25 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpGet("GetAllByManual/{id:int}")]
+        [AuthorizePermission("AssemblyFailureState", "Read")]
+        public async Task<IActionResult> GetAllAssemblyFailureStatesByManualAsync([FromRoute] int id)
+        {
+            try
+            {
+                var users = await _manager.AssemblyFailureStateService.GetAllAssemblyFailureStateByManualAsync(id, false);
+                return Ok(
+                    ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed")
+                );
+            }
+            catch (Exception)
+            {
+                return BadRequest(
+                    ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateError(_httpContextAccessor, "Error.NotFound")
+                );
+            }
+        }
+
         [HttpGet("Get/{id:int}")]
         [AuthorizePermission("AssemblyFailureState", "Read")]
         public async Task<IActionResult> GetOneAssemblyFailureStateByIdAsync([FromRoute] int id)

@@ -13,9 +13,9 @@ namespace Entities.DTOs.AssemblyManuelDto
         public string? SerialNumber { get; init; }
         public int? ProductionQuantity { get; init; }
         public int? Time { get; init; }
-        public DateTime? Tarih { get; init; }
+        public DateTime? Date { get; init; }
         public string? Description { get; init; }
-        public DateTime? TeknisyenTarih { get; init; }
+        public DateTime? TechnicianDate { get; init; }
         public ICollection<AssemblyNote>? AssemblyNotes { get; init; }
         public ICollection<AssemblySuccessState>? BasariliDurumlar { get; init; }
         public ICollection<AssemblyFailureState>? BasarisizDurumlar { get; init; }

@@ -39,6 +39,25 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpGet("GetAllByManual/{id:int}")]
+        [AuthorizePermission("AssemblyNote", "Read")]
+        public async Task<IActionResult> GetAllAssemblyNotesAsync([FromRoute] int id)
+        {
+            try
+            {
+                var users = await _manager.AssemblyNoteService.GetAllAssemblyNoteByManualAsync(id, false);
+                return Ok(
+                    ApiResponse<IEnumerable<AssemblyNoteDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed")
+                );
+            }
+            catch (Exception)
+            {
+                return BadRequest(
+                    ApiResponse<IEnumerable<AssemblyNoteDto>>.CreateError(_httpContextAccessor, "Error.NotFound")
+                );
+            }
+        }
+
         [HttpGet("Get/{id:int}")]
         [AuthorizePermission("AssemblyNote", "Read")]
         public async Task<IActionResult> GetOneAssemblyNoteByIdAsync([FromRoute] int id)

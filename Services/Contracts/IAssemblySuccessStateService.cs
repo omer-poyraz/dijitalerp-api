@@ -5,6 +5,7 @@ namespace Services.Contracts
     public interface IAssemblySuccessStateService
     {
         Task<IEnumerable<AssemblySuccessStateDto>> GetAllAssemblySuccessStateAsync(bool? trackChanges);
+        Task<IEnumerable<AssemblySuccessStateDto>> GetAllAssemblySuccessStateByManualAsync(int id, bool? trackChanges);
         Task<AssemblySuccessStateDto> GetAssemblySuccessStateByIdAsync(int id, bool? trackChanges);
         Task<AssemblySuccessStateDto> CreateAssemblySuccessStateAsync(AssemblySuccessStateDtoForInsertion assemblySuccessStateDtoForInsertion);
         Task<AssemblySuccessStateDto> UpdateAssemblySuccessStateAsync(AssemblySuccessStateDtoForUpdate assemblySuccessStateDtoForUpdate);

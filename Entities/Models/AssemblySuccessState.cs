@@ -8,7 +8,7 @@ namespace Entities.Models
         public string? Description { get; set; }
         public string? Technician { get; set; }
         public string? PartCode { get; set; }
-        public string? Status { get; set; }
+        public bool? Status { get; set; }
         public string? Approval { get; set; }
         public int? PendingQuantity { get; set; }
         public string? QualityDescription { get; set; }

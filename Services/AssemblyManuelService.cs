@@ -20,10 +20,19 @@ namespace Services
             AssemblyManuelDtoForInsertion assemblyManuelDtoForInsertion
         )
         {
-            var assemblyManuel = _mapper.Map<Entities.Models.AssemblyManuel>(assemblyManuelDtoForInsertion);
-            _manager.AssemblyManuelRepository.CreateAssemblyManuel(assemblyManuel);
-            await _manager.SaveAsync();
-            return _mapper.Map<AssemblyManuelDto>(assemblyManuel);
+            try
+            {
+                ConvertDatesToUtc(assemblyManuelDtoForInsertion);
+                var assemblyManuel = _mapper.Map<Entities.Models.AssemblyManuel>(assemblyManuelDtoForInsertion);
+                _manager.AssemblyManuelRepository.CreateAssemblyManuel(assemblyManuel);
+                await _manager.SaveAsync();
+                return _mapper.Map<AssemblyManuelDto>(assemblyManuel);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task<AssemblyManuelDto> DeleteAssemblyManuelAsync(int id, bool? trackChanges)
@@ -49,6 +58,7 @@ namespace Services
         public async Task<AssemblyManuelDto> UpdateAssemblyManuelAsync(AssemblyManuelDtoForUpdate assemblyManuelDtoForUpdate)
         {
             var assemblyManuel = await _manager.AssemblyManuelRepository.GetAssemblyManuelByIdAsync(assemblyManuelDtoForUpdate.ID, assemblyManuelDtoForUpdate.TrackChanges);
+            ConvertDatesToUtc(assemblyManuelDtoForUpdate);
             var existingFiles = assemblyManuel.Files?.ToList() ?? new List<string>();
             var newFiles = assemblyManuelDtoForUpdate.Files;
             assemblyManuelDtoForUpdate.Files = null;
@@ -64,6 +74,15 @@ namespace Services
             _manager.AssemblyManuelRepository.UpdateAssemblyManuel(assemblyManuel);
             await _manager.SaveAsync();
             return _mapper.Map<AssemblyManuelDto>(assemblyManuel);
+        }
+
+        private void ConvertDatesToUtc<T>(T dto) where T : AssemblyManuelDtoForManipulation
+        {
+            if (dto.Date.HasValue)
+                dto.Date = DateTime.SpecifyKind(dto.Date.Value, DateTimeKind.Utc);
+
+            if (dto.TechnicianDate.HasValue)
+                dto.TechnicianDate = DateTime.SpecifyKind(dto.TechnicianDate.Value, DateTimeKind.Utc);
         }
     }
 }

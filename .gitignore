@@ -16,23 +16,25 @@
 
 
 # Except for specific files and directories
-# Ignore everything in NorthAPI directory
-NorthAPI/*
+# Ignore everything in DijitalErpAPI directory
+DijitalErpAPI/*
 
 # Except for specific files and directories
-!NorthAPI/.gitignore
-!NorthAPI/ContextFactory/
-!NorthAPI/Extensions/
-!NorthAPI/Properties/
-!NorthAPI/Utilities/
-!NorthAPI/NorthAPI.csproj
-!NorthAPI/NorthAPI.csproj.user
-!NorthAPI/NorthAPI.http
-!NorthAPI/Program.cs
-!NorthAPI/appsettings.Development.json
-!NorthAPI/appsettings.json
-!NorthAPI/haarcascade_frontalface_default.xml
-!NorthAPI/nlog.config
+!DijitalErpAPI/.gitignore
+!DijitalErpAPI/ContextFactory/
+!DijitalErpAPI/Extensions/
+!DijitalErpAPI/Properties/
+!DijitalErpAPI/Utilities/
+DijitalErpAPI/wwwroot/
+DijitalErpAPI/Migrations/
+!DijitalErpAPI/DijitalErpAPI.csproj
+!DijitalErpAPI/DijitalErpAPI.csproj.user
+!DijitalErpAPI/DijitalErpAPI.http
+!DijitalErpAPI/Program.cs
+!DijitalErpAPI/appsettings.Development.json
+!DijitalErpAPI/appsettings.json
+!DijitalErpAPI/haarcascade_frontalface_default.xml
+!DijitalErpAPI/nlog.config
 
 
 

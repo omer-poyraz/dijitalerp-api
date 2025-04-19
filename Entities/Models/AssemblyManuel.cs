@@ -11,9 +11,9 @@
         public string? SerialNumber { get; set; }
         public int? ProductionQuantity { get; set; }
         public int? Time { get; set; }
-        public DateTime? Tarih { get; set; }
+        public DateTime? Date { get; set; }
         public string? Description { get; set; }
-        public DateTime? TeknisyenTarih { get; set; }
+        public DateTime? TechnicianDate { get; set; }
         public ICollection<AssemblyNote>? AssemblyNotes { get; set; }
         public ICollection<AssemblySuccessState>? BasariliDurumlar { get; set; }
         public ICollection<AssemblyFailureState>? BasarisizDurumlar { get; set; }

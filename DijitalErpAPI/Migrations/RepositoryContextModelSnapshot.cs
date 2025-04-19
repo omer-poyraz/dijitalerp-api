@@ -51,8 +51,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("QualityDescription")
                         .HasColumnType("text");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Technician")
                         .HasColumnType("text");
@@ -83,6 +83,9 @@ namespace DijitalErpAPI.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -107,10 +110,7 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("SerialNumber")
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("Tarih")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("TeknisyenTarih")
+                    b.Property<DateTime?>("TechnicianDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("Time")
@@ -199,8 +199,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("QualityDescription")
                         .HasColumnType("text");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Technician")
                         .HasColumnType("text");
@@ -584,19 +584,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0da5af0c-09a9-4b4d-88bd-9e2632294052",
+                            Id = "e121abe5-570c-48dd-9bfc-d7f97442820c",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "66338311-616b-4f47-bbcd-0bb4d8f49bcc",
+                            Id = "11c29340-00ac-464a-9e50-ec7b8aa75419",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "1acaf6d6-a427-43c5-aa76-872e9158ca2d",
+                            Id = "8e426204-24c7-4e52-91f0-26c91ea06609",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });

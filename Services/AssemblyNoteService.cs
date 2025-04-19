@@ -40,6 +40,12 @@ namespace Services
             return _mapper.Map<IEnumerable<AssemblyNoteDto>>(assemblyNoteGroup);
         }
 
+        public async Task<IEnumerable<AssemblyNoteDto>> GetAllAssemblyNoteByManualAsync(int id, bool? trackChanges)
+        {
+            var assemblyNoteGroup = await _manager.AssemblyNoteRepository.GetAllAssemblyNoteByManualAsync(id, trackChanges);
+            return _mapper.Map<IEnumerable<AssemblyNoteDto>>(assemblyNoteGroup);
+        }
+
         public async Task<AssemblyNoteDto> GetAssemblyNoteByIdAsync(int id, bool? trackChanges)
         {
             var assemblyNoteGroup = await _manager.AssemblyNoteRepository.GetAssemblyNoteByIdAsync(id, trackChanges);

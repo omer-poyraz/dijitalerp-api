@@ -39,6 +39,25 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpGet("GetAllByManual/{id:int}")]
+        [AuthorizePermission("AssemblySuccessState", "Read")]
+        public async Task<IActionResult> GetAllAssemblySuccessStatesAsync([FromRoute] int id)
+        {
+            try
+            {
+                var users = await _manager.AssemblySuccessStateService.GetAllAssemblySuccessStateByManualAsync(id, false);
+                return Ok(
+                    ApiResponse<IEnumerable<AssemblySuccessStateDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed")
+                );
+            }
+            catch (Exception)
+            {
+                return BadRequest(
+                    ApiResponse<IEnumerable<AssemblySuccessStateDto>>.CreateError(_httpContextAccessor, "Error.NotFound")
+                );
+            }
+        }
+
         [HttpGet("Get/{id:int}")]
         [AuthorizePermission("AssemblySuccessState", "Read")]
         public async Task<IActionResult> GetOneAssemblySuccessStateByIdAsync([FromRoute] int id)

@@ -25,6 +25,15 @@ namespace Repositories.EFCore
             return await FindAll(trackChanges).OrderBy(s => s.ID).Include(s => s.User).ToListAsync();
         }
 
+        public async Task<IEnumerable<AssemblyNote>> GetAllAssemblyNoteByManualAsync(int id, bool? trackChanges)
+        {
+            return await FindAll(trackChanges)
+                .Where(s => s.AssemblyManuelID.Equals(id))
+                .OrderBy(s => s.ID)
+                .Include(s => s.User)
+                .ToListAsync();
+        }
+
         public async Task<AssemblyNote> GetAssemblyNoteByIdAsync(int id, bool? trackChanges)
         {
             return await FindByCondition(s => s.ID.Equals(id), trackChanges)

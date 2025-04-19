@@ -75,7 +75,7 @@ namespace Presentation.Controllers
                 );
                 return Ok(ApiResponse<AssemblyManuelDto>.CreateSuccess(_httpContextAccessor, user, "Success.Created"));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest(ApiResponse<AssemblyManuelDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
             }
@@ -89,6 +89,14 @@ namespace Presentation.Controllers
         {
             try
             {
+                if (assemblyManuelDtoForUpdate.file != null && assemblyManuelDtoForUpdate.file.Any())
+                {
+                    var rnd = new Random();
+                    var imgId = rnd.Next(0, 100000);
+                    var uploadResults = await FileManager.FileUpload(assemblyManuelDtoForUpdate.file, imgId, "AssemblyManuel");
+                    assemblyManuelDtoForUpdate.Files = uploadResults.Select(uploadResult => uploadResult["FilesFullPath"].ToString()).ToList()!;
+                }
+
                 var user = await _manager.AssemblyManuelService.UpdateAssemblyManuelAsync(assemblyManuelDtoForUpdate);
                 return Ok(ApiResponse<AssemblyManuelDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
             }

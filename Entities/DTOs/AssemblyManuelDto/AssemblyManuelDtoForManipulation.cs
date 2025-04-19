@@ -10,9 +10,9 @@
         public string? SerialNumber { get; init; }
         public int? ProductionQuantity { get; init; }
         public int? Time { get; init; }
-        public DateTime? Tarih { get; init; }
+        public DateTime? Date { get; set; }
         public string? Description { get; init; }
-        public DateTime? TeknisyenTarih { get; init; }
+        public DateTime? TechnicianDate { get; set; }
         public string? UserId { get; init; }
     }
 }
