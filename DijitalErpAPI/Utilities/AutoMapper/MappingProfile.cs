@@ -22,6 +22,7 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<AssemblyFailureState, AssemblyFailureStateDto>();
             CreateMap<AssemblyFailureStateDtoForInsertion, AssemblyFailureState>();
 
+            CreateMap<AssemblyManuelDtoForAddFile, AssemblyManuel>().ReverseMap();
             CreateMap<AssemblyManuelDtoForUpdate, AssemblyManuel>().ReverseMap();
             CreateMap<AssemblyManuel, AssemblyManuelDto>();
             CreateMap<AssemblyManuelDtoForInsertion, AssemblyManuel>();

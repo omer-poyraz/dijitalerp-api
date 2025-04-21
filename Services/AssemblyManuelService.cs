@@ -55,6 +55,38 @@ namespace Services
             return _mapper.Map<AssemblyManuelDto>(assemblyManuel);
         }
 
+        public async Task<AssemblyManuelDto> AddFileAssemblyManuelAsync(AssemblyManuelDtoForAddFile assemblyManuelDtoForAddFile)
+        {
+            var assemblyManuel = await _manager.AssemblyManuelRepository.GetAssemblyManuelByIdAsync(assemblyManuelDtoForAddFile.ID, assemblyManuelDtoForAddFile.TrackChanges);
+            var existingFiles = assemblyManuel.Files?.ToList() ?? new List<string>();
+            var newFiles = assemblyManuelDtoForAddFile.Files;
+            assemblyManuelDtoForAddFile.Files = null;
+            _mapper.Map(assemblyManuelDtoForAddFile, assemblyManuel);
+            if (newFiles != null && newFiles.Any())
+            {
+                foreach (var file in newFiles)
+                {
+                    existingFiles.Add(file);
+                }
+            }
+            assemblyManuel.Files = existingFiles;
+            assemblyManuel.ProjectName = assemblyManuel.ProjectName;
+            assemblyManuel.PartCode = assemblyManuel.PartCode;
+            assemblyManuel.Responible = assemblyManuel.Responible;
+            assemblyManuel.PersonInCharge = assemblyManuel.PersonInCharge;
+            assemblyManuel.SerialNumber = assemblyManuel.SerialNumber;
+            assemblyManuel.ProductionQuantity = assemblyManuel.ProductionQuantity;
+            assemblyManuel.Time = assemblyManuel.Time;
+            assemblyManuel.Date = assemblyManuel.Date;
+            assemblyManuel.Description = assemblyManuel.Description;
+            assemblyManuel.TechnicianDate = assemblyManuel.TechnicianDate;
+            assemblyManuel.UserId = assemblyManuelDtoForAddFile.UserId;
+
+            _manager.AssemblyManuelRepository.AddFileAssemblyManuel(assemblyManuel);
+            await _manager.SaveAsync();
+            return _mapper.Map<AssemblyManuelDto>(assemblyManuel);
+        }
+
         public async Task<AssemblyManuelDto> UpdateAssemblyManuelAsync(AssemblyManuelDtoForUpdate assemblyManuelDtoForUpdate)
         {
             var assemblyManuel = await _manager.AssemblyManuelRepository.GetAssemblyManuelByIdAsync(assemblyManuelDtoForUpdate.ID, assemblyManuelDtoForUpdate.TrackChanges);

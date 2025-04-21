@@ -8,6 +8,7 @@ namespace Repositories.Contracts
         Task<AssemblyManuel> GetAssemblyManuelByIdAsync(int id, bool? trackChanges);
         AssemblyManuel CreateAssemblyManuel(AssemblyManuel assemblyManuel);
         AssemblyManuel UpdateAssemblyManuel(AssemblyManuel assemblyManuel);
+        AssemblyManuel AddFileAssemblyManuel(AssemblyManuel assemblyManuel);
         AssemblyManuel DeleteAssemblyManuel(AssemblyManuel assemblyManuel);
     }
 }

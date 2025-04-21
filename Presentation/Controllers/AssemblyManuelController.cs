@@ -106,6 +106,31 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpPut("AddFile")]
+        [AuthorizePermission("AssemblyManuel", "Write")]
+        public async Task<IActionResult> AddFileAssemblyManuelAsync(
+            [FromForm] AssemblyManuelDtoForAddFile assemblyManuelDtoForAddFile
+        )
+        {
+            try
+            {
+                if (assemblyManuelDtoForAddFile.file != null && assemblyManuelDtoForAddFile.file.Any())
+                {
+                    var rnd = new Random();
+                    var imgId = rnd.Next(0, 100000);
+                    var uploadResults = await FileManager.FileUpload(assemblyManuelDtoForAddFile.file, imgId, "AssemblyManuel");
+                    assemblyManuelDtoForAddFile.Files = uploadResults.Select(uploadResult => uploadResult["FilesFullPath"].ToString()).ToList()!;
+                }
+
+                var user = await _manager.AssemblyManuelService.AddFileAssemblyManuelAsync(assemblyManuelDtoForAddFile);
+                return Ok(ApiResponse<AssemblyManuelDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<AssemblyManuelDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
+            }
+        }
+
         [HttpDelete("Delete/{id:int}")]
         [AuthorizePermission("AssemblyManuel", "Delete")]
         public async Task<IActionResult> DeleteOneAssemblyManuelAsync([FromRoute] int id)

@@ -32,6 +32,12 @@ namespace Repositories.EFCore
                 .SingleOrDefaultAsync();
         }
 
+        public AssemblyManuel AddFileAssemblyManuel(AssemblyManuel assemblyManuel)
+        {
+            Update(assemblyManuel);
+            return assemblyManuel;
+        }
+
         public AssemblyManuel UpdateAssemblyManuel(AssemblyManuel assemblyManuel)
         {
             Update(assemblyManuel);
