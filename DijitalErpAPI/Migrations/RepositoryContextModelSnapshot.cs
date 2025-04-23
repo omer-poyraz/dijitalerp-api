@@ -54,8 +54,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<bool?>("Status")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Technician")
-                        .HasColumnType("text");
+                    b.Property<int?>("TechnicianID")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -66,6 +66,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("AssemblyManuelID");
+
+                    b.HasIndex("TechnicianID");
 
                     b.HasIndex("UserId");
 
@@ -95,8 +97,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("PartCode")
                         .HasColumnType("text");
 
-                    b.Property<string>("PersonInCharge")
-                        .HasColumnType("text");
+                    b.Property<int?>("PersonInChargeID")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("ProductionQuantity")
                         .HasColumnType("integer");
@@ -104,8 +106,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("ProjectName")
                         .HasColumnType("text");
 
-                    b.Property<string>("Responible")
-                        .HasColumnType("text");
+                    b.Property<int?>("ResponibleID")
+                        .HasColumnType("integer");
 
                     b.Property<string>("SerialNumber")
                         .HasColumnType("text");
@@ -123,6 +125,10 @@ namespace DijitalErpAPI.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PersonInChargeID");
+
+                    b.HasIndex("ResponibleID");
 
                     b.HasIndex("UserId");
 
@@ -202,8 +208,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<bool?>("Status")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Technician")
-                        .HasColumnType("text");
+                    b.Property<int?>("TechnicianID")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -214,6 +220,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("AssemblyManuelID");
+
+                    b.HasIndex("TechnicianID");
 
                     b.HasIndex("UserId");
 
@@ -641,19 +649,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7b167768-46de-4480-a4a1-acbc96f01b2a",
+                            Id = "a7f01795-229a-47fa-a21f-0b841d5932f6",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "56ced3f9-116b-4af5-998e-6e7f2dba6fd1",
+                            Id = "c0cd2d7d-33dd-42bf-97d8-1c366a2f8228",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ca065a4c-7816-4936-a7a1-607da0eab76a",
+                            Id = "33dfeb1b-786e-403f-8425-04da04bcc54f",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -773,20 +781,38 @@ namespace DijitalErpAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Models.Employee", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianID");
+
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("AssemblyManuel");
 
+                    b.Navigation("Technician");
+
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Models.AssemblyManuel", b =>
                 {
+                    b.HasOne("Entities.Models.Employee", "PersonInCharge")
+                        .WithMany()
+                        .HasForeignKey("PersonInChargeID");
+
+                    b.HasOne("Entities.Models.Employee", "Responible")
+                        .WithMany()
+                        .HasForeignKey("ResponibleID");
+
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("PersonInCharge");
+
+                    b.Navigation("Responible");
 
                     b.Navigation("User");
                 });
@@ -814,11 +840,17 @@ namespace DijitalErpAPI.Migrations
                         .WithMany("BasariliDurumlar")
                         .HasForeignKey("AssemblyManuelID");
 
+                    b.HasOne("Entities.Models.Employee", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianID");
+
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("AssemblyProject");
+
+                    b.Navigation("Technician");
 
                     b.Navigation("User");
                 });

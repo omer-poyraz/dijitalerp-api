@@ -8,8 +8,10 @@ namespace Entities.DTOs.AssemblyManuelDto
         public ICollection<string>? Files { get; init; }
         public string? ProjectName { get; init; }
         public string? PartCode { get; init; }
-        public string? Responible { get; init; }
-        public string? PersonInCharge { get; init; }
+        public Employee? Responible { get; init; }
+        public int? ResponibleID { get; init; }
+        public Employee? PersonInCharge { get; init; }
+        public int? PersonInChargeID { get; init; }
         public string? SerialNumber { get; init; }
         public int? ProductionQuantity { get; init; }
         public int? Time { get; init; }

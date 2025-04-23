@@ -26,6 +26,8 @@ namespace Repositories.EFCore
                 .OrderBy(s => s.ID)
                 .Include(s => s.BasariliDurumlar)
                 .Include(s => s.BasarisizDurumlar)
+                .Include(s => s.Responible)
+                .Include(s => s.PersonInCharge)
                 .Include(s => s.User)
                 .ToListAsync();
         }
@@ -35,6 +37,8 @@ namespace Repositories.EFCore
             return await FindByCondition(s => s.ID.Equals(id), trackChanges)
                 .Include(s => s.BasariliDurumlar)
                 .Include(s => s.BasarisizDurumlar)
+                .Include(s => s.Responible)
+                .Include(s => s.PersonInCharge)
                 .Include(s => s.User)
                 .SingleOrDefaultAsync();
         }

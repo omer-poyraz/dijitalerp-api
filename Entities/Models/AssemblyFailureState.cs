@@ -6,7 +6,9 @@ namespace Entities.Models
     {
         public int ID { get; set; }
         public string? Inappropriateness { get; set; }
-        public string? Technician { get; set; }
+        [ForeignKey("TechnicianID")]
+        public Employee? Technician { get; set; }
+        public int? TechnicianID { get; set; }
         public string? PartCode { get; set; }
         public bool? Status { get; set; }
         public int? PendingQuantity { get; set; }

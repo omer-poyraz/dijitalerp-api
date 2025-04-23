@@ -3,7 +3,7 @@
     public abstract record AssemblyFailureStateDtoForManipulation
     {
         public string? Inappropriateness { get; init; }
-        public string? Technician { get; init; }
+        public int? TechnicianID { get; init; }
         public string? PartCode { get; init; }
         public bool? Status { get; init; }
         public int? PendingQuantity { get; init; }

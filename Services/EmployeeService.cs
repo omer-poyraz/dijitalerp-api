@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.EmployeeDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -18,8 +19,10 @@ namespace Services
 
         public async Task<EmployeeDto> CreateEmployeeAsync(EmployeeDtoForInsertion employeeDtoForInsertion)
         {
+            var filePath = employeeDtoForInsertion.File;
             ConvertDatesToUtc(employeeDtoForInsertion);
-            var employee = _mapper.Map<Entities.Models.Employee>(employeeDtoForInsertion);
+            var employee = _mapper.Map<Employee>(employeeDtoForInsertion);
+            employee.File = filePath;
             _manager.EmployeeRepository.CreateEmployee(employee);
             await _manager.SaveAsync();
             return _mapper.Map<EmployeeDto>(employee);
@@ -48,12 +51,14 @@ namespace Services
         public async Task<EmployeeDto> UpdateEmployeeAsync(EmployeeDtoForUpdate employeeDtoForUpdate)
         {
             var employee = await _manager.EmployeeRepository.GetEmployeeByIdAsync(employeeDtoForUpdate.ID, employeeDtoForUpdate.TrackChanges);
+            var filePath = employeeDtoForUpdate.File;
             ConvertDatesToUtc(employeeDtoForUpdate);
             if (employeeDtoForUpdate.file == null)
             {
                 employeeDtoForUpdate.File = employee.File;
             }
             _mapper.Map(employeeDtoForUpdate, employee);
+            employee.File = filePath;
             _manager.EmployeeRepository.UpdateEmployee(employee);
             await _manager.SaveAsync();
             return _mapper.Map<EmployeeDto>(employee);

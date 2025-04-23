@@ -6,7 +6,8 @@ namespace Entities.DTOs.AssemblyFailureStateDto
     {
         public int ID { get; init; }
         public string? Inappropriateness { get; init; }
-        public string? Technician { get; init; }
+        public Employee? Technician { get; init; }
+        public int? TechnicianID { get; init; }
         public string? PartCode { get; init; }
         public bool? Status { get; init; }
         public int? PendingQuantity { get; init; }

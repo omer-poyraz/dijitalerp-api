@@ -5,8 +5,8 @@
         public ICollection<string>? Files { get; set; }
         public string? ProjectName { get; set; }
         public string? PartCode { get; set; }
-        public string? Responible { get; set; }
-        public string? PersonInCharge { get; set; }
+        public int? ResponibleID { get; init; }
+        public int? PersonInChargeID { get; init; }
         public string? SerialNumber { get; set; }
         public int? ProductionQuantity { get; set; }
         public int? Time { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace Entities.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Entities.Models
 {
     public class AssemblyManuel
     {
@@ -6,8 +8,12 @@
         public ICollection<string>? Files { get; set; }
         public string? ProjectName { get; set; }
         public string? PartCode { get; set; }
-        public string? Responible { get; set; }
-        public string? PersonInCharge { get; set; }
+        [ForeignKey("ResponibleID")]
+        public Employee? Responible { get; set; }
+        public int? ResponibleID { get; set; }
+        [ForeignKey("PersonInChargeID")]
+        public Employee? PersonInCharge { get; set; }
+        public int? PersonInChargeID { get; set; }
         public string? SerialNumber { get; set; }
         public int? ProductionQuantity { get; set; }
         public int? Time { get; set; }
