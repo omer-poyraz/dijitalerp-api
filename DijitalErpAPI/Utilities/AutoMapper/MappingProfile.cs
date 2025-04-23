@@ -4,6 +4,7 @@ using Entities.DTOs.AssemblyManuelDto;
 using Entities.DTOs.AssemblyNoteDto;
 using Entities.DTOs.AssemblySuccessStateDto;
 using Entities.DTOs.DepartmentDto;
+using Entities.DTOs.EmployeeDto;
 using Entities.DTOs.LogDto;
 using Entities.DTOs.ProductDto;
 using Entities.DTOs.ServicesDto;
@@ -38,6 +39,10 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<DepartmentDtoForUpdate, Department>().ReverseMap();
             CreateMap<Department, DepartmentDto>();
             CreateMap<DepartmentDtoForInsertion, Department>();
+
+            CreateMap<EmployeeDtoForUpdate, Employee>().ReverseMap();
+            CreateMap<Employee, EmployeeDto>();
+            CreateMap<EmployeeDtoForInsertion, Employee>();
 
             CreateMap<LogDtoForInsertion, Log>();
             CreateMap<Log, LogDto>();

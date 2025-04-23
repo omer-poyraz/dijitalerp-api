@@ -8,6 +8,7 @@
         IAssemblyNoteService AssemblyNoteService { get; }
         IAssemblySuccessStateService AssemblySuccessStateService { get; }
         IDepartmentService DepartmentService { get; }
+        IEmployeeService EmployeeService { get; }
         ILogService LogService { get; }
         IProductService ProductService { get; }
         IServicesService ServicesService { get; }

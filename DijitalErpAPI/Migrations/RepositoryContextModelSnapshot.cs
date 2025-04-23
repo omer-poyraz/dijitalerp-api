@@ -245,6 +245,57 @@ namespace DijitalErpAPI.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("Entities.Models.Employee", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Field")
+                        .HasColumnType("text");
+
+                    b.Property<string>("File")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Employees");
+                });
+
             modelBuilder.Entity("Entities.Models.Log", b =>
                 {
                     b.Property<int>("ID")
@@ -386,18 +437,24 @@ namespace DijitalErpAPI.Migrations
                         new
                         {
                             ID = 6,
+                            EndPoint = "/Employee",
+                            Name = "Employee"
+                        },
+                        new
+                        {
+                            ID = 7,
                             EndPoint = "/Log",
                             Name = "Log"
                         },
                         new
                         {
-                            ID = 7,
+                            ID = 8,
                             EndPoint = "/User",
                             Name = "User"
                         },
                         new
                         {
-                            ID = 8,
+                            ID = 9,
                             EndPoint = "/UserPermission",
                             Name = "UserPermission"
                         });
@@ -584,19 +641,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e121abe5-570c-48dd-9bfc-d7f97442820c",
+                            Id = "7b167768-46de-4480-a4a1-acbc96f01b2a",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "11c29340-00ac-464a-9e50-ec7b8aa75419",
+                            Id = "56ced3f9-116b-4af5-998e-6e7f2dba6fd1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "8e426204-24c7-4e52-91f0-26c91ea06609",
+                            Id = "ca065a4c-7816-4936-a7a1-607da0eab76a",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -762,6 +819,15 @@ namespace DijitalErpAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("AssemblyProject");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.Employee", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

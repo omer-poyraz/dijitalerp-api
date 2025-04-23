@@ -16,9 +16,10 @@ namespace Repositories.EFCore.Config
                 new Services { ID = 3, Name = "AssemblyNote", EndPoint = "/AssemblyNote", },
                 new Services { ID = 4, Name = "AssemblySuccessState", EndPoint = "/AssemblySuccessState", },
                 new Services { ID = 5, Name = "Department", EndPoint = "/Department", },
-                new Services { ID = 6, Name = "Log", EndPoint = "/Log", },
-                new Services { ID = 7, Name = "User", EndPoint = "/User", },
-                new Services { ID = 8, Name = "UserPermission", EndPoint = "/UserPermission", }
+                new Services { ID = 6, Name = "Employee", EndPoint = "/Employee", },
+                new Services { ID = 7, Name = "Log", EndPoint = "/Log", },
+                new Services { ID = 8, Name = "User", EndPoint = "/User", },
+                new Services { ID = 9, Name = "UserPermission", EndPoint = "/UserPermission", }
             );
         }
     }

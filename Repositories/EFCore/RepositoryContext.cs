@@ -14,6 +14,7 @@ namespace Repositories.EFCore
         public DbSet<AssemblyNote> AssemblyNotes { get; set; }
         public DbSet<AssemblySuccessState> AssemblySuccessStates { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Services> Services { get; set; }
         public DbSet<UserPermission> UserPermissions { get; set; }

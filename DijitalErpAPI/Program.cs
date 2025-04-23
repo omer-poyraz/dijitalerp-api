@@ -37,6 +37,8 @@ app.UseMiddleware<LogMiddleware>();
 app.UseHttpsRedirection();
 app.UsePathBase("/api");
 
+app.UseStaticFiles(); 
+
 app.UseAuthentication();
 app.UseAuthorization();
 

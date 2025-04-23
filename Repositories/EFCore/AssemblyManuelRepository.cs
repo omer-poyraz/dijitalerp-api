@@ -22,12 +22,19 @@ namespace Repositories.EFCore
 
         public async Task<IEnumerable<AssemblyManuel>> GetAllAssemblyManuelAsync(bool? trackChanges)
         {
-            return await FindAll(trackChanges).OrderBy(s => s.ID).Include(s => s.User).ToListAsync();
+            return await FindAll(trackChanges)
+                .OrderBy(s => s.ID)
+                .Include(s => s.BasariliDurumlar)
+                .Include(s => s.BasarisizDurumlar)
+                .Include(s => s.User)
+                .ToListAsync();
         }
 
         public async Task<AssemblyManuel> GetAssemblyManuelByIdAsync(int id, bool? trackChanges)
         {
             return await FindByCondition(s => s.ID.Equals(id), trackChanges)
+                .Include(s => s.BasariliDurumlar)
+                .Include(s => s.BasarisizDurumlar)
                 .Include(s => s.User)
                 .SingleOrDefaultAsync();
         }

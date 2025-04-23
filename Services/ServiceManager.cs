@@ -10,6 +10,7 @@ namespace Services
         private readonly IAssemblyNoteService _assemblyNoteService;
         private readonly IAssemblySuccessStateService _assemblySuccessStateService;
         private readonly IDepartmentService _departmentService;
+        private readonly IEmployeeService _employeeService;
         private readonly ILogService _logService;
         private readonly IProductService _productService;
         private readonly IServicesService _servicesService;
@@ -27,7 +28,8 @@ namespace Services
             IAssemblyManuelService assemblyManuelService,
             IAssemblyNoteService assemblyNoteService,
             IAssemblySuccessStateService assemblySuccessStateService,
-            IProductService productService)
+            IProductService productService,
+            IEmployeeService employeeService)
         {
             _authenticationService = authenticationService;
             _assemblyFailureStateService = assemblyFailureStateService;
@@ -35,11 +37,12 @@ namespace Services
             _assemblyNoteService = assemblyNoteService;
             _assemblySuccessStateService = assemblySuccessStateService;
             _departmentService = departmentService;
+            _employeeService = employeeService;
             _logService = logService;
+            _productService = productService;
             _servicesService = servicesService;
             _userService = userService;
             _userPermissionService = userPermissionService;
-            _productService = productService;
         }
 
         public IAuthenticationService AuthenticationService => _authenticationService;
@@ -48,6 +51,7 @@ namespace Services
         public IAssemblyNoteService AssemblyNoteService => _assemblyNoteService;
         public IAssemblySuccessStateService AssemblySuccessStateService => _assemblySuccessStateService;
         public IDepartmentService DepartmentService => _departmentService;
+        public IEmployeeService EmployeeService => _employeeService;
         public ILogService LogService => _logService;
         public IProductService ProductService => _productService;
         public IServicesService ServicesService => _servicesService;

@@ -9,6 +9,7 @@ namespace Repositories.EFCore
         private readonly IAssemblyNoteRepository _assemblyNoteRepository;
         private readonly IAssemblySuccessStateRepository _assemblySuccessStateRepository;
         private readonly IDepartmentRepository _departmentRepository;
+        private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogRepository _logRepository;
         private readonly IProductRepository _productRepository;
         private readonly RepositoryContext _context;
@@ -27,7 +28,8 @@ namespace Repositories.EFCore
             IAssemblyManuelRepository assemblyManuelRepository,
             IAssemblyNoteRepository assemblyNoteRepository,
             IAssemblySuccessStateRepository assemblySuccessStateRepository,
-            IProductRepository productRepository)
+            IProductRepository productRepository,
+            IEmployeeRepository employeeRepository)
         {
             _assemblyFailureStateRepository = assemblyFailureStateRepository;
             _assemblyManuelRepository = assemblyManuelRepository;
@@ -35,11 +37,12 @@ namespace Repositories.EFCore
             _assemblySuccessStateRepository = assemblySuccessStateRepository;
             _context = context;
             _departmentRepository = departmentRepository;
+            _employeeRepository = employeeRepository;
             _logRepository = logRepository;
+            _productRepository = productRepository;
             _servicesRepository = servicesRepository;
             _userRepository = userRepository;
             _userPermissionRepository = userPermissionRepository;
-            _productRepository = productRepository;
         }
 
         public IAssemblyFailureStateRepository AssemblyFailureStateRepository => _assemblyFailureStateRepository;
@@ -47,6 +50,7 @@ namespace Repositories.EFCore
         public IAssemblyNoteRepository AssemblyNoteRepository => _assemblyNoteRepository;
         public IAssemblySuccessStateRepository AssemblySuccessStateRepository => _assemblySuccessStateRepository;
         public IDepartmentRepository DepartmentRepository => _departmentRepository;
+        public IEmployeeRepository EmployeeRepository => _employeeRepository;
         public ILogRepository LogRepository => _logRepository;
         public IProductRepository ProductRepository => _productRepository;
         public IServicesRepository ServicesRepository => _servicesRepository;

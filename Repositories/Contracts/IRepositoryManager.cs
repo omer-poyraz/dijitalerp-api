@@ -7,6 +7,7 @@
         IAssemblyNoteRepository AssemblyNoteRepository { get; }
         IAssemblySuccessStateRepository AssemblySuccessStateRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
+        IEmployeeRepository EmployeeRepository { get; }
         ILogRepository LogRepository { get; }
         IProductRepository ProductRepository { get; }
         IServicesRepository ServicesRepository { get; }
