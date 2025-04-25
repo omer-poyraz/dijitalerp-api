@@ -2,6 +2,11 @@ using DijitalErpAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5254);
+});
+
 builder.Services.AddHttpClient();
 
 builder
