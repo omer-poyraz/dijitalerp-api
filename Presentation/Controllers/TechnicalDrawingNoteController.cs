@@ -39,7 +39,7 @@ namespace Presentation.Controllers
             }
         }
 
-        [HttpGet("GetAllByManual/{id:int}")]
+        [HttpGet("GetAllByDrawing/{id:int}")]
         [AuthorizePermission("TechnicalDrawingNote", "Read")]
         public async Task<IActionResult> GetAllTechnicalDrawingNotesAsync([FromRoute] int id)
         {

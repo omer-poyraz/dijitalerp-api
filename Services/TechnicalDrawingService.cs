@@ -58,34 +58,42 @@ namespace Services
 
         public async Task<TechnicalDrawingDto> AddFileTechnicalDrawingAsync(TechnicalDrawingDtoForAddFile technicalDrawingDtoForAddFile)
         {
-            var technicalDrawing = await _manager.TechnicalDrawingRepository.GetTechnicalDrawingByIdAsync(technicalDrawingDtoForAddFile.ID, technicalDrawingDtoForAddFile.TrackChanges);
-            var existingFiles = technicalDrawing.Files?.ToList() ?? new List<string>();
-            var newFiles = technicalDrawingDtoForAddFile.Files;
-            technicalDrawingDtoForAddFile.Files = null;
-            _mapper.Map(technicalDrawingDtoForAddFile, technicalDrawing);
-            if (newFiles != null && newFiles.Any())
+            try
             {
-                foreach (var file in newFiles)
+                var technicalDrawing = await _manager.TechnicalDrawingRepository.GetTechnicalDrawingByIdAsync(technicalDrawingDtoForAddFile.ID, technicalDrawingDtoForAddFile.TrackChanges);
+                var existingFiles = technicalDrawing.Files?.ToList() ?? new List<string>();
+                var newFiles = technicalDrawingDtoForAddFile.Files;
+                technicalDrawingDtoForAddFile.Files = null;
+                _mapper.Map(technicalDrawingDtoForAddFile, technicalDrawing);
+                if (newFiles != null && newFiles.Any())
                 {
-                    existingFiles.Add(file);
+                    foreach (var file in newFiles)
+                    {
+                        existingFiles.Add(file);
+                    }
                 }
-            }
-            technicalDrawing.Files = existingFiles;
-            technicalDrawing.ProjectName = technicalDrawing.ProjectName;
-            technicalDrawing.PartCode = technicalDrawing.PartCode;
-            technicalDrawing.Responible = technicalDrawing.Responible;
-            technicalDrawing.PersonInCharge = technicalDrawing.PersonInCharge;
-            technicalDrawing.SerialNumber = technicalDrawing.SerialNumber;
-            technicalDrawing.ProductionQuantity = technicalDrawing.ProductionQuantity;
-            technicalDrawing.Time = technicalDrawing.Time;
-            technicalDrawing.Date = technicalDrawing.Date;
-            technicalDrawing.Description = technicalDrawing.Description;
-            technicalDrawing.OperatorDate = technicalDrawing.OperatorDate;
-            technicalDrawing.UserId = technicalDrawingDtoForAddFile.UserId;
+                technicalDrawing.Files = existingFiles;
+                technicalDrawing.ProjectName = technicalDrawing.ProjectName;
+                technicalDrawing.PartCode = technicalDrawing.PartCode;
+                technicalDrawing.Responible = technicalDrawing.Responible;
+                technicalDrawing.PersonInCharge = technicalDrawing.PersonInCharge;
+                technicalDrawing.SerialNumber = technicalDrawing.SerialNumber;
+                technicalDrawing.ProductionQuantity = technicalDrawing.ProductionQuantity;
+                technicalDrawing.Time = technicalDrawing.Time;
+                technicalDrawing.Date = technicalDrawing.Date;
+                technicalDrawing.Description = technicalDrawing.Description;
+                technicalDrawing.OperatorDate = technicalDrawing.OperatorDate;
+                technicalDrawing.UserId = technicalDrawingDtoForAddFile.UserId;
 
-            _manager.TechnicalDrawingRepository.AddFileTechnicalDrawing(technicalDrawing);
-            await _manager.SaveAsync();
-            return _mapper.Map<TechnicalDrawingDto>(technicalDrawing);
+                _manager.TechnicalDrawingRepository.AddFileTechnicalDrawing(technicalDrawing);
+                await _manager.SaveAsync();
+                return _mapper.Map<TechnicalDrawingDto>(technicalDrawing);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task<TechnicalDrawingDto> UpdateTechnicalDrawingAsync(TechnicalDrawingDtoForUpdate technicalDrawingDtoForUpdate)

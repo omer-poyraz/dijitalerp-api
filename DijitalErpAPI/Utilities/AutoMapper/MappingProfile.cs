@@ -59,6 +59,7 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<Entities.Models.Services, ServicesDto>();
             CreateMap<ServicesDtoForInsertion, Entities.Models.Services>();
 
+            CreateMap<TechnicalDrawingDtoForAddFile, TechnicalDrawing>().ReverseMap();
             CreateMap<TechnicalDrawingDtoForUpdate, TechnicalDrawing>().ReverseMap();
             CreateMap<TechnicalDrawing, TechnicalDrawingDto>();
             CreateMap<TechnicalDrawingDtoForInsertion, TechnicalDrawing>();

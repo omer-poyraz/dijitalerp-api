@@ -2,7 +2,6 @@
 {
     public abstract record TechnicalDrawingFailureStateDtoForManipulation
     {
-        public ICollection<string>? Files { get; set; }
         public string? Inappropriateness { get; init; }
         public string? ProjectName { get; init; }
         public string? Stand { get; init; }

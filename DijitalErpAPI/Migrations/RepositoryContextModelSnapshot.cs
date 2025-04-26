@@ -906,19 +906,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0c84000f-4b89-4b2c-bd84-b09cc0516ad2",
+                            Id = "8c76e150-3042-44b4-9d54-f87c5e44a297",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "5957dd3e-d6a2-4698-b41e-a244fb76b91f",
+                            Id = "9e7fc4d3-caba-43c5-9ff5-9443ab4c117c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "20562914-3b96-44fd-8a38-3819d3c8ac20",
+                            Id = "2720a5d3-1924-488b-8ee5-385970f04a88",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
