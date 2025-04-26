@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.DepartmentDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -20,7 +21,7 @@ namespace Services
             DepartmentDtoForInsertion departmentGroupDtoForInsertion
         )
         {
-            var departmentGroup = _mapper.Map<Entities.Models.Department>(departmentGroupDtoForInsertion);
+            var departmentGroup = _mapper.Map<Department>(departmentGroupDtoForInsertion);
             _manager.DepartmentRepository.CreateDepartment(departmentGroup);
             await _manager.SaveAsync();
             return _mapper.Map<DepartmentDto>(departmentGroup);

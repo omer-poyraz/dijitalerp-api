@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.AssemblyFailureStateDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -20,7 +21,7 @@ namespace Services
             AssemblyFailureStateDtoForInsertion assemblyFailureStateGroupDtoForInsertion
         )
         {
-            var assemblyFailureStateGroup = _mapper.Map<Entities.Models.AssemblyFailureState>(assemblyFailureStateGroupDtoForInsertion);
+            var assemblyFailureStateGroup = _mapper.Map<AssemblyFailureState>(assemblyFailureStateGroupDtoForInsertion);
             ConvertDatesToUtc(assemblyFailureStateGroupDtoForInsertion);
             _manager.AssemblyFailureStateRepository.CreateAssemblyFailureState(assemblyFailureStateGroup);
             await _manager.SaveAsync();

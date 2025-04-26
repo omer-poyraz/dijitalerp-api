@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.AssemblyManuelDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -23,7 +24,7 @@ namespace Services
             try
             {
                 ConvertDatesToUtc(assemblyManuelDtoForInsertion);
-                var assemblyManuel = _mapper.Map<Entities.Models.AssemblyManuel>(assemblyManuelDtoForInsertion);
+                var assemblyManuel = _mapper.Map<AssemblyManuel>(assemblyManuelDtoForInsertion);
                 _manager.AssemblyManuelRepository.CreateAssemblyManuel(assemblyManuel);
                 await _manager.SaveAsync();
                 return _mapper.Map<AssemblyManuelDto>(assemblyManuel);

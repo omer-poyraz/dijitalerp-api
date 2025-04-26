@@ -155,6 +155,9 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("text");
 
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
                     b.Property<bool?>("Status")
                         .HasColumnType("boolean");
 
@@ -649,19 +652,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a7f01795-229a-47fa-a21f-0b841d5932f6",
+                            Id = "9bbe2da5-808a-4ff0-9587-887e61f347b5",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "c0cd2d7d-33dd-42bf-97d8-1c366a2f8228",
+                            Id = "fb098d7d-9806-4f57-88ce-11578efdfa93",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "33dfeb1b-786e-403f-8425-04da04bcc54f",
+                            Id = "1f7768ec-da54-4cba-8e45-52e8c048b393",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });

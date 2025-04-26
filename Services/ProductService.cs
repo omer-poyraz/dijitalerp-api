@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.ProductDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -20,7 +21,7 @@ namespace Services
             ProductDtoForInsertion productDtoForInsertion
         )
         {
-            var product = _mapper.Map<Entities.Models.Product>(productDtoForInsertion);
+            var product = _mapper.Map<Product>(productDtoForInsertion);
             _manager.ProductRepository.CreateProduct(product);
             await _manager.SaveAsync();
             return _mapper.Map<ProductDto>(product);

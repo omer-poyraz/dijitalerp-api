@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.AssemblySuccessStateDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -22,7 +23,7 @@ namespace Services
         {
             try
             {
-                var assemblySuccessStateGroup = _mapper.Map<Entities.Models.AssemblySuccessState>(assemblySuccessStateGroupDtoForInsertion);
+                var assemblySuccessStateGroup = _mapper.Map<AssemblySuccessState>(assemblySuccessStateGroupDtoForInsertion);
                 ConvertDatesToUtc(assemblySuccessStateGroupDtoForInsertion);
                 _manager.AssemblySuccessStateRepository.CreateAssemblySuccessState(assemblySuccessStateGroup);
                 await _manager.SaveAsync();

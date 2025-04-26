@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DTOs.AssemblyNoteDto;
+using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -16,11 +17,33 @@ namespace Services
             _mapper = mapper;
         }
 
-        public async Task<AssemblyNoteDto> CreateAssemblyNoteAsync(
-            AssemblyNoteDtoForInsertion assemblyNoteGroupDtoForInsertion
-        )
+        public async Task<AssemblyNoteDto> CreateAssemblyNoteAsync(AssemblyNoteDtoForInsertion assemblyNoteGroupDtoForInsertion)
         {
-            var assemblyNoteGroup = _mapper.Map<Entities.Models.AssemblyNote>(assemblyNoteGroupDtoForInsertion);
+            var assemblyNoteGroup = _mapper.Map<AssemblyNote>(assemblyNoteGroupDtoForInsertion);
+            if (assemblyNoteGroupDtoForInsertion.Status == true)
+            {
+                _manager.AssemblySuccessStateRepository.CreateAssemblySuccessState(new AssemblySuccessState
+                {
+                    AssemblyManuelID = assemblyNoteGroup.AssemblyManuelID,
+                    Description = assemblyNoteGroup.Description,
+                    PartCode = assemblyNoteGroup.PartCode,
+                    Status = assemblyNoteGroup.Status,
+                    UserId = assemblyNoteGroup.UserId,
+                    CreatedAt = DateTime.UtcNow
+                });
+            }
+            else
+            {
+                _manager.AssemblyFailureStateRepository.CreateAssemblyFailureState(new AssemblyFailureState
+                {
+                    AssemblyManuelID = assemblyNoteGroup.AssemblyManuelID,
+                    PartCode = assemblyNoteGroup.PartCode,
+                    QualityDescription = assemblyNoteGroup.Description,
+                    Status = assemblyNoteGroup.Status,
+                    UserId = assemblyNoteGroup.UserId,
+                    CreatedAt = DateTime.UtcNow
+                });
+            }
             _manager.AssemblyNoteRepository.CreateAssemblyNote(assemblyNoteGroup);
             await _manager.SaveAsync();
             return _mapper.Map<AssemblyNoteDto>(assemblyNoteGroup);
