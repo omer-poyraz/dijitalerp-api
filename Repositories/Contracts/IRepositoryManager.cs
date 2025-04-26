@@ -11,6 +11,10 @@
         ILogRepository LogRepository { get; }
         IProductRepository ProductRepository { get; }
         IServicesRepository ServicesRepository { get; }
+        ITechnicalDrawingFailureStateRepository TechnicalDrawingFailureStateRepository { get; }
+        ITechnicalDrawingNoteRepository TechnicalDrawingNoteRepository { get; }
+        ITechnicalDrawingRepository TechnicalDrawingRepository { get; }
+        ITechnicalDrawingSuccessStateRepository TechnicalDrawingSuccessStateRepository { get; }
         IUserRepository UserRepository { get; }
         IUserPermissionRepository UserPermissionRepository { get; }
         Task SaveAsync();

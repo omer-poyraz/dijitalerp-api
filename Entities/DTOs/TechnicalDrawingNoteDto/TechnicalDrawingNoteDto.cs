@@ -1,0 +1,19 @@
+﻿using Entities.Models;
+
+namespace Entities.DTOs.TechnicalDrawingNoteDto
+{
+    public class TechnicalDrawingNoteDto
+    {
+        public int ID { get; init; }
+        public string? Note { get; init; }
+        public string? PartCode { get; init; }
+        public string? Description { get; init; }
+        public bool? Status { get; init; }
+        public TechnicalDrawing? TechnicalDrawing { get; init; }
+        public int TechnicalDrawingID { get; init; }
+        public User? User { get; init; }
+        public string? UserId { get; init; }
+        public DateTime? CreatedAt { get; init; }
+        public DateTime? UpdatedAt { get; init; }
+    }
+}

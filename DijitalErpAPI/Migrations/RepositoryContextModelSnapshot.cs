@@ -460,15 +460,269 @@ namespace DijitalErpAPI.Migrations
                         new
                         {
                             ID = 8,
+                            EndPoint = "/TechnicalDrawing",
+                            Name = "TechnicalDrawing"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            EndPoint = "/TechnicalDrawingFailureState",
+                            Name = "TechnicalDrawingFailureState"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            EndPoint = "/TechnicalDrawingSuccessState",
+                            Name = "TechnicalDrawingSuccessState"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            EndPoint = "/TechnicalDrawingNote",
+                            Name = "TechnicalDrawingNote"
+                        },
+                        new
+                        {
+                            ID = 12,
                             EndPoint = "/User",
                             Name = "User"
                         },
                         new
                         {
-                            ID = 9,
+                            ID = 13,
                             EndPoint = "/UserPermission",
                             Name = "UserPermission"
                         });
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawing", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Files")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("OperatorDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("PersonInChargeID")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ProductionQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ResponibleID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SerialNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Stand")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Time")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PersonInChargeID");
+
+                    b.HasIndex("ResponibleID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TechnicalDrawings");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingFailureState", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Approval")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Inappropriateness")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("OperatorID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ProductionQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("QuantityDescription")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Stand")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("TechnicalDrawingID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("OperatorID");
+
+                    b.HasIndex("TechnicalDrawingID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TechnicalDrawingFailureStates");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingNote", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("TechnicalDrawingID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TechnicalDrawingID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TechnicalDrawingNotes");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingSuccessState", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Approval")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("OperatorID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ProductionQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("QuantityDescription")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Stand")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("TechnicalDrawingID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("OperatorID");
+
+                    b.HasIndex("TechnicalDrawingID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TechnicalDrawingSuccessStates");
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
@@ -652,19 +906,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9bbe2da5-808a-4ff0-9587-887e61f347b5",
+                            Id = "0c84000f-4b89-4b2c-bd84-b09cc0516ad2",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "fb098d7d-9806-4f57-88ce-11578efdfa93",
+                            Id = "5957dd3e-d6a2-4698-b41e-a244fb76b91f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "1f7768ec-da54-4cba-8e45-52e8c048b393",
+                            Id = "20562914-3b96-44fd-8a38-3819d3c8ac20",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -894,6 +1148,86 @@ namespace DijitalErpAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Entities.Models.TechnicalDrawing", b =>
+                {
+                    b.HasOne("Entities.Models.Employee", "PersonInCharge")
+                        .WithMany()
+                        .HasForeignKey("PersonInChargeID");
+
+                    b.HasOne("Entities.Models.Employee", "Responible")
+                        .WithMany()
+                        .HasForeignKey("ResponibleID");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("PersonInCharge");
+
+                    b.Navigation("Responible");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingFailureState", b =>
+                {
+                    b.HasOne("Entities.Models.Employee", "Operator")
+                        .WithMany()
+                        .HasForeignKey("OperatorID");
+
+                    b.HasOne("Entities.Models.TechnicalDrawing", "TechnicalDrawing")
+                        .WithMany("BasarisizDurumlar")
+                        .HasForeignKey("TechnicalDrawingID");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Operator");
+
+                    b.Navigation("TechnicalDrawing");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingNote", b =>
+                {
+                    b.HasOne("Entities.Models.TechnicalDrawing", "TechnicalDrawing")
+                        .WithMany("TechnicalDrawingNotes")
+                        .HasForeignKey("TechnicalDrawingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("TechnicalDrawing");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingSuccessState", b =>
+                {
+                    b.HasOne("Entities.Models.Employee", "Operator")
+                        .WithMany()
+                        .HasForeignKey("OperatorID");
+
+                    b.HasOne("Entities.Models.TechnicalDrawing", "TechnicalDrawing")
+                        .WithMany("BasariliDurumlar")
+                        .HasForeignKey("TechnicalDrawingID");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Operator");
+
+                    b.Navigation("TechnicalDrawing");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.HasOne("Entities.Models.Department", "Department")
@@ -982,6 +1316,15 @@ namespace DijitalErpAPI.Migrations
             modelBuilder.Entity("Entities.Models.Department", b =>
                 {
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawing", b =>
+                {
+                    b.Navigation("BasariliDurumlar");
+
+                    b.Navigation("BasarisizDurumlar");
+
+                    b.Navigation("TechnicalDrawingNotes");
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>

@@ -14,6 +14,10 @@ namespace Repositories.EFCore
         private readonly IProductRepository _productRepository;
         private readonly RepositoryContext _context;
         private readonly IServicesRepository _servicesRepository;
+        private readonly ITechnicalDrawingRepository _technicalDrawingRepository;
+        private readonly ITechnicalDrawingFailureStateRepository _technicalDrawingFailureStateRepository;
+        private readonly ITechnicalDrawingSuccessStateRepository _technicalDrawingSuccessStateRepository;
+        private readonly ITechnicalDrawingNoteRepository _technicalDrawingNoteRepository;
         private readonly IUserRepository _userRepository;
         private readonly IUserPermissionRepository _userPermissionRepository;
 
@@ -29,7 +33,11 @@ namespace Repositories.EFCore
             IAssemblyNoteRepository assemblyNoteRepository,
             IAssemblySuccessStateRepository assemblySuccessStateRepository,
             IProductRepository productRepository,
-            IEmployeeRepository employeeRepository)
+            IEmployeeRepository employeeRepository,
+            ITechnicalDrawingRepository technicalDrawingRepository,
+            ITechnicalDrawingFailureStateRepository technicalDrawingFailureStateRepository,
+            ITechnicalDrawingSuccessStateRepository technicalDrawingSuccessStateRepository,
+            ITechnicalDrawingNoteRepository technicalDrawingNoteRepository)
         {
             _assemblyFailureStateRepository = assemblyFailureStateRepository;
             _assemblyManuelRepository = assemblyManuelRepository;
@@ -41,6 +49,10 @@ namespace Repositories.EFCore
             _logRepository = logRepository;
             _productRepository = productRepository;
             _servicesRepository = servicesRepository;
+            _technicalDrawingRepository = technicalDrawingRepository;
+            _technicalDrawingFailureStateRepository = technicalDrawingFailureStateRepository;
+            _technicalDrawingSuccessStateRepository = technicalDrawingSuccessStateRepository;
+            _technicalDrawingNoteRepository = technicalDrawingNoteRepository;
             _userRepository = userRepository;
             _userPermissionRepository = userPermissionRepository;
         }
@@ -54,6 +66,10 @@ namespace Repositories.EFCore
         public ILogRepository LogRepository => _logRepository;
         public IProductRepository ProductRepository => _productRepository;
         public IServicesRepository ServicesRepository => _servicesRepository;
+        public ITechnicalDrawingRepository TechnicalDrawingRepository => _technicalDrawingRepository;
+        public ITechnicalDrawingFailureStateRepository TechnicalDrawingFailureStateRepository => _technicalDrawingFailureStateRepository;
+        public ITechnicalDrawingSuccessStateRepository TechnicalDrawingSuccessStateRepository => _technicalDrawingSuccessStateRepository;
+        public ITechnicalDrawingNoteRepository TechnicalDrawingNoteRepository => _technicalDrawingNoteRepository;
         public IUserRepository UserRepository => _userRepository;
         public IUserPermissionRepository UserPermissionRepository => _userPermissionRepository;
 

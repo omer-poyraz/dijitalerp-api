@@ -18,8 +18,12 @@ namespace Repositories.EFCore.Config
                 new Services { ID = 5, Name = "Department", EndPoint = "/Department", },
                 new Services { ID = 6, Name = "Employee", EndPoint = "/Employee", },
                 new Services { ID = 7, Name = "Log", EndPoint = "/Log", },
-                new Services { ID = 8, Name = "User", EndPoint = "/User", },
-                new Services { ID = 9, Name = "UserPermission", EndPoint = "/UserPermission", }
+                new Services { ID = 8, Name = "TechnicalDrawing", EndPoint = "/TechnicalDrawing", },
+                new Services { ID = 9, Name = "TechnicalDrawingFailureState", EndPoint = "/TechnicalDrawingFailureState", },
+                new Services { ID = 10, Name = "TechnicalDrawingSuccessState", EndPoint = "/TechnicalDrawingSuccessState", },
+                new Services { ID = 11, Name = "TechnicalDrawingNote", EndPoint = "/TechnicalDrawingNote", },
+                new Services { ID = 12, Name = "User", EndPoint = "/User", },
+                new Services { ID = 13, Name = "UserPermission", EndPoint = "/UserPermission", }
             );
         }
     }

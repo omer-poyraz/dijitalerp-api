@@ -14,6 +14,10 @@ namespace Services
         private readonly ILogService _logService;
         private readonly IProductService _productService;
         private readonly IServicesService _servicesService;
+        private readonly ITechnicalDrawingService _technicalDrawingService;
+        private readonly ITechnicalDrawingFailureStateService _technicalDrawingFailureStateService;
+        private readonly ITechnicalDrawingSuccessStateService _technicalDrawingSuccessStateService;
+        private readonly ITechnicalDrawingNoteService _technicalDrawingNoteService;
         private readonly IUserService _userService;
         private readonly IUserPermissionService _userPermissionService;
 
@@ -29,7 +33,11 @@ namespace Services
             IAssemblyNoteService assemblyNoteService,
             IAssemblySuccessStateService assemblySuccessStateService,
             IProductService productService,
-            IEmployeeService employeeService)
+            IEmployeeService employeeService,
+            ITechnicalDrawingService technicalDrawingService,
+            ITechnicalDrawingFailureStateService technicalDrawingFailureStateService,
+            ITechnicalDrawingSuccessStateService technicalDrawingSuccessStateService,
+            ITechnicalDrawingNoteService technicalDrawingNoteService)
         {
             _authenticationService = authenticationService;
             _assemblyFailureStateService = assemblyFailureStateService;
@@ -41,6 +49,10 @@ namespace Services
             _logService = logService;
             _productService = productService;
             _servicesService = servicesService;
+            _technicalDrawingService = technicalDrawingService;
+            _technicalDrawingFailureStateService = technicalDrawingFailureStateService;
+            _technicalDrawingSuccessStateService = technicalDrawingSuccessStateService;
+            _technicalDrawingNoteService = technicalDrawingNoteService;
             _userService = userService;
             _userPermissionService = userPermissionService;
         }
@@ -55,6 +67,10 @@ namespace Services
         public ILogService LogService => _logService;
         public IProductService ProductService => _productService;
         public IServicesService ServicesService => _servicesService;
+        public ITechnicalDrawingService TechnicalDrawingService => _technicalDrawingService;
+        public ITechnicalDrawingFailureStateService TechnicalDrawingFailureStateService => _technicalDrawingFailureStateService;
+        public ITechnicalDrawingSuccessStateService TechnicalDrawingSuccessStateService => _technicalDrawingSuccessStateService;
+        public ITechnicalDrawingNoteService TechnicalDrawingNoteService => _technicalDrawingNoteService;
         public IUserService UserService => _userService;
         public IUserPermissionService UserPermissionService => _userPermissionService;
     }

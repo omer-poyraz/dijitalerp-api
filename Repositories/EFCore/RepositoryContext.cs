@@ -17,6 +17,10 @@ namespace Repositories.EFCore
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Services> Services { get; set; }
+        public DbSet<TechnicalDrawing> TechnicalDrawings { get; set; }
+        public DbSet<TechnicalDrawingFailureState> TechnicalDrawingFailureStates { get; set; }
+        public DbSet<TechnicalDrawingSuccessState> TechnicalDrawingSuccessStates { get; set; }
+        public DbSet<TechnicalDrawingNote> TechnicalDrawingNotes { get; set; }
         public DbSet<UserPermission> UserPermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -58,6 +58,18 @@ namespace DijitalErpAPI.Extensions
             services.AddScoped<IServicesRepository, ServicesRepository>();
             services.AddScoped<IServicesService, ServicesService>();
 
+            services.AddScoped<ITechnicalDrawingRepository, TechnicalDrawingRepository>();
+            services.AddScoped<ITechnicalDrawingService, TechnicalDrawingService>();
+
+            services.AddScoped<ITechnicalDrawingFailureStateRepository, TechnicalDrawingFailureStateRepository>();
+            services.AddScoped<ITechnicalDrawingFailureStateService, TechnicalDrawingFailureStateService>();
+
+            services.AddScoped<ITechnicalDrawingSuccessStateRepository, TechnicalDrawingSuccessStateRepository>();
+            services.AddScoped<ITechnicalDrawingSuccessStateService, TechnicalDrawingSuccessStateService>();
+
+            services.AddScoped<ITechnicalDrawingNoteRepository, TechnicalDrawingNoteRepository>();
+            services.AddScoped<ITechnicalDrawingNoteService, TechnicalDrawingNoteService>();
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
 

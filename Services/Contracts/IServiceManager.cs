@@ -12,6 +12,10 @@
         ILogService LogService { get; }
         IProductService ProductService { get; }
         IServicesService ServicesService { get; }
+        ITechnicalDrawingService TechnicalDrawingService { get; }
+        ITechnicalDrawingFailureStateService TechnicalDrawingFailureStateService { get; }
+        ITechnicalDrawingSuccessStateService TechnicalDrawingSuccessStateService { get; }
+        ITechnicalDrawingNoteService TechnicalDrawingNoteService { get; }
         IUserService UserService { get; }
         IUserPermissionService UserPermissionService { get; }
     }

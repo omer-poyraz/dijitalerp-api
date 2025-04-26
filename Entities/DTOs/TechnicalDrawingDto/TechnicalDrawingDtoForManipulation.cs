@@ -1,0 +1,19 @@
+﻿namespace Entities.DTOs.TechnicalDrawingDto
+{
+    public abstract record TechnicalDrawingDtoForManipulation
+    {
+        public ICollection<string>? Files { get; set; }
+        public string? ProjectName { get; init; }
+        public string? PartCode { get; init; }
+        public string? Stand { get; init; }
+        public int? ResponibleID { get; init; }
+        public int? PersonInChargeID { get; init; }
+        public string? SerialNumber { get; init; }
+        public int? ProductionQuantity { get; init; }
+        public int? Time { get; init; }
+        public DateTime? Date { get; set; }
+        public string? Description { get; init; }
+        public DateTime? OperatorDate { get; set; }
+        public string? UserId { get; init; }
+    }
+}
