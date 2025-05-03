@@ -5,6 +5,7 @@
         IAssemblyFailureStateRepository AssemblyFailureStateRepository { get; }
         IAssemblyManuelRepository AssemblyManuelRepository { get; }
         IAssemblyNoteRepository AssemblyNoteRepository { get; }
+        IAssemblyVisualNoteRepository AssemblyVisualNoteRepository { get; }
         IAssemblySuccessStateRepository AssemblySuccessStateRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
@@ -13,6 +14,7 @@
         IServicesRepository ServicesRepository { get; }
         ITechnicalDrawingFailureStateRepository TechnicalDrawingFailureStateRepository { get; }
         ITechnicalDrawingNoteRepository TechnicalDrawingNoteRepository { get; }
+        ITechnicalDrawingVisualNoteRepository TechnicalDrawingVisualNoteRepository { get; }
         ITechnicalDrawingRepository TechnicalDrawingRepository { get; }
         ITechnicalDrawingSuccessStateRepository TechnicalDrawingSuccessStateRepository { get; }
         IUserRepository UserRepository { get; }

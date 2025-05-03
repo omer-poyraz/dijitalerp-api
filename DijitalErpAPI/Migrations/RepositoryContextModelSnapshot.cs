@@ -231,6 +231,47 @@ namespace DijitalErpAPI.Migrations
                     b.ToTable("AssemblySuccessStates");
                 });
 
+            modelBuilder.Entity("Entities.Models.AssemblyVisualNote", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AssemblyManuelID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Files")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AssemblyManuelID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AssemblyVisualNotes");
+                });
+
             modelBuilder.Entity("Entities.Models.Department", b =>
                 {
                     b.Property<int>("ID")
@@ -725,6 +766,47 @@ namespace DijitalErpAPI.Migrations
                     b.ToTable("TechnicalDrawingSuccessStates");
                 });
 
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingVisualNote", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Files")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("TechnicalDrawingID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TechnicalDrawingID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TechnicalDrawingVisualNotes");
+                });
+
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -906,19 +988,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8c76e150-3042-44b4-9d54-f87c5e44a297",
+                            Id = "19edfe94-6e1f-4c00-ad03-c0fe5698a0f5",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "9e7fc4d3-caba-43c5-9ff5-9443ab4c117c",
+                            Id = "442064ef-06a2-482f-ba55-036493c96935",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2720a5d3-1924-488b-8ee5-385970f04a88",
+                            Id = "6eb6aa8f-ad3d-4b08-bb51-1fd3fc019dd3",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -1112,6 +1194,23 @@ namespace DijitalErpAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Entities.Models.AssemblyVisualNote", b =>
+                {
+                    b.HasOne("Entities.Models.AssemblyManuel", "AssemblyManuel")
+                        .WithMany()
+                        .HasForeignKey("AssemblyManuelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("AssemblyManuel");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Models.Employee", b =>
                 {
                     b.HasOne("Entities.Models.User", "User")
@@ -1222,6 +1321,23 @@ namespace DijitalErpAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Operator");
+
+                    b.Navigation("TechnicalDrawing");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingVisualNote", b =>
+                {
+                    b.HasOne("Entities.Models.TechnicalDrawing", "TechnicalDrawing")
+                        .WithMany()
+                        .HasForeignKey("TechnicalDrawingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("TechnicalDrawing");
 

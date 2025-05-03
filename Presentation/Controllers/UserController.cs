@@ -23,7 +23,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("GetAll")]
-        [AuthorizePermission("User", "Read")]
+        // [AuthorizePermission("User", "Read")]
         public async Task<IActionResult> GetAllUsersAsync([FromQuery] UserParameters userParameters)
         {
             try

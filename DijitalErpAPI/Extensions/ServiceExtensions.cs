@@ -40,6 +40,9 @@ namespace DijitalErpAPI.Extensions
             services.AddScoped<IAssemblyNoteService, AssemblyNoteService>();
             services.AddScoped<IAssemblyNoteRepository, AssemblyNoteRepository>();
 
+            services.AddScoped<IAssemblyVisualNoteService, AssemblyVisualNoteService>();
+            services.AddScoped<IAssemblyVisualNoteRepository, AssemblyVisualNoteRepository>();
+
             services.AddScoped<IAssemblySuccessStateService, AssemblySuccessStateService>();
             services.AddScoped<IAssemblySuccessStateRepository, AssemblySuccessStateRepository>();
 
@@ -69,6 +72,9 @@ namespace DijitalErpAPI.Extensions
 
             services.AddScoped<ITechnicalDrawingNoteRepository, TechnicalDrawingNoteRepository>();
             services.AddScoped<ITechnicalDrawingNoteService, TechnicalDrawingNoteService>();
+
+            services.AddScoped<ITechnicalDrawingVisualNoteRepository, TechnicalDrawingVisualNoteRepository>();
+            services.AddScoped<ITechnicalDrawingVisualNoteService, TechnicalDrawingVisualNoteService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();

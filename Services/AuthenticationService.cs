@@ -9,6 +9,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Repositories.Contracts;
 using Repositories.EFCore;
 using Services.Contracts;
 
@@ -17,6 +18,7 @@ namespace Services
     public class AuthenticationService : IAuthenticationService
     {
         private readonly RepositoryContext _context;
+        private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
@@ -27,12 +29,14 @@ namespace Services
             UserManager<User> userManager,
             IConfiguration configuration,
             RepositoryContext context
-        )
+,
+            IRepositoryManager manager)
         {
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
             _context = context;
+            _manager = manager;
         }
 
         public async Task<TokenDto> CreateToken(bool populateExpire)
@@ -52,13 +56,16 @@ namespace Services
 
             await _userManager.UpdateAsync(_user);
 
+            var user = await _manager.UserRepository.GetOneUserByIdAsync(_user.Id, false);
+            
+            var role = user.Roles!.FirstOrDefault();
+
             var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-            var role = await _userManager.GetRolesAsync(_user);
 
             return new TokenDto
             {
                 User = _user,
-                Role = FindRole(role.FirstOrDefault()!),
+                Role = FindRole(role!.Name!),
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
             };

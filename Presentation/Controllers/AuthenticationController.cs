@@ -26,28 +26,17 @@ namespace Presentation.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest(ApiResponse<TokenDto>.CreateError(
-                        _httpContextAccessor,
-                        "Error.ValidationError",
-                        400));
+                    return BadRequest(ApiResponse<TokenDto>.CreateError(_httpContextAccessor, "Error.ValidationError", 400));
 
                 if (!await _manager.AuthenticationService.ValidUser(userForAuthenticationDto))
-                    return Unauthorized(ApiResponse<TokenDto>.CreateError(
-                        _httpContextAccessor,
-                        "Error.InvalidCredentials",
-                        401));
+                    return Unauthorized(ApiResponse<TokenDto>.CreateError(_httpContextAccessor, "Error.InvalidCredentials", 401));
 
                 var token = await _manager.AuthenticationService.CreateToken(true);
-                return Ok(ApiResponse<TokenDto>.CreateSuccess(
-                    _httpContextAccessor,
-                    token,
-                    "Success.LoginSuccess"));
+                return Ok(ApiResponse<TokenDto>.CreateSuccess(_httpContextAccessor, token, "Success.LoginSuccess"));
             }
             catch (Exception)
             {
-                return StatusCode(500, ApiResponse<TokenDto>.CreateError(
-                    _httpContextAccessor,
-                    "Error.ServerError"));
+                return StatusCode(500, ApiResponse<TokenDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
             }
         }
 
@@ -57,10 +46,7 @@ namespace Presentation.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest(ApiResponse<IdentityResult>.CreateError(
-                        _httpContextAccessor,
-                        "Error.ValidationError",
-                        400));
+                    return BadRequest(ApiResponse<IdentityResult>.CreateError(_httpContextAccessor, "Error.ValidationError", 400));
 
                 var result = await _manager.AuthenticationService.RegisterUser(userForRegisterDto);
 
@@ -71,22 +57,14 @@ namespace Presentation.Controllers
                     {
                         ModelState.TryAddModelError(error.Code, error.Description);
                     }
-                    return BadRequest(ApiResponse<List<string>>.CreateError(
-                        _httpContextAccessor,
-                        "Error.RegisterFailed",
-                        400));
+                    return BadRequest(ApiResponse<List<string>>.CreateError(_httpContextAccessor, "Error.RegisterFailed", 400));
                 }
 
-                return Ok(ApiResponse<IdentityResult>.CreateSuccess(
-                    _httpContextAccessor,
-                    result,
-                    "Success.RegisterSuccess"));
+                return Ok(ApiResponse<IdentityResult>.CreateSuccess(_httpContextAccessor, result, "Success.RegisterSuccess"));
             }
             catch (Exception)
             {
-                return StatusCode(500, ApiResponse<IdentityResult>.CreateError(
-                    _httpContextAccessor,
-                    "Error.ServerError"));
+                return StatusCode(500, ApiResponse<IdentityResult>.CreateError(_httpContextAccessor, "Error.ServerError"));
             }
         }
 
@@ -96,16 +74,11 @@ namespace Presentation.Controllers
             try
             {
                 var tokenDtoToReturn = await _manager.AuthenticationService.RefreshToken(tokenDto);
-                return Ok(ApiResponse<TokenDto>.CreateSuccess(
-                    _httpContextAccessor,
-                    tokenDtoToReturn,
-                    "Success.TokenRefreshed"));
+                return Ok(ApiResponse<TokenDto>.CreateSuccess(_httpContextAccessor, tokenDtoToReturn, "Success.TokenRefreshed"));
             }
             catch (Exception)
             {
-                return StatusCode(500, ApiResponse<TokenDto>.CreateError(
-                    _httpContextAccessor,
-                    "Error.ServerError"));
+                return StatusCode(500, ApiResponse<TokenDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
             }
         }
     }

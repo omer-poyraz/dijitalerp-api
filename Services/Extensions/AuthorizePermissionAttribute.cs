@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
+using Repositories.Contracts;
 using Services.Contracts;
 
 namespace Services.Extensions
@@ -21,6 +22,8 @@ namespace Services.Extensions
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
             var userManager = context.HttpContext.RequestServices.GetService<UserManager<User>>();
+            var repositoryManager = context.HttpContext.RequestServices.GetService<IRepositoryManager>();
+
             if (userManager == null)
             {
                 context.Result = new ObjectResult(
@@ -49,7 +52,13 @@ namespace Services.Extensions
             var userId = user?.Id;
 
             var userRoles = await userManager.GetRolesAsync(user!);
-            if (userRoles.Contains("Super Admin") || userRoles.Contains("Admin"))
+            if (userRoles == null || userRoles.Count == 0)
+            {
+                var newUser = await repositoryManager.UserRepository.GetOneUserByIdAsync(userId, false);
+                if (newUser?.Roles != null && newUser.Roles.Any())
+                    userRoles = new List<string> { newUser.Roles.First().Name };
+            }
+            if (userRoles!.Contains("Super Admin") || userRoles.Contains("Admin"))
             {
                 return;
             }

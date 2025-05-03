@@ -3,6 +3,7 @@ using Entities.DTOs.AssemblyFailureStateDto;
 using Entities.DTOs.AssemblyManuelDto;
 using Entities.DTOs.AssemblyNoteDto;
 using Entities.DTOs.AssemblySuccessStateDto;
+using Entities.DTOs.AssemblyVisualNoteDto;
 using Entities.DTOs.DepartmentDto;
 using Entities.DTOs.EmployeeDto;
 using Entities.DTOs.LogDto;
@@ -12,6 +13,7 @@ using Entities.DTOs.TechnicalDrawingDto;
 using Entities.DTOs.TechnicalDrawingFailureStateDto;
 using Entities.DTOs.TechnicalDrawingNoteDto;
 using Entities.DTOs.TechnicalDrawingSuccessStateDto;
+using Entities.DTOs.TechnicalDrawingVisualNoteDto;
 using Entities.DTOs.UserDto;
 using Entities.DTOs.UserPermissionDto;
 using Entities.Models;
@@ -35,6 +37,9 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<AssemblyNoteDtoForUpdate, AssemblyNote>().ReverseMap();
             CreateMap<AssemblyNote, AssemblyNoteDto>();
             CreateMap<AssemblyNoteDtoForInsertion, AssemblyNote>();
+
+            CreateMap<AssemblyVisualNote, AssemblyVisualNoteDto>().ReverseMap();
+            CreateMap<AssemblyVisualNoteDtoForInsertion, AssemblyVisualNote>().ReverseMap();
 
             CreateMap<AssemblySuccessStateDtoForUpdate, AssemblySuccessState>().ReverseMap();
             CreateMap<AssemblySuccessState, AssemblySuccessStateDto>();
@@ -75,6 +80,9 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<TechnicalDrawingNoteDtoForUpdate, TechnicalDrawingNote>().ReverseMap();
             CreateMap<TechnicalDrawingNote, TechnicalDrawingNoteDto>();
             CreateMap<TechnicalDrawingNoteDtoForInsertion, TechnicalDrawingNote>();
+
+            CreateMap<TechnicalDrawingVisualNote, TechnicalDrawingVisualNoteDto>();
+            CreateMap<TechnicalDrawingVisualNoteDtoForInsertion, TechnicalDrawingVisualNote>();
 
             CreateMap<UserForRegisterDto, User>();
             CreateMap<UserDtoForUpdate, User>().ReverseMap();
