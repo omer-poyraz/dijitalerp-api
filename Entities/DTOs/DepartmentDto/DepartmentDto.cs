@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Entities.Models;
 
 namespace Entities.DTOs.DepartmentDto
 {
@@ -6,8 +7,7 @@ namespace Entities.DTOs.DepartmentDto
     {
         public int ID { get; init; }
         public string? Name { get; init; }
-        public string? UserId { get; init; }
-        public User? User { get; init; }
+        public ICollection<User>? Users { get; set; }
         public DateTime? CreatedAt { get; init; }
         public DateTime? UpdatedAt { get; init; }
     }

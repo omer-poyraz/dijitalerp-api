@@ -23,26 +23,33 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("GetAll")]
-        // [AuthorizePermission("User", "Read")]
+        [AuthorizePermission("User", "Read")]
         public async Task<IActionResult> GetAllUsersAsync([FromQuery] UserParameters userParameters)
         {
             try
             {
                 var users = await _manager.UserService.GetAllUsersAsync(userParameters, false);
                 Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(users.metaData));
-                return Ok(
-                    ApiResponse<IEnumerable<UserDto>>.CreateSuccess(
-                        _httpContextAccessor,
-                        users.userDtos,
-                        "Success.Listed"
-                    )
-                );
+                return Ok(ApiResponse<IEnumerable<UserDto>>.CreateSuccess(_httpContextAccessor, users.userDtos, "Success.Listed"));
             }
             catch (Exception)
             {
-                return BadRequest(
-                    ApiResponse<IEnumerable<UserDto>>.CreateError(_httpContextAccessor, "Error.NotFound")
-                );
+                return BadRequest(ApiResponse<IEnumerable<UserDto>>.CreateError(_httpContextAccessor, "Error.NotFound"));
+            }
+        }
+
+        [HttpGet("GetAllByQuality")]
+        [AuthorizePermission("User", "Read")]
+        public async Task<IActionResult> GetAllUsersByQualityAsync()
+        {
+            try
+            {
+                var users = await _manager.UserService.GetAllUserByQualityAsync(false);
+                return Ok(ApiResponse<IEnumerable<UserDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<IEnumerable<UserDto>>.CreateError(_httpContextAccessor, "Error.NotFound"));
             }
         }
 
@@ -57,25 +64,25 @@ namespace Presentation.Controllers
             }
             catch (Exception)
             {
-                return BadRequest(
-                    ApiResponse<UserDto>.CreateError(_httpContextAccessor, "Error.NotFound")
-                );
+                return BadRequest(ApiResponse<UserDto>.CreateError(_httpContextAccessor, "Error.NotFound"));
             }
         }
 
         [HttpPut("Update")]
         [AuthorizePermission("User", "Write")]
-        public async Task<IActionResult> UpdateOneUserAsync(
-            [FromBody] UserDtoForUpdate userDtoForUpdate
-        )
+        public async Task<IActionResult> UpdateOneUserAsync([FromForm] UserDtoForUpdate userDtoForUpdate)
         {
             try
             {
-                var user = await _manager.UserService.UpdateOneUserAsync(
-                    userDtoForUpdate.UserId,
-                    userDtoForUpdate,
-                    false
-                );
+                if (userDtoForUpdate.file != null)
+                {
+                    var rnd = new Random();
+                    var imgId = rnd.Next(0, 100000);
+                    List<IFormFile> formFiles = new List<IFormFile> { userDtoForUpdate.file };
+                    var uploadResults = await FileManager.FileUpload(formFiles, imgId, "User");
+                    userDtoForUpdate.File = uploadResults.FirstOrDefault()?["FilesFullPath"]?.ToString() ?? string.Empty;
+                }
+                var user = await _manager.UserService.UpdateOneUserAsync(userDtoForUpdate.UserId, userDtoForUpdate, false);
                 return Ok(ApiResponse<UserDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
             }
             catch (Exception)
@@ -86,7 +93,7 @@ namespace Presentation.Controllers
 
         [HttpDelete("Delete/{userId}")]
         [AuthorizePermission("User", "Delete")]
-        public async Task<IActionResult> DeleteOneUserAsync([FromQuery] string? userId)
+        public async Task<IActionResult> DeleteOneUserAsync([FromRoute] string? userId)
         {
             try
             {
@@ -103,19 +110,11 @@ namespace Presentation.Controllers
 
         [HttpPut("ChangePassword/{userId}")]
         [AuthorizePermission("User", "Write")]
-        public async Task<IActionResult> ChangePaswordAsync(
-            [FromRoute] string? userId,
-            [FromBody] UserDtoForChangePassword changePassword
-        )
+        public async Task<IActionResult> ChangePaswordAsync([FromRoute] string? userId, [FromBody] UserDtoForChangePassword changePassword)
         {
             try
             {
-                var user = await _manager.UserService.ChangePasswordAsync(
-                    userId,
-                    changePassword.CurrentPassword!,
-                    changePassword.NewPassword!,
-                    false
-                );
+                var user = await _manager.UserService.ChangePasswordAsync(userId, changePassword.CurrentPassword!, changePassword.NewPassword!, false);
                 return Ok(ApiResponse<UserDto>.CreateSuccess(_httpContextAccessor, user, "Success.PasswordChanged"));
             }
             catch (Exception)

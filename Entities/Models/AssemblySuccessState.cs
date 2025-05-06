@@ -7,8 +7,8 @@ namespace Entities.Models
         public int ID { get; set; }
         public string? Description { get; set; }
         [ForeignKey("TechnicianID")]
-        public Employee? Technician { get; set; }
-        public int? TechnicianID { get; set; }
+        public User? Technician { get; set; }
+        public string? TechnicianID { get; set; }
         public string? PartCode { get; set; }
         public bool? Status { get; set; }
         public string? Approval { get; set; }

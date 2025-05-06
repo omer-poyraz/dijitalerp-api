@@ -10,13 +10,16 @@ namespace Entities.Models
         public string? PartCode { get; set; }
         public string? Stand { get; set; }
         [ForeignKey("ResponibleID")]
-        public Employee? Responible { get; set; }
-        public int? ResponibleID { get; set; }
+        public User? Responible { get; set; }
+        public string? ResponibleID { get; set; }
         [ForeignKey("PersonInChargeID")]
-        public Employee? PersonInCharge { get; set; }
-        public int? PersonInChargeID { get; set; }
+        public User? PersonInCharge { get; set; }
+        public string? PersonInChargeID { get; set; }
         public string? SerialNumber { get; set; }
         public int? ProductionQuantity { get; set; }
+        [ForeignKey("QualityOfficerID")]
+        public User? QualityOfficer { get; set; }
+        public string? QualityOfficerID { get; set; }
         public int? Time { get; set; }
         public DateTime? Date { get; set; }
         public string? Description { get; set; }

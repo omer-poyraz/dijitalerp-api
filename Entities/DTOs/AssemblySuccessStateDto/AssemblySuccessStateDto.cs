@@ -6,8 +6,8 @@ namespace Entities.DTOs.AssemblySuccessStateDto
     {
         public int ID { get; init; }
         public string? Description { get; init; }
-        public Employee? Technician { get; init; }
-        public int? TechnicianID { get; init; }
+        public User? Technician { get; init; }
+        public string? TechnicianID { get; init; }
         public string? PartCode { get; init; }
         public bool? Status { get; init; }
         public string? Approval { get; init; }

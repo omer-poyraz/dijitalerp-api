@@ -14,6 +14,7 @@ namespace Repositories.EFCore
         public DbSet<AssemblyNote> AssemblyNotes { get; set; }
         public DbSet<AssemblyVisualNote> AssemblyVisualNotes { get; set; }
         public DbSet<AssemblySuccessState> AssemblySuccessStates { get; set; }
+        public DbSet<AssemblyQuality> AssemblyQualities { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -23,6 +24,7 @@ namespace Repositories.EFCore
         public DbSet<TechnicalDrawingSuccessState> TechnicalDrawingSuccessStates { get; set; }
         public DbSet<TechnicalDrawingNote> TechnicalDrawingNotes { get; set; }
         public DbSet<TechnicalDrawingVisualNote> TechnicalDrawingVisualNotes { get; set; }
+        public DbSet<TechnicalDrawingQuality> TechnicalDrawingQualities { get; set; }
         public DbSet<UserPermission> UserPermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

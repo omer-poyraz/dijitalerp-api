@@ -7,6 +7,7 @@ namespace Repositories.Contracts
     public interface IUserRepository : IRepositoryBase<User>
     {
         Task<PagedList<User>> GetAllUsersAsync(UserParameters userParameters, bool? trackChanges);
+        Task<IEnumerable<User>> GetAllUsersByQualityAsync(bool? trackChanges);
         Task<User> GetOneUserByIdAsync(string? userId, bool? trackChanges);
         User UpdateOneUser(User user);
         User ChangePassword(User user);

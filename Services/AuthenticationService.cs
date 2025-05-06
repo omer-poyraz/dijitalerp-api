@@ -57,7 +57,7 @@ namespace Services
             await _userManager.UpdateAsync(_user);
 
             var user = await _manager.UserRepository.GetOneUserByIdAsync(_user.Id, false);
-            
+
             var role = user.Roles!.FirstOrDefault();
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
@@ -90,8 +90,10 @@ namespace Services
 
         public async Task<IdentityResult> RegisterUser(UserForRegisterDto registerDto)
         {
-            var userDto = _context.Set<User>().ToList();
+            var file = registerDto.File;
             var user = _mapper.Map<User>(registerDto);
+            user.File = file;
+            ConvertDatesToUtc(user);
             var result = await _userManager.CreateAsync(user, registerDto.Password!);
 
             if (result.Succeeded)
@@ -190,10 +192,7 @@ namespace Services
             return claims;
         }
 
-        private JwtSecurityToken GenerateTokenOptions(
-            SigningCredentials signingCredentials,
-            List<Claim> claims
-        )
+        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
             var tokenOptions = new JwtSecurityToken(
@@ -204,6 +203,18 @@ namespace Services
                 signingCredentials: signingCredentials
             );
             return tokenOptions;
+        }
+
+        private void ConvertDatesToUtc<T>(T dto) where T : User
+        {
+            if (dto.Birthday.HasValue)
+                dto.Birthday = DateTime.SpecifyKind(dto.Birthday.Value, DateTimeKind.Utc);
+
+            if (dto.DepartureDate.HasValue)
+                dto.DepartureDate = DateTime.SpecifyKind(dto.DepartureDate.Value, DateTimeKind.Utc);
+
+            if (dto.StartDate.HasValue)
+                dto.StartDate = DateTime.SpecifyKind(dto.StartDate.Value, DateTimeKind.Utc);
         }
     }
 }

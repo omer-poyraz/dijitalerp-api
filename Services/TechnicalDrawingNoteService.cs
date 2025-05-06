@@ -38,7 +38,7 @@ namespace Services
                 {
                     TechnicalDrawingID = technicalDrawingNoteGroup.TechnicalDrawingID,
                     PartCode = technicalDrawingNoteGroup.PartCode,
-                    QuantityDescription = technicalDrawingNoteGroup.Description,
+                    Description = technicalDrawingNoteGroup.Description,
                     Status = technicalDrawingNoteGroup.Status,
                     UserId = technicalDrawingNoteGroup.UserId,
                     CreatedAt = DateTime.UtcNow

@@ -8,12 +8,17 @@ namespace Entities.Models
         public ICollection<string>? Files { get; set; }
         public string? ProjectName { get; set; }
         public string? PartCode { get; set; }
+        
         [ForeignKey("ResponibleID")]
-        public Employee? Responible { get; set; }
-        public int? ResponibleID { get; set; }
+        public User? Responible { get; set; }
+        public string? ResponibleID { get; set; }
         [ForeignKey("PersonInChargeID")]
-        public Employee? PersonInCharge { get; set; }
-        public int? PersonInChargeID { get; set; }
+        public User? PersonInCharge { get; set; }
+        public string? PersonInChargeID { get; set; }
+        [ForeignKey("QualityOfficerID")]
+        public User? QualityOfficer { get; set; }
+        public string? QualityOfficerID { get; set; }
+
         public string? SerialNumber { get; set; }
         public int? ProductionQuantity { get; set; }
         public int? Time { get; set; }

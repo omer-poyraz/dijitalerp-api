@@ -7,12 +7,16 @@ namespace Entities.Models
         public int ID { get; set; }
         public string? Inappropriateness { get; set; }
         [ForeignKey("TechnicianID")]
-        public Employee? Technician { get; set; }
-        public int? TechnicianID { get; set; }
+        public User? Technician { get; set; }
+        public string? TechnicianID { get; set; }
+        public string? Description { get; set; }
         public string? PartCode { get; set; }
         public bool? Status { get; set; }
         public int? PendingQuantity { get; set; }
-        public string? QualityDescription { get; set; }
+        [ForeignKey("QualityOfficerID")]
+        public User? QualityOfficer { get; set; }
+        public string? QualityOfficerID { get; set; }
+        public ICollection<AssemblyQuality>? QualityOfficerDescriptions { get; set; }
         public DateTime? Date { get; set; }
         [ForeignKey("AssemblyManuelID")]
         public AssemblyManuel? AssemblyManuel { get; set; }

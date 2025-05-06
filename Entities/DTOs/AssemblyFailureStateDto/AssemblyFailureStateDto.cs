@@ -6,12 +6,14 @@ namespace Entities.DTOs.AssemblyFailureStateDto
     {
         public int ID { get; init; }
         public string? Inappropriateness { get; init; }
-        public Employee? Technician { get; init; }
-        public int? TechnicianID { get; init; }
+        public User? Technician { get; init; }
+        public string? TechnicianID { get; init; }
         public string? PartCode { get; init; }
         public bool? Status { get; init; }
         public int? PendingQuantity { get; init; }
-        public string? QualityDescription { get; init; }
+        public User? QualityOfficer { get; init; }
+        public string? QualityOfficerID { get; init; }
+        public ICollection<AssemblyQuality>? QualityOfficerDescriptions { get; init; }
         public DateTime? Date { get; init; }
         public AssemblyManuel? AssemblyManuel { get; init; }
         public int AssemblyManuelID { get; init; }

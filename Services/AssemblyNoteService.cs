@@ -38,7 +38,7 @@ namespace Services
                 {
                     AssemblyManuelID = assemblyNoteGroup.AssemblyManuelID,
                     PartCode = assemblyNoteGroup.PartCode,
-                    QualityDescription = assemblyNoteGroup.Description,
+                    Description = assemblyNoteGroup.Description,
                     Status = assemblyNoteGroup.Status,
                     UserId = assemblyNoteGroup.UserId,
                     CreatedAt = DateTime.UtcNow

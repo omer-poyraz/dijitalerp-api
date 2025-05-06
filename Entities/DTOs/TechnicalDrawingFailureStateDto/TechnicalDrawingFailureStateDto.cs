@@ -11,12 +11,14 @@ namespace Entities.DTOs.TechnicalDrawingFailureStateDto
         public string? PartCode { get; init; }
         public string? Description { get; init; }
         public int? ProductionQuantity { get; init; }
-        public string? QuantityDescription { get; init; }
         public string? Approval { get; init; }
         public bool? Status { get; init; }
         public DateTime? Date { get; init; }
-        public Employee? Operator { get; init; }
-        public int? OperatorID { get; init; }
+        public User? Operator { get; init; }
+        public string? OperatorID { get; init; }
+        public User? QualityOfficer { get; init; }
+        public string? QualityOfficerID { get; init; }
+        public ICollection<TechnicalDrawingQuality>? QualityOfficerDescriptions { get; init; }
         public TechnicalDrawing? TechnicalDrawing { get; init; }
         public int? TechnicalDrawingID { get; init; }
         public User? User { get; init; }

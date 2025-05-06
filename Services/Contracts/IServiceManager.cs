@@ -8,6 +8,7 @@
         IAssemblyNoteService AssemblyNoteService { get; }
         IAssemblyVisualNoteService AssemblyVisualNoteService { get; }
         IAssemblySuccessStateService AssemblySuccessStateService { get; }
+        IAssemblyQualityService AssemblyQualityService { get; }
         IDepartmentService DepartmentService { get; }
         IEmployeeService EmployeeService { get; }
         ILogService LogService { get; }
@@ -18,6 +19,7 @@
         ITechnicalDrawingSuccessStateService TechnicalDrawingSuccessStateService { get; }
         ITechnicalDrawingNoteService TechnicalDrawingNoteService { get; }
         ITechnicalDrawingVisualNoteService TechnicalDrawingVisualNoteService { get; }
+        ITechnicalDrawingQualityService TechnicalDrawingQualityService { get; }
         IUserService UserService { get; }
         IUserPermissionService UserPermissionService { get; }
     }

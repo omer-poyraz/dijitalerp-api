@@ -9,6 +9,7 @@ namespace Repositories.EFCore
         private readonly IAssemblyNoteRepository _assemblyNoteRepository;
         private readonly IAssemblyVisualNoteRepository _assemblyVisualNoteRepository;
         private readonly IAssemblySuccessStateRepository _assemblySuccessStateRepository;
+        private readonly IAssemblyQualityRepository _assemblyQualityRepository;
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogRepository _logRepository;
@@ -20,14 +21,12 @@ namespace Repositories.EFCore
         private readonly ITechnicalDrawingSuccessStateRepository _technicalDrawingSuccessStateRepository;
         private readonly ITechnicalDrawingNoteRepository _technicalDrawingNoteRepository;
         private readonly ITechnicalDrawingVisualNoteRepository _technicalDrawingVisualNoteRepository;
+        private readonly ITechnicalDrawingQualityRepository _technicalDrawingQualityRepository;
         private readonly IUserRepository _userRepository;
         private readonly IUserPermissionRepository _userPermissionRepository;
 
         public RepositoryManager(
             RepositoryContext context,
-            IServicesRepository servicesRepository,
-            IUserRepository userRepository,
-            IUserPermissionRepository userPermissionRepository,
             ILogRepository logRepository,
             IDepartmentRepository departmentRepository,
             IAssemblyFailureStateRepository assemblyFailureStateRepository,
@@ -35,19 +34,25 @@ namespace Repositories.EFCore
             IAssemblyNoteRepository assemblyNoteRepository,
             IAssemblyVisualNoteRepository assemblyVisualNoteRepository,
             IAssemblySuccessStateRepository assemblySuccessStateRepository,
+            IAssemblyQualityRepository assemblyQualityRepository,
             IProductRepository productRepository,
             IEmployeeRepository employeeRepository,
             ITechnicalDrawingRepository technicalDrawingRepository,
             ITechnicalDrawingFailureStateRepository technicalDrawingFailureStateRepository,
             ITechnicalDrawingSuccessStateRepository technicalDrawingSuccessStateRepository,
             ITechnicalDrawingNoteRepository technicalDrawingNoteRepository,
-            ITechnicalDrawingVisualNoteRepository technicalDrawingVisualNoteRepository)
+            ITechnicalDrawingVisualNoteRepository technicalDrawingVisualNoteRepository,
+            ITechnicalDrawingQualityRepository technicalDrawingQualityRepository,
+            IServicesRepository servicesRepository,
+            IUserRepository userRepository,
+            IUserPermissionRepository userPermissionRepository)
         {
             _assemblyFailureStateRepository = assemblyFailureStateRepository;
             _assemblyManuelRepository = assemblyManuelRepository;
             _assemblyNoteRepository = assemblyNoteRepository;
             _assemblyVisualNoteRepository = assemblyVisualNoteRepository;
             _assemblySuccessStateRepository = assemblySuccessStateRepository;
+            _assemblyQualityRepository = assemblyQualityRepository;
             _context = context;
             _departmentRepository = departmentRepository;
             _employeeRepository = employeeRepository;
@@ -59,6 +64,7 @@ namespace Repositories.EFCore
             _technicalDrawingSuccessStateRepository = technicalDrawingSuccessStateRepository;
             _technicalDrawingNoteRepository = technicalDrawingNoteRepository;
             _technicalDrawingVisualNoteRepository = technicalDrawingVisualNoteRepository;
+            _technicalDrawingQualityRepository = technicalDrawingQualityRepository;
             _userRepository = userRepository;
             _userPermissionRepository = userPermissionRepository;
         }
@@ -68,6 +74,7 @@ namespace Repositories.EFCore
         public IAssemblyNoteRepository AssemblyNoteRepository => _assemblyNoteRepository;
         public IAssemblyVisualNoteRepository AssemblyVisualNoteRepository => _assemblyVisualNoteRepository;
         public IAssemblySuccessStateRepository AssemblySuccessStateRepository => _assemblySuccessStateRepository;
+        public IAssemblyQualityRepository AssemblyQualityRepository => _assemblyQualityRepository;
         public IDepartmentRepository DepartmentRepository => _departmentRepository;
         public IEmployeeRepository EmployeeRepository => _employeeRepository;
         public ILogRepository LogRepository => _logRepository;
@@ -78,6 +85,7 @@ namespace Repositories.EFCore
         public ITechnicalDrawingSuccessStateRepository TechnicalDrawingSuccessStateRepository => _technicalDrawingSuccessStateRepository;
         public ITechnicalDrawingNoteRepository TechnicalDrawingNoteRepository => _technicalDrawingNoteRepository;
         public ITechnicalDrawingVisualNoteRepository TechnicalDrawingVisualNoteRepository => _technicalDrawingVisualNoteRepository;
+        public ITechnicalDrawingQualityRepository TechnicalDrawingQualityRepository => _technicalDrawingQualityRepository;
         public IUserRepository UserRepository => _userRepository;
         public IUserPermissionRepository UserPermissionRepository => _userPermissionRepository;
 

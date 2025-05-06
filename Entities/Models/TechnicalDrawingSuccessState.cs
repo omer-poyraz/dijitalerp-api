@@ -16,8 +16,8 @@ namespace Entities.Models
         public DateTime? Date { get; set; }
 
         [ForeignKey("OperatorID")]
-        public Employee? Operator { get; set; }
-        public int? OperatorID { get; set; }
+        public User? Operator { get; set; }
+        public string? OperatorID { get; set; }
         [ForeignKey("TechnicalDrawingID")]
         public TechnicalDrawing? TechnicalDrawing { get; set; }
         public int? TechnicalDrawingID { get; set; }

@@ -49,26 +49,42 @@ namespace Services
 
         public async Task<UserDto> UpdateOneUserAsync(string? userId, UserDtoForUpdate userDtoForUpdate, bool? trackChanges)
         {
-            var userDto = await _manager.UserRepository.GetOneUserByIdAsync(userId, trackChanges);
-            var user = await _userManager.FindByEmailAsync(userDto.Email!);
+            try
+            {
+                ConvertDatesToUtc(userDtoForUpdate);
+                var file = userDtoForUpdate.File;
+                var userDto = await _manager.UserRepository.GetOneUserByIdAsync(userId, trackChanges);
+                var user = await _userManager.FindByEmailAsync(userDto.Email!);
 
-            user!.UserName = userDtoForUpdate.UserName;
-            user.FirstName = userDtoForUpdate.FirstName;
-            user.LastName = userDtoForUpdate.LastName;
-            user.Email = userDtoForUpdate.Email;
-            user.PhoneNumber = userDtoForUpdate.PhoneNumber;
-            user.PhoneNumber2 = userDtoForUpdate.PhoneNumber2;
-            user.Gender = userDtoForUpdate.Gender;
-            user.TCKNO = userDtoForUpdate.TCKNO;
-            user.DepartmentID = userDtoForUpdate.DepartmentID;
-            user.Title = userDtoForUpdate.Title;
-            user.StartDate = userDtoForUpdate.StartDate;
-            user.DepartureDate = userDtoForUpdate.DepartureDate;
-            user.IsActive = userDtoForUpdate.IsActive;
-            user.UpdatedAt = DateTime.UtcNow;
-            await _userManager.UpdateAsync(user);
+                user!.UserName = userDtoForUpdate.UserName;
+                user.FirstName = userDtoForUpdate.FirstName;
+                user.LastName = userDtoForUpdate.LastName;
+                user.Email = userDtoForUpdate.Email;
+                user.PhoneNumber = userDtoForUpdate.PhoneNumber;
+                user.PhoneNumber2 = userDtoForUpdate.PhoneNumber2;
+                user.Gender = userDtoForUpdate.Gender;
+                user.TCKNO = userDtoForUpdate.TCKNO;
+                user.DepartmentID = userDtoForUpdate.DepartmentID;
+                user.Title = userDtoForUpdate.Title;
+                user.StartDate = userDtoForUpdate.StartDate;
+                user.DepartureDate = userDtoForUpdate.DepartureDate;
+                user.IsActive = userDtoForUpdate.IsActive;
+                user.UpdatedAt = DateTime.UtcNow;
 
-            return _mapper.Map<UserDto>(user);
+                if (file != null && file != string.Empty && file != "undefined")
+                    user.File = file;
+                else
+                    user.File = user.File;
+
+                await _userManager.UpdateAsync(user);
+
+                return _mapper.Map<UserDto>(user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task<UserDto> ChangePasswordAsync(string? userId, string currentPassword, string newPassword, bool? trackChanges)
@@ -157,6 +173,24 @@ namespace Services
             {
                 throw new InvalidOperationException("Şifre sıfırlama e-postası gönderilirken bir hata oluştu.", ex);
             }
+        }
+
+        private void ConvertDatesToUtc<T>(T dto) where T : UserDtoForUpdate
+        {
+            if (dto.Birthday.HasValue)
+                dto.Birthday = DateTime.SpecifyKind(dto.Birthday.Value, DateTimeKind.Utc);
+
+            if (dto.DepartureDate.HasValue)
+                dto.DepartureDate = DateTime.SpecifyKind(dto.DepartureDate.Value, DateTimeKind.Utc);
+
+            if (dto.StartDate.HasValue)
+                dto.StartDate = DateTime.SpecifyKind(dto.StartDate.Value, DateTimeKind.Utc);
+        }
+
+        public async Task<IEnumerable<UserDto>> GetAllUserByQualityAsync(bool? trackChanges)
+        {
+            var users = await _manager.UserRepository.GetAllUsersByQualityAsync(trackChanges);
+            return _mapper.Map<IEnumerable<UserDto>>(users);
         }
     }
 }

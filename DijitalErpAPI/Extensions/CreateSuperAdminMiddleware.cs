@@ -22,15 +22,14 @@ public class CreateInitialUsersMiddleware
         var userManager = context.RequestServices.GetRequiredService<UserManager<User>>();
         var userPermissionService = context.RequestServices.GetRequiredService<IUserPermissionService>();
 
-        await CreateUserIfNotExists(context, userManager, authService, "SuperAdminInfo", "Super Admin");
-        await CreateUserIfNotExists(context, userManager, authService, "AdminInfo", "Admin");
-        await CreateUserIfNotExists(context, userManager, authService, "PersonelInfo", "Personel");
+        await CreateUserIfNotExists(userManager, authService, "SuperAdminInfo", "Super Admin");
+        await CreateUserIfNotExists(userManager, authService, "AdminInfo", "Admin");
+        await CreateUserIfNotExists(userManager, authService, "PersonelInfo", "Personel");
 
         await _next(context);
     }
 
     private async Task CreateUserIfNotExists(
-        HttpContext context,
         UserManager<User> userManager,
         IAuthenticationService authService,
         string configSectionName,
@@ -52,6 +51,7 @@ public class CreateInitialUsersMiddleware
 
         var userBody = new
         {
+            File = userInfo["File"],
             FirstName = userInfo["FirstName"],
             LastName = userInfo["LastName"],
             UserName = userInfo["UserName"],
@@ -59,8 +59,14 @@ public class CreateInitialUsersMiddleware
             Email = userInfo["Email"],
             TCKNO = userInfo["TCKNO"],
             Title = userInfo["Title"],
+            Field = userInfo["Field"],
+            IsActive = userInfo["IsActive"],
+            DepartureDate = userInfo["DepartureDate"],
+            StartDate = userInfo["StartDate"],
+            Birthday = userInfo["Birthday"],
             PhoneNumber = userInfo["PhoneNumber"],
             PhoneNumber2 = userInfo["PhoneNumber2"],
+            Address = userInfo["Address"],
             Gender = userInfo["Gender"],
             Roles = new[] { userInfo["Roles"] }
         };

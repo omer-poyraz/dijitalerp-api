@@ -34,6 +34,12 @@ namespace Repositories.EFCore
             return PagedList<User>.ToPagedList(users, userParameters.PageNumber, userParameters.PageSize);
         }
 
+        public async Task<IEnumerable<User>> GetAllUsersByQualityAsync(bool? trackChanges) =>
+            await FindAll(trackChanges)
+                .Where(u => u.DepartmentID == 3)
+                .OrderBy(u => u.Id)
+                .ToListAsync();
+
         public async Task<User> GetOneUserByIdAsync(string? userId, bool? trackChanges)
         {
             return await FindByCondition(u => u.Id.Equals(userId), trackChanges).Include(r => r.Roles).SingleOrDefaultAsync();

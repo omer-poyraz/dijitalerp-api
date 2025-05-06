@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using Services.Extensions;
 
 namespace Presentation.Controllers
 {
@@ -41,12 +42,22 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] UserForRegisterDto userForRegisterDto)
+        [AuthorizePermission("Authentication", "Write")]
+        public async Task<IActionResult> Register([FromForm] UserForRegisterDto userForRegisterDto)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ApiResponse<IdentityResult>.CreateError(_httpContextAccessor, "Error.ValidationError", 400));
+
+                if (userForRegisterDto.file != null)
+                {
+                    var rnd = new Random();
+                    var imgId = rnd.Next(0, 100000);
+                    List<IFormFile> formFiles = new List<IFormFile> { userForRegisterDto.file };
+                    var uploadResults = await FileManager.FileUpload(formFiles, imgId, "User");
+                    userForRegisterDto.File = uploadResults.FirstOrDefault()?["FilesFullPath"]?.ToString() ?? string.Empty;
+                }
 
                 var result = await _manager.AuthenticationService.RegisterUser(userForRegisterDto);
 

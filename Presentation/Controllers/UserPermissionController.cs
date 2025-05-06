@@ -27,19 +27,11 @@ namespace Presentation.Controllers
             try
             {
                 var users = await _manager.UserPermissionService.GetAllUserPermissionsAsync(false);
-                return Ok(
-                    ApiResponse<IEnumerable<UserPermissionDto>>.CreateSuccess(
-                        _httpContextAccessor,
-                        users,
-                        "Success.Listed"
-                    )
-                );
+                return Ok(ApiResponse<IEnumerable<UserPermissionDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed"));
             }
             catch (Exception)
             {
-                return BadRequest(
-                    ApiResponse<IEnumerable<UserPermissionDto>>.CreateError(_httpContextAccessor, "Error.NotFound")
-                );
+                return BadRequest(ApiResponse<IEnumerable<UserPermissionDto>>.CreateError(_httpContextAccessor, "Error.NotFound"));
             }
         }
 
@@ -64,9 +56,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                var user = await _manager.UserPermissionService.CreateUserPermissionAsync(
-                    userPermissionDtoForInsertion
-                );
+                var user = await _manager.UserPermissionService.CreateUserPermissionAsync(userPermissionDtoForInsertion);
                 return Ok(ApiResponse<UserPermissionDto>.CreateSuccess(_httpContextAccessor, user, "Success.Created"));
             }
             catch (Exception)
@@ -86,7 +76,7 @@ namespace Presentation.Controllers
                 var user = await _manager.UserPermissionService.UpdateUserPermissionAsync(userPermissionDtoForUpdate);
                 return Ok(ApiResponse<UserPermissionDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return BadRequest(ApiResponse<UserPermissionDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
             }
@@ -101,7 +91,7 @@ namespace Presentation.Controllers
                 var user = await _manager.UserPermissionService.DeleteUserPermissionAsync(id, false);
                 return Ok(ApiResponse<UserPermissionDto>.CreateSuccess(_httpContextAccessor, user, "Success.Deleted"));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return BadRequest(ApiResponse<UserPermissionDto>.CreateError(_httpContextAccessor, "Error.NotFound"));
             }

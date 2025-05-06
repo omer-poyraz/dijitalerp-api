@@ -27,15 +27,11 @@ namespace Presentation.Controllers
             try
             {
                 var users = await _manager.AssemblyManuelService.GetAllAssemblyManuelAsync(false);
-                return Ok(
-                    ApiResponse<IEnumerable<AssemblyManuelDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed")
-                );
+                return Ok(ApiResponse<IEnumerable<AssemblyManuelDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed"));
             }
             catch (Exception)
             {
-                return BadRequest(
-                    ApiResponse<IEnumerable<AssemblyManuelDto>>.CreateError(_httpContextAccessor, "Error.NotFound")
-                );
+                return BadRequest(ApiResponse<IEnumerable<AssemblyManuelDto>>.CreateError(_httpContextAccessor, "Error.NotFound"));
             }
         }
 
@@ -56,9 +52,7 @@ namespace Presentation.Controllers
 
         [HttpPost("Create")]
         [AuthorizePermission("AssemblyManuel", "Write")]
-        public async Task<IActionResult> CreateOneAssemblyManuelAsync(
-            [FromForm] AssemblyManuelDtoForInsertion assemblyManuelDtoForInsertion
-        )
+        public async Task<IActionResult> CreateOneAssemblyManuelAsync([FromForm] AssemblyManuelDtoForInsertion assemblyManuelDtoForInsertion)
         {
             try
             {
@@ -83,9 +77,7 @@ namespace Presentation.Controllers
 
         [HttpPut("Update")]
         [AuthorizePermission("AssemblyManuel", "Write")]
-        public async Task<IActionResult> UpdateOneUserAsync(
-            [FromForm] AssemblyManuelDtoForUpdate assemblyManuelDtoForUpdate
-        )
+        public async Task<IActionResult> UpdateOneUserAsync([FromForm] AssemblyManuelDtoForUpdate assemblyManuelDtoForUpdate)
         {
             try
             {
@@ -108,9 +100,7 @@ namespace Presentation.Controllers
 
         [HttpPut("AddFile")]
         [AuthorizePermission("AssemblyManuel", "Write")]
-        public async Task<IActionResult> AddFileAssemblyManuelAsync(
-            [FromForm] AssemblyManuelDtoForAddFile assemblyManuelDtoForAddFile
-        )
+        public async Task<IActionResult> AddFileAssemblyManuelAsync([FromForm] AssemblyManuelDtoForAddFile assemblyManuelDtoForAddFile)
         {
             try
             {

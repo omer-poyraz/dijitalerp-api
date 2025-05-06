@@ -10,6 +10,7 @@ namespace Services
         private readonly IAssemblyNoteService _assemblyNoteService;
         private readonly IAssemblyVisualNoteService _assemblyVisualNoteService;
         private readonly IAssemblySuccessStateService _assemblySuccessStateService;
+        private readonly IAssemblyQualityService _assemblyQualityService;
         private readonly IDepartmentService _departmentService;
         private readonly IEmployeeService _employeeService;
         private readonly ILogService _logService;
@@ -20,6 +21,7 @@ namespace Services
         private readonly ITechnicalDrawingSuccessStateService _technicalDrawingSuccessStateService;
         private readonly ITechnicalDrawingNoteService _technicalDrawingNoteService;
         private readonly ITechnicalDrawingVisualNoteService _technicalDrawingVisualNoteService;
+        private readonly ITechnicalDrawingQualityService _technicalDrawingQualityService;
         private readonly IUserService _userService;
         private readonly IUserPermissionService _userPermissionService;
 
@@ -35,13 +37,15 @@ namespace Services
             IAssemblyNoteService assemblyNoteService,
             IAssemblyVisualNoteService assemblyVisualNoteService,
             IAssemblySuccessStateService assemblySuccessStateService,
+            IAssemblyQualityService assemblyQualityService,
             IProductService productService,
             IEmployeeService employeeService,
             ITechnicalDrawingService technicalDrawingService,
             ITechnicalDrawingFailureStateService technicalDrawingFailureStateService,
             ITechnicalDrawingSuccessStateService technicalDrawingSuccessStateService,
             ITechnicalDrawingNoteService technicalDrawingNoteService,
-            ITechnicalDrawingVisualNoteService technicalDrawingVisualNoteService
+            ITechnicalDrawingVisualNoteService technicalDrawingVisualNoteService,
+            ITechnicalDrawingQualityService technicalDrawingQualityService
             )
         {
             _authenticationService = authenticationService;
@@ -50,6 +54,7 @@ namespace Services
             _assemblyNoteService = assemblyNoteService;
             _assemblyVisualNoteService = assemblyVisualNoteService;
             _assemblySuccessStateService = assemblySuccessStateService;
+            _assemblyQualityService = assemblyQualityService;
             _departmentService = departmentService;
             _employeeService = employeeService;
             _logService = logService;
@@ -60,6 +65,7 @@ namespace Services
             _technicalDrawingSuccessStateService = technicalDrawingSuccessStateService;
             _technicalDrawingNoteService = technicalDrawingNoteService;
             _technicalDrawingVisualNoteService = technicalDrawingVisualNoteService;
+            _technicalDrawingQualityService = technicalDrawingQualityService;
             _userService = userService;
             _userPermissionService = userPermissionService;
         }
@@ -70,6 +76,7 @@ namespace Services
         public IAssemblyNoteService AssemblyNoteService => _assemblyNoteService;
         public IAssemblyVisualNoteService AssemblyVisualNoteService => _assemblyVisualNoteService;
         public IAssemblySuccessStateService AssemblySuccessStateService => _assemblySuccessStateService;
+        public IAssemblyQualityService AssemblyQualityService => _assemblyQualityService;
         public IDepartmentService DepartmentService => _departmentService;
         public IEmployeeService EmployeeService => _employeeService;
         public ILogService LogService => _logService;
@@ -80,6 +87,7 @@ namespace Services
         public ITechnicalDrawingSuccessStateService TechnicalDrawingSuccessStateService => _technicalDrawingSuccessStateService;
         public ITechnicalDrawingNoteService TechnicalDrawingNoteService => _technicalDrawingNoteService;
         public ITechnicalDrawingVisualNoteService TechnicalDrawingVisualNoteService => _technicalDrawingVisualNoteService;
+        public ITechnicalDrawingQualityService TechnicalDrawingQualityService => _technicalDrawingQualityService;
         public IUserService UserService => _userService;
         public IUserPermissionService UserPermissionService => _userPermissionService;
     }

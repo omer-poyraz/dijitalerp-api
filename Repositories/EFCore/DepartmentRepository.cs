@@ -22,14 +22,12 @@ namespace Repositories.EFCore
 
         public async Task<IEnumerable<Department>> GetAllDepartmentAsync(bool? trackChanges)
         {
-            return await FindAll(trackChanges).OrderBy(s => s.ID).Include(s => s.User).ToListAsync();
+            return await FindAll(trackChanges).OrderBy(s => s.ID).ToListAsync();
         }
 
         public async Task<Department> GetDepartmentByIdAsync(int id, bool? trackChanges)
         {
-            return await FindByCondition(s => s.ID.Equals(id), trackChanges)
-                .Include(s => s.User)
-                .SingleOrDefaultAsync();
+            return await FindByCondition(s => s.ID.Equals(id), trackChanges).SingleOrDefaultAsync();
         }
 
         public Department UpdateDepartment(Department department)

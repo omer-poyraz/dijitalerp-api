@@ -6,10 +6,11 @@
         public string? ProjectName { get; init; }
         public string? PartCode { get; init; }
         public string? Stand { get; init; }
-        public int? ResponibleID { get; init; }
-        public int? PersonInChargeID { get; init; }
+        public string? ResponibleID { get; init; }
+        public string? PersonInChargeID { get; init; }
         public string? SerialNumber { get; init; }
         public int? ProductionQuantity { get; init; }
+        public string? QualityOfficerID { get; init; }
         public int? Time { get; init; }
         public DateTime? Date { get; set; }
         public string? Description { get; init; }

@@ -39,6 +39,9 @@ namespace DijitalErpAPI.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<string>("Inappropriateness")
                         .HasColumnType("text");
 
@@ -48,14 +51,14 @@ namespace DijitalErpAPI.Migrations
                     b.Property<int?>("PendingQuantity")
                         .HasColumnType("integer");
 
-                    b.Property<string>("QualityDescription")
+                    b.Property<string>("QualityOfficerID")
                         .HasColumnType("text");
 
                     b.Property<bool?>("Status")
                         .HasColumnType("boolean");
 
-                    b.Property<int?>("TechnicianID")
-                        .HasColumnType("integer");
+                    b.Property<string>("TechnicianID")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -66,6 +69,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("AssemblyManuelID");
+
+                    b.HasIndex("QualityOfficerID");
 
                     b.HasIndex("TechnicianID");
 
@@ -97,8 +102,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("PartCode")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PersonInChargeID")
-                        .HasColumnType("integer");
+                    b.Property<string>("PersonInChargeID")
+                        .HasColumnType("text");
 
                     b.Property<int?>("ProductionQuantity")
                         .HasColumnType("integer");
@@ -106,8 +111,11 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("ProjectName")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ResponibleID")
-                        .HasColumnType("integer");
+                    b.Property<string>("QualityOfficerID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ResponibleID")
+                        .HasColumnType("text");
 
                     b.Property<string>("SerialNumber")
                         .HasColumnType("text");
@@ -127,6 +135,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("PersonInChargeID");
+
+                    b.HasIndex("QualityOfficerID");
 
                     b.HasIndex("ResponibleID");
 
@@ -176,6 +186,41 @@ namespace DijitalErpAPI.Migrations
                     b.ToTable("AssemblyNotes");
                 });
 
+            modelBuilder.Entity("Entities.Models.AssemblyQuality", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("AssemblyFailureStateID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AssemblyFailureStateID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AssemblyQualities");
+                });
+
             modelBuilder.Entity("Entities.Models.AssemblySuccessState", b =>
                 {
                     b.Property<int>("ID")
@@ -211,8 +256,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<bool?>("Status")
                         .HasColumnType("boolean");
 
-                    b.Property<int?>("TechnicianID")
-                        .HasColumnType("integer");
+                    b.Property<string>("TechnicianID")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -289,12 +334,41 @@ namespace DijitalErpAPI.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
                     b.HasKey("ID");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Yönetim"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Bilişim Teknolojileri"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Kalite"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Mühendis"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "CNC Operator"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "Tester"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Employee", b =>
@@ -562,8 +636,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("PartCode")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PersonInChargeID")
-                        .HasColumnType("integer");
+                    b.Property<string>("PersonInChargeID")
+                        .HasColumnType("text");
 
                     b.Property<int?>("ProductionQuantity")
                         .HasColumnType("integer");
@@ -571,8 +645,11 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("ProjectName")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ResponibleID")
-                        .HasColumnType("integer");
+                    b.Property<string>("QualityOfficerID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ResponibleID")
+                        .HasColumnType("text");
 
                     b.Property<string>("SerialNumber")
                         .HasColumnType("text");
@@ -592,6 +669,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("PersonInChargeID");
+
+                    b.HasIndex("QualityOfficerID");
 
                     b.HasIndex("ResponibleID");
 
@@ -623,8 +702,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("Inappropriateness")
                         .HasColumnType("text");
 
-                    b.Property<int?>("OperatorID")
-                        .HasColumnType("integer");
+                    b.Property<string>("OperatorID")
+                        .HasColumnType("text");
 
                     b.Property<string>("PartCode")
                         .HasColumnType("text");
@@ -635,7 +714,7 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("ProjectName")
                         .HasColumnType("text");
 
-                    b.Property<string>("QuantityDescription")
+                    b.Property<string>("QualityOfficerID")
                         .HasColumnType("text");
 
                     b.Property<string>("Stand")
@@ -656,6 +735,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("OperatorID");
+
+                    b.HasIndex("QualityOfficerID");
 
                     b.HasIndex("TechnicalDrawingID");
 
@@ -705,6 +786,41 @@ namespace DijitalErpAPI.Migrations
                     b.ToTable("TechnicalDrawingNotes");
                 });
 
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingQuality", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("TechnicalDrawingFailureStateID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TechnicalDrawingFailureStateID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TechnicalDrawingQualities");
+                });
+
             modelBuilder.Entity("Entities.Models.TechnicalDrawingSuccessState", b =>
                 {
                     b.Property<int>("ID")
@@ -725,8 +841,8 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int?>("OperatorID")
-                        .HasColumnType("integer");
+                    b.Property<string>("OperatorID")
+                        .HasColumnType("text");
 
                     b.Property<string>("PartCode")
                         .HasColumnType("text");
@@ -815,6 +931,12 @@ namespace DijitalErpAPI.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -834,6 +956,12 @@ namespace DijitalErpAPI.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Field")
+                        .HasColumnType("text");
+
+                    b.Property<string>("File")
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
@@ -906,8 +1034,7 @@ namespace DijitalErpAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentID")
-                        .IsUnique();
+                    b.HasIndex("DepartmentID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -988,19 +1115,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "19edfe94-6e1f-4c00-ad03-c0fe5698a0f5",
+                            Id = "8e6b21f9-fead-435d-aeb9-9507c67a117b",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "442064ef-06a2-482f-ba55-036493c96935",
+                            Id = "a7273988-3521-487b-8e4b-4f3c8b64a623",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "6eb6aa8f-ad3d-4b08-bb51-1fd3fc019dd3",
+                            Id = "c353c1cb-c1b7-44ba-ab97-e8201eb526bb",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -1120,7 +1247,11 @@ namespace DijitalErpAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Employee", "Technician")
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("QualityOfficerID");
+
+                    b.HasOne("Entities.Models.User", "Technician")
                         .WithMany()
                         .HasForeignKey("TechnicianID");
 
@@ -1130,6 +1261,8 @@ namespace DijitalErpAPI.Migrations
 
                     b.Navigation("AssemblyManuel");
 
+                    b.Navigation("QualityOfficer");
+
                     b.Navigation("Technician");
 
                     b.Navigation("User");
@@ -1137,11 +1270,15 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.AssemblyManuel", b =>
                 {
-                    b.HasOne("Entities.Models.Employee", "PersonInCharge")
+                    b.HasOne("Entities.Models.User", "PersonInCharge")
                         .WithMany()
                         .HasForeignKey("PersonInChargeID");
 
-                    b.HasOne("Entities.Models.Employee", "Responible")
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("QualityOfficerID");
+
+                    b.HasOne("Entities.Models.User", "Responible")
                         .WithMany()
                         .HasForeignKey("ResponibleID");
 
@@ -1150,6 +1287,8 @@ namespace DijitalErpAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("PersonInCharge");
+
+                    b.Navigation("QualityOfficer");
 
                     b.Navigation("Responible");
 
@@ -1173,13 +1312,28 @@ namespace DijitalErpAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Entities.Models.AssemblyQuality", b =>
+                {
+                    b.HasOne("Entities.Models.AssemblyFailureState", "AssemblyFailureState")
+                        .WithMany("QualityOfficerDescriptions")
+                        .HasForeignKey("AssemblyFailureStateID");
+
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("AssemblyFailureState");
+
+                    b.Navigation("QualityOfficer");
+                });
+
             modelBuilder.Entity("Entities.Models.AssemblySuccessState", b =>
                 {
                     b.HasOne("Entities.Models.AssemblyManuel", "AssemblyProject")
                         .WithMany("BasariliDurumlar")
                         .HasForeignKey("AssemblyManuelID");
 
-                    b.HasOne("Entities.Models.Employee", "Technician")
+                    b.HasOne("Entities.Models.User", "Technician")
                         .WithMany()
                         .HasForeignKey("TechnicianID");
 
@@ -1249,11 +1403,15 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.TechnicalDrawing", b =>
                 {
-                    b.HasOne("Entities.Models.Employee", "PersonInCharge")
+                    b.HasOne("Entities.Models.User", "PersonInCharge")
                         .WithMany()
                         .HasForeignKey("PersonInChargeID");
 
-                    b.HasOne("Entities.Models.Employee", "Responible")
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("QualityOfficerID");
+
+                    b.HasOne("Entities.Models.User", "Responible")
                         .WithMany()
                         .HasForeignKey("ResponibleID");
 
@@ -1263,6 +1421,8 @@ namespace DijitalErpAPI.Migrations
 
                     b.Navigation("PersonInCharge");
 
+                    b.Navigation("QualityOfficer");
+
                     b.Navigation("Responible");
 
                     b.Navigation("User");
@@ -1270,9 +1430,13 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.TechnicalDrawingFailureState", b =>
                 {
-                    b.HasOne("Entities.Models.Employee", "Operator")
+                    b.HasOne("Entities.Models.User", "Operator")
                         .WithMany()
                         .HasForeignKey("OperatorID");
+
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("QualityOfficerID");
 
                     b.HasOne("Entities.Models.TechnicalDrawing", "TechnicalDrawing")
                         .WithMany("BasarisizDurumlar")
@@ -1283,6 +1447,8 @@ namespace DijitalErpAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Operator");
+
+                    b.Navigation("QualityOfficer");
 
                     b.Navigation("TechnicalDrawing");
 
@@ -1306,9 +1472,24 @@ namespace DijitalErpAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingQuality", b =>
+                {
+                    b.HasOne("Entities.Models.TechnicalDrawingFailureState", "TechnicalDrawingFailureState")
+                        .WithMany("QualityOfficerDescriptions")
+                        .HasForeignKey("TechnicalDrawingFailureStateID");
+
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("QualityOfficer");
+
+                    b.Navigation("TechnicalDrawingFailureState");
+                });
+
             modelBuilder.Entity("Entities.Models.TechnicalDrawingSuccessState", b =>
                 {
-                    b.HasOne("Entities.Models.Employee", "Operator")
+                    b.HasOne("Entities.Models.User", "Operator")
                         .WithMany()
                         .HasForeignKey("OperatorID");
 
@@ -1347,8 +1528,8 @@ namespace DijitalErpAPI.Migrations
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.HasOne("Entities.Models.Department", "Department")
-                        .WithOne("User")
-                        .HasForeignKey("Entities.Models.User", "DepartmentID");
+                        .WithMany("Users")
+                        .HasForeignKey("DepartmentID");
 
                     b.Navigation("Department");
                 });
@@ -1420,6 +1601,11 @@ namespace DijitalErpAPI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Models.AssemblyFailureState", b =>
+                {
+                    b.Navigation("QualityOfficerDescriptions");
+                });
+
             modelBuilder.Entity("Entities.Models.AssemblyManuel", b =>
                 {
                     b.Navigation("AssemblyNotes");
@@ -1431,7 +1617,7 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Department", b =>
                 {
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Entities.Models.TechnicalDrawing", b =>
@@ -1441,6 +1627,11 @@ namespace DijitalErpAPI.Migrations
                     b.Navigation("BasarisizDurumlar");
 
                     b.Navigation("TechnicalDrawingNotes");
+                });
+
+            modelBuilder.Entity("Entities.Models.TechnicalDrawingFailureState", b =>
+                {
+                    b.Navigation("QualityOfficerDescriptions");
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>

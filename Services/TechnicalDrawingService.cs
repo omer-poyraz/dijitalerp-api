@@ -17,9 +17,7 @@ namespace Services
             _mapper = mapper;
         }
 
-        public async Task<TechnicalDrawingDto> CreateTechnicalDrawingAsync(
-            TechnicalDrawingDtoForInsertion technicalDrawingDtoForInsertion
-        )
+        public async Task<TechnicalDrawingDto> CreateTechnicalDrawingAsync(TechnicalDrawingDtoForInsertion technicalDrawingDtoForInsertion)
         {
             try
             {
