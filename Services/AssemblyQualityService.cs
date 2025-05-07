@@ -20,11 +20,13 @@ namespace Services
         public async Task<AssemblyQualityDto> CreateAssemblyQualityAsync(AssemblyQualityDtoForInsertion assemblyQualityDtoForInsertion)
         {
             var assemblyQuality = _mapper.Map<AssemblyQuality>(assemblyQualityDtoForInsertion);
+            var assemblyFailureState = await _manager.AssemblyFailureStateRepository.GetAssemblyFailureStateByIdAsync((int)assemblyQuality.AssemblyFailureStateID!, false);
+            var assemblyManual = await _manager.AssemblyManuelRepository.GetAssemblyManuelByIdAsync(assemblyFailureState.AssemblyManuelID, false);
             if (assemblyQualityDtoForInsertion.UserId == null)
             {
                 throw new Exception("Kalite sorumlusu giriniz!");
             }
-            if (assemblyQualityDtoForInsertion.UserId == assemblyQuality.AssemblyFailureState!.AssemblyManuel!.QualityOfficerID)
+            if (assemblyQualityDtoForInsertion.UserId == assemblyManual.QualityOfficerID)
             {
                 _manager.AssemblyQualityRepository.CreateAssemblyQuality(assemblyQuality);
                 await _manager.SaveAsync();
@@ -65,12 +67,14 @@ namespace Services
         public async Task<AssemblyQualityDto> UpdateAssemblyQualityAsync(AssemblyQualityDtoForUpdate assemblyQualityDtoForUpdate)
         {
             var assemblyQuality = await _manager.AssemblyQualityRepository.GetAssemblyQualityByIdAsync(assemblyQualityDtoForUpdate.ID, assemblyQualityDtoForUpdate.TrackChanges);
+            var assemblyFailureState = await _manager.AssemblyFailureStateRepository.GetAssemblyFailureStateByIdAsync((int)assemblyQuality.AssemblyFailureStateID!, false);
+            var assemblyManual = await _manager.AssemblyManuelRepository.GetAssemblyManuelByIdAsync(assemblyFailureState.AssemblyManuelID, false);
             _mapper.Map(assemblyQualityDtoForUpdate, assemblyQuality);
             if (assemblyQualityDtoForUpdate.UserId == null)
             {
                 throw new Exception("Kalite sorumlusu giriniz!");
             }
-            if (assemblyQualityDtoForUpdate.UserId == assemblyQuality.AssemblyFailureState!.QualityOfficerID)
+            if (assemblyQualityDtoForUpdate.UserId == assemblyManual.QualityOfficerID)
             {
                 _manager.AssemblyQualityRepository.UpdateAssemblyQuality(assemblyQuality);
                 await _manager.SaveAsync();

@@ -4,6 +4,7 @@
     {
         public string? Inappropriateness { get; init; }
         public string? TechnicianID { get; init; }
+        public string? Description { get; init; }
         public string? PartCode { get; init; }
         public bool? Status { get; init; }
         public int? PendingQuantity { get; init; }

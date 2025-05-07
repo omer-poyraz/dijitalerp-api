@@ -551,60 +551,96 @@ namespace DijitalErpAPI.Migrations
                         new
                         {
                             ID = 4,
+                            EndPoint = "/AssemblyQuality",
+                            Name = "AssemblyQuality"
+                        },
+                        new
+                        {
+                            ID = 5,
                             EndPoint = "/AssemblySuccessState",
                             Name = "AssemblySuccessState"
                         },
                         new
                         {
-                            ID = 5,
+                            ID = 6,
+                            EndPoint = "/AssemblyVisualNote",
+                            Name = "AssemblyVisualNote"
+                        },
+                        new
+                        {
+                            ID = 7,
                             EndPoint = "/Department",
                             Name = "Department"
                         },
                         new
                         {
-                            ID = 6,
+                            ID = 8,
                             EndPoint = "/Employee",
                             Name = "Employee"
                         },
                         new
                         {
-                            ID = 7,
+                            ID = 9,
                             EndPoint = "/Log",
                             Name = "Log"
                         },
                         new
                         {
-                            ID = 8,
+                            ID = 10,
+                            EndPoint = "/Product",
+                            Name = "Product"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            EndPoint = "/Services",
+                            Name = "Services"
+                        },
+                        new
+                        {
+                            ID = 12,
                             EndPoint = "/TechnicalDrawing",
                             Name = "TechnicalDrawing"
                         },
                         new
                         {
-                            ID = 9,
+                            ID = 13,
                             EndPoint = "/TechnicalDrawingFailureState",
                             Name = "TechnicalDrawingFailureState"
                         },
                         new
                         {
-                            ID = 10,
-                            EndPoint = "/TechnicalDrawingSuccessState",
-                            Name = "TechnicalDrawingSuccessState"
-                        },
-                        new
-                        {
-                            ID = 11,
+                            ID = 14,
                             EndPoint = "/TechnicalDrawingNote",
                             Name = "TechnicalDrawingNote"
                         },
                         new
                         {
-                            ID = 12,
+                            ID = 15,
+                            EndPoint = "/TechnicalDrawingQuality",
+                            Name = "TechnicalDrawingQuality"
+                        },
+                        new
+                        {
+                            ID = 16,
+                            EndPoint = "/TechnicalDrawingSuccessState",
+                            Name = "TechnicalDrawingSuccessState"
+                        },
+                        new
+                        {
+                            ID = 17,
+                            EndPoint = "/TechnicalDrawingVisualNote",
+                            Name = "TechnicalDrawingVisualNote"
+                        },
+                        new
+                        {
+                            ID = 18,
                             EndPoint = "/User",
                             Name = "User"
                         },
                         new
                         {
-                            ID = 13,
+                            ID = 19,
                             EndPoint = "/UserPermission",
                             Name = "UserPermission"
                         });
@@ -1115,19 +1151,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8e6b21f9-fead-435d-aeb9-9507c67a117b",
+                            Id = "cc0e06cf-1bc5-4caf-bb24-80182395261e",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "a7273988-3521-487b-8e4b-4f3c8b64a623",
+                            Id = "9d59a6b4-d20f-4061-b073-d190968fafd4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c353c1cb-c1b7-44ba-ab97-e8201eb526bb",
+                            Id = "78762395-41b9-47d9-b766-a4c5bac1c49d",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
