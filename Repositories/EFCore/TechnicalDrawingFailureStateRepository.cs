@@ -47,6 +47,12 @@ namespace Repositories.EFCore
                 .SingleOrDefaultAsync();
         }
 
+        public TechnicalDrawingFailureState UpdateTechnicalDrawingFailureByQualityState(TechnicalDrawingFailureState technicalDrawingFailureState)
+        {
+            Update(technicalDrawingFailureState);
+            return technicalDrawingFailureState;
+        }
+
         public TechnicalDrawingFailureState UpdateTechnicalDrawingFailureState(TechnicalDrawingFailureState technicalDrawingFailureState)
         {
             Update(technicalDrawingFailureState);

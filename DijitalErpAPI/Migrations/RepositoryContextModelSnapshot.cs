@@ -51,6 +51,12 @@ namespace DijitalErpAPI.Migrations
                     b.Property<int?>("PendingQuantity")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime?>("QualityDescriptionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("QualityOfficerDescription")
+                        .HasColumnType("text");
+
                     b.Property<string>("QualityOfficerID")
                         .HasColumnType("text");
 
@@ -750,6 +756,12 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("ProjectName")
                         .HasColumnType("text");
 
+                    b.Property<DateTime?>("QualityDescriptionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("QualityOfficerDescription")
+                        .HasColumnType("text");
+
                     b.Property<string>("QualityOfficerID")
                         .HasColumnType("text");
 
@@ -1151,19 +1163,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cc0e06cf-1bc5-4caf-bb24-80182395261e",
+                            Id = "9c6cab87-aad9-40b9-bdc9-b4a769f5c614",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "9d59a6b4-d20f-4061-b073-d190968fafd4",
+                            Id = "4b2faf7a-6c91-4489-9f7f-585d23465988",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "78762395-41b9-47d9-b766-a4c5bac1c49d",
+                            Id = "cd9b0ef0-7c2a-44df-acd8-807054836195",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });

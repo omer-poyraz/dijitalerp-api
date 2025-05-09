@@ -10,6 +10,8 @@ namespace Entities.Models
         public string? Stand { get; set; }
         public string? PartCode { get; set; }
         public string? Description { get; set; }
+        public string? QualityOfficerDescription { get; set; }
+        public DateTime? QualityDescriptionDate { get; set; }
         public int? ProductionQuantity { get; set; }
         public string? Approval { get; set; }
         public bool? Status { get; set; }

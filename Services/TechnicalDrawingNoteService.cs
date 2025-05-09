@@ -20,7 +20,7 @@ namespace Services
         public async Task<TechnicalDrawingNoteDto> CreateTechnicalDrawingNoteAsync(TechnicalDrawingNoteDtoForInsertion technicalDrawingNoteGroupDtoForInsertion)
         {
             var technicalDrawingNoteGroup = _mapper.Map<TechnicalDrawingNote>(technicalDrawingNoteGroupDtoForInsertion);
-            if (technicalDrawingNoteGroupDtoForInsertion.Status == true)
+            if (technicalDrawingNoteGroupDtoForInsertion.Status != true)
             {
                 _manager.TechnicalDrawingSuccessStateRepository.CreateTechnicalDrawingSuccessState(new TechnicalDrawingSuccessState
                 {

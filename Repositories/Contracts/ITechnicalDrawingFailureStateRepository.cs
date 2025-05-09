@@ -9,6 +9,7 @@ namespace Repositories.Contracts
         Task<TechnicalDrawingFailureState> GetTechnicalDrawingFailureStateByIdAsync(int id, bool? trackChanges);
         TechnicalDrawingFailureState CreateTechnicalDrawingFailureState(TechnicalDrawingFailureState technicalDrawingFailureState);
         TechnicalDrawingFailureState UpdateTechnicalDrawingFailureState(TechnicalDrawingFailureState technicalDrawingFailureState);
+        TechnicalDrawingFailureState UpdateTechnicalDrawingFailureByQualityState(TechnicalDrawingFailureState technicalDrawingFailureState);
         TechnicalDrawingFailureState DeleteTechnicalDrawingFailureState(TechnicalDrawingFailureState technicalDrawingFailureState);
     }
 }

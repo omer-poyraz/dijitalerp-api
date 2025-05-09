@@ -9,6 +9,7 @@ namespace Repositories.Contracts
         Task<AssemblyFailureState> GetAssemblyFailureStateByIdAsync(int id, bool? trackChanges);
         AssemblyFailureState CreateAssemblyFailureState(AssemblyFailureState assemblyFailureState);
         AssemblyFailureState UpdateAssemblyFailureState(AssemblyFailureState assemblyFailureState);
+        AssemblyFailureState UpdateAssemblyFailureByQualityState(AssemblyFailureState assemblyFailureState);
         AssemblyFailureState DeleteAssemblyFailureState(AssemblyFailureState assemblyFailureState);
     }
 }

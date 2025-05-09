@@ -20,7 +20,7 @@ namespace Services
         public async Task<AssemblyNoteDto> CreateAssemblyNoteAsync(AssemblyNoteDtoForInsertion assemblyNoteGroupDtoForInsertion)
         {
             var assemblyNoteGroup = _mapper.Map<AssemblyNote>(assemblyNoteGroupDtoForInsertion);
-            if (assemblyNoteGroupDtoForInsertion.Status == true)
+            if (assemblyNoteGroupDtoForInsertion.Status != true)
             {
                 _manager.AssemblySuccessStateRepository.CreateAssemblySuccessState(new AssemblySuccessState
                 {

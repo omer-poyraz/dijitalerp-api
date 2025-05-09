@@ -10,6 +10,8 @@ namespace Entities.Models
         public User? Technician { get; set; }
         public string? TechnicianID { get; set; }
         public string? Description { get; set; }
+        public string? QualityOfficerDescription { get; set; }
+        public DateTime? QualityDescriptionDate { get; set; }
         public string? PartCode { get; set; }
         public bool? Status { get; set; }
         public int? PendingQuantity { get; set; }

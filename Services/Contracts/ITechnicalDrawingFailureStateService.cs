@@ -9,6 +9,7 @@ namespace Services.Contracts
         Task<TechnicalDrawingFailureStateDto> GetTechnicalDrawingFailureStateByIdAsync(int id, bool? trackChanges);
         Task<TechnicalDrawingFailureStateDto> CreateTechnicalDrawingFailureStateAsync(TechnicalDrawingFailureStateDtoForInsertion technicalDrawingFailureStateDtoForInsertion);
         Task<TechnicalDrawingFailureStateDto> UpdateTechnicalDrawingFailureStateAsync(TechnicalDrawingFailureStateDtoForUpdate technicalDrawingFailureStateDtoForUpdate);
+        Task<TechnicalDrawingFailureStateDto> UpdateTechnicalDrawingFailureByQualityStateAsync(TechnicalDrawingFailureStateDtoForQuality technicalDrawingFailureStateDtoForQuality);
         Task<TechnicalDrawingFailureStateDto> DeleteTechnicalDrawingFailureStateAsync(int id, bool? trackChanges);
     }
 }

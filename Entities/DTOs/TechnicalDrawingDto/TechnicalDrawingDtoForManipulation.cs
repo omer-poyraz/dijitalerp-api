@@ -6,6 +6,8 @@
         public string? ProjectName { get; init; }
         public string? PartCode { get; init; }
         public string? Stand { get; init; }
+        public string? QualityOfficerDescription { get; init; }
+        public DateTime? QualityDescriptionDate { get; init; }
         public string? ResponibleID { get; init; }
         public string? PersonInChargeID { get; init; }
         public string? SerialNumber { get; init; }

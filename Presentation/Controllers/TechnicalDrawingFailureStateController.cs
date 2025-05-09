@@ -75,9 +75,7 @@ namespace Presentation.Controllers
 
         [HttpPost("Create")]
         [AuthorizePermission("TechnicalDrawingFailureState", "Write")]
-        public async Task<IActionResult> CreateOneTechnicalDrawingFailureStateAsync(
-            [FromBody] TechnicalDrawingFailureStateDtoForInsertion technicalDrawingFailureStateDtoForInsertion
-        )
+        public async Task<IActionResult> CreateOneTechnicalDrawingFailureStateAsync([FromBody] TechnicalDrawingFailureStateDtoForInsertion technicalDrawingFailureStateDtoForInsertion)
         {
             try
             {
@@ -94,13 +92,26 @@ namespace Presentation.Controllers
 
         [HttpPut("Update")]
         [AuthorizePermission("TechnicalDrawingFailureState", "Write")]
-        public async Task<IActionResult> UpdateOneUserAsync(
-            [FromBody] TechnicalDrawingFailureStateDtoForUpdate technicalDrawingFailureStateDtoForUpdate
-        )
+        public async Task<IActionResult> UpdateOneUserAsync([FromBody] TechnicalDrawingFailureStateDtoForUpdate technicalDrawingFailureStateDtoForUpdate)
         {
             try
             {
                 var user = await _manager.TechnicalDrawingFailureStateService.UpdateTechnicalDrawingFailureStateAsync(technicalDrawingFailureStateDtoForUpdate);
+                return Ok(ApiResponse<TechnicalDrawingFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<TechnicalDrawingFailureStateDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
+            }
+        }
+
+        [HttpPut("QualityDescription")]
+        [AuthorizePermission("TechnicalDrawingQuality", "Write")]
+        public async Task<IActionResult> UpdateQualityOfficeerAsync([FromBody] TechnicalDrawingFailureStateDtoForQuality technicalDrawingFailureStateDtoForQuality)
+        {
+            try
+            {
+                var user = await _manager.TechnicalDrawingFailureStateService.UpdateTechnicalDrawingFailureByQualityStateAsync(technicalDrawingFailureStateDtoForQuality);
                 return Ok(ApiResponse<TechnicalDrawingFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
             }
             catch (Exception)

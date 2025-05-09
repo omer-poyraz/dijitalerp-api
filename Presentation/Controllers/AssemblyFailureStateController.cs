@@ -26,9 +26,9 @@ namespace Presentation.Controllers
         {
             try
             {
-                var users = await _manager.AssemblyFailureStateService.GetAllAssemblyFailureStateAsync(false);
+                var assemblyFailureStates = await _manager.AssemblyFailureStateService.GetAllAssemblyFailureStateAsync(false);
                 return Ok(
-                    ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed")
+                    ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateSuccess(_httpContextAccessor, assemblyFailureStates, "Success.Listed")
                 );
             }
             catch (Exception)
@@ -45,9 +45,9 @@ namespace Presentation.Controllers
         {
             try
             {
-                var users = await _manager.AssemblyFailureStateService.GetAllAssemblyFailureStateByManualAsync(id, false);
+                var assemblyFailureStates = await _manager.AssemblyFailureStateService.GetAllAssemblyFailureStateByManualAsync(id, false);
                 return Ok(
-                    ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateSuccess(_httpContextAccessor, users, "Success.Listed")
+                    ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateSuccess(_httpContextAccessor, assemblyFailureStates, "Success.Listed")
                 );
             }
             catch (Exception)
@@ -64,8 +64,8 @@ namespace Presentation.Controllers
         {
             try
             {
-                var user = await _manager.AssemblyFailureStateService.GetAssemblyFailureStateByIdAsync(id, false);
-                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Retrieved"));
+                var assemblyFailureState = await _manager.AssemblyFailureStateService.GetAssemblyFailureStateByIdAsync(id, false);
+                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, assemblyFailureState, "Success.Retrieved"));
             }
             catch (Exception)
             {
@@ -81,10 +81,10 @@ namespace Presentation.Controllers
         {
             try
             {
-                var user = await _manager.AssemblyFailureStateService.CreateAssemblyFailureStateAsync(
+                var assemblyFailureState = await _manager.AssemblyFailureStateService.CreateAssemblyFailureStateAsync(
                     assemblyFailureStateDtoForInsertion
                 );
-                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Created"));
+                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, assemblyFailureState, "Success.Created"));
             }
             catch (Exception)
             {
@@ -94,14 +94,27 @@ namespace Presentation.Controllers
 
         [HttpPut("Update")]
         [AuthorizePermission("AssemblyFailureState", "Write")]
-        public async Task<IActionResult> UpdateOneUserAsync(
-            [FromBody] AssemblyFailureStateDtoForUpdate assemblyFailureStateDtoForUpdate
-        )
+        public async Task<IActionResult> UpdateOneUserAsync([FromBody] AssemblyFailureStateDtoForUpdate assemblyFailureStateDtoForUpdate)
         {
             try
             {
-                var user = await _manager.AssemblyFailureStateService.UpdateAssemblyFailureStateAsync(assemblyFailureStateDtoForUpdate);
-                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
+                var assemblyFailureState = await _manager.AssemblyFailureStateService.UpdateAssemblyFailureStateAsync(assemblyFailureStateDtoForUpdate);
+                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, assemblyFailureState, "Success.Updated"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<AssemblyFailureStateDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
+            }
+        }
+
+        [HttpPut("QualityDescription")]
+        [AuthorizePermission("AssemblyQuality", "Write")]
+        public async Task<IActionResult> UpdateQualityDescriptonAsync([FromBody] AssemblyFailureStateDtoForQuality assemblyFailureStateDtoForQuality)
+        {
+            try
+            {
+                var assemblyFailureState = await _manager.AssemblyFailureStateService.UpdateAssemblyFailureByQualityStateAsync(assemblyFailureStateDtoForQuality);
+                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, assemblyFailureState, "Success.Updated"));
             }
             catch (Exception)
             {
@@ -115,8 +128,8 @@ namespace Presentation.Controllers
         {
             try
             {
-                var user = await _manager.AssemblyFailureStateService.DeleteAssemblyFailureStateAsync(id, false);
-                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Deleted"));
+                var assemblyFailureState = await _manager.AssemblyFailureStateService.DeleteAssemblyFailureStateAsync(id, false);
+                return Ok(ApiResponse<AssemblyFailureStateDto>.CreateSuccess(_httpContextAccessor, assemblyFailureState, "Success.Deleted"));
             }
             catch (Exception)
             {

@@ -47,6 +47,12 @@ namespace Repositories.EFCore
                 .SingleOrDefaultAsync();
         }
 
+        public AssemblyFailureState UpdateAssemblyFailureByQualityState(AssemblyFailureState assemblyFailureState)
+        {
+            Update(assemblyFailureState);
+            return assemblyFailureState;
+        }
+
         public AssemblyFailureState UpdateAssemblyFailureState(AssemblyFailureState assemblyFailureState)
         {
             Update(assemblyFailureState);

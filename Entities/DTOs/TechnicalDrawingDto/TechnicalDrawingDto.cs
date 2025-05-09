@@ -9,6 +9,8 @@ namespace Entities.DTOs.TechnicalDrawingDto
         public string? ProjectName { get; init; }
         public string? PartCode { get; init; }
         public string? Stand { get; init; }
+        public string? QualityOfficerDescription { get; init; }
+        public DateTime? QualityDescriptionDate { get; init; }
         public User? Responible { get; init; }
         public string? ResponibleID { get; init; }
         public User? PersonInCharge { get; init; }

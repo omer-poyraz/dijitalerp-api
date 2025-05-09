@@ -9,6 +9,7 @@ namespace Services.Contracts
         Task<AssemblyFailureStateDto> GetAssemblyFailureStateByIdAsync(int id, bool? trackChanges);
         Task<AssemblyFailureStateDto> CreateAssemblyFailureStateAsync(AssemblyFailureStateDtoForInsertion assemblyFailureStateDtoForInsertion);
         Task<AssemblyFailureStateDto> UpdateAssemblyFailureStateAsync(AssemblyFailureStateDtoForUpdate assemblyFailureStateDtoForUpdate);
+        Task<AssemblyFailureStateDto> UpdateAssemblyFailureByQualityStateAsync(AssemblyFailureStateDtoForQuality assemblyFailureStateDtoForQuality);
         Task<AssemblyFailureStateDto> DeleteAssemblyFailureStateAsync(int id, bool? trackChanges);
     }
 }
