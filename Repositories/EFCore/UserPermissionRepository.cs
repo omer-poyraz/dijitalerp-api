@@ -40,5 +40,10 @@ namespace Repositories.EFCore
             Update(userPermission);
             return userPermission;
         }
+
+        public async Task<UserPermission> GetUserPermissionByUserAndServiceAsync(string userId, string service, bool? trackChanges) =>
+            await FindByCondition(s => s.UserId.Equals(userId) && s.ServiceName.Equals(service), trackChanges)
+                .Include(s => s.User)
+                .SingleOrDefaultAsync();
     }
 }

@@ -23,10 +23,24 @@ namespace Services
 
         public async Task<UserPermissionDto> CreateUserPermissionAsync(UserPermissionDtoForInsertion userPermissionGroupDtoForInsertion)
         {
-            var userPermissionGroup = _mapper.Map<UserPermission>(userPermissionGroupDtoForInsertion);
-            _manager.UserPermissionRepository.CreateUserPermission(userPermissionGroup);
-            await _manager.SaveAsync();
-            return _mapper.Map<UserPermissionDto>(userPermissionGroup);
+            if (userPermissionGroupDtoForInsertion.UserId == null)
+            {
+                throw new ArgumentNullException(nameof(userPermissionGroupDtoForInsertion.UserId));
+            }
+            var userPermission = await _manager.UserPermissionRepository.GetUserPermissionByUserAndServiceAsync(userPermissionGroupDtoForInsertion.UserId!, userPermissionGroupDtoForInsertion.ServiceName!, false);
+            if (userPermission != null)
+            {
+                _manager.UserPermissionRepository.UpdateUserPermission(userPermission);
+                await _manager.SaveAsync();
+                return _mapper.Map<UserPermissionDto>(userPermission);
+            }
+            else
+            {
+                var userPermissionGroup = _mapper.Map<UserPermission>(userPermissionGroupDtoForInsertion);
+                _manager.UserPermissionRepository.CreateUserPermission(userPermissionGroup);
+                await _manager.SaveAsync();
+                return _mapper.Map<UserPermissionDto>(userPermissionGroup);
+            }
         }
 
         public async Task<UserPermissionDto> DeleteUserPermissionAsync(int id, bool? trackChanges)
@@ -57,11 +71,24 @@ namespace Services
 
         public async Task<UserPermissionDto> UpdateUserPermissionAsync(UserPermissionDtoForUpdate userPermissionGroupDtoForUpdate)
         {
-            var userPermissionGroup = await _manager.UserPermissionRepository.GetUserPermissionByIdAsync(userPermissionGroupDtoForUpdate.ID, userPermissionGroupDtoForUpdate.TrackChanges);
-            _mapper.Map(userPermissionGroupDtoForUpdate, userPermissionGroup);
-            _manager.UserPermissionRepository.UpdateUserPermission(userPermissionGroup);
-            await _manager.SaveAsync();
-            return _mapper.Map<UserPermissionDto>(userPermissionGroup);
+            try
+            {
+                if (userPermissionGroupDtoForUpdate.UserId == null)
+                {
+                    throw new ArgumentNullException(nameof(userPermissionGroupDtoForUpdate.UserId));
+                }
+                var userPermissionGroup = await _manager.UserPermissionRepository.GetUserPermissionByIdAsync(userPermissionGroupDtoForUpdate.ID, userPermissionGroupDtoForUpdate.TrackChanges);
+                _mapper.Map(userPermissionGroupDtoForUpdate, userPermissionGroup);
+                userPermissionGroup.UserId = userPermissionGroupDtoForUpdate.UserId;
+                _manager.UserPermissionRepository.UpdateUserPermission(userPermissionGroup);
+                await _manager.SaveAsync();
+                return _mapper.Map<UserPermissionDto>(userPermissionGroup);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task<bool> HasPermissionAsync(string userId, string serviceName, string permissionType)
@@ -82,6 +109,12 @@ namespace Services
                 "Delete" => permissions.CanDelete,
                 _ => false,
             };
+        }
+
+        public async Task<UserPermissionDto> GetUserPermissionByUserAndServiceAsync(string userId, string service, bool? trackChanges)
+        {
+            var userPermission = await _manager.UserPermissionRepository.GetUserPermissionByUserAndServiceAsync(userId, service, trackChanges);
+            return _mapper.Map<UserPermissionDto>(userPermission);
         }
     }
 }

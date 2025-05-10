@@ -99,7 +99,9 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<User, UserDto>();
             CreateMap<IdentityResult, UserDto>().ReverseMap();
 
-            CreateMap<UserPermissionDtoForUpdate, UserPermission>().ReverseMap();
+            CreateMap<UserPermissionDtoForUpdate, UserPermission>()
+                .ForMember(dest => dest.User, opt => opt.Ignore())
+                .ReverseMap();
             CreateMap<UserPermission, UserPermissionDto>();
             CreateMap<UserPermissionDtoForInsertion, UserPermission>();
         }

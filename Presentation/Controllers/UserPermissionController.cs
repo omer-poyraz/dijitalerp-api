@@ -67,9 +67,7 @@ namespace Presentation.Controllers
 
         [HttpPut("Update")]
         [AuthorizePermission("UserPermission", "Write")]
-        public async Task<IActionResult> UpdateOneUserAsync(
-            [FromBody] UserPermissionDtoForUpdate userPermissionDtoForUpdate
-        )
+        public async Task<IActionResult> UpdateOneUserAsync([FromBody] UserPermissionDtoForUpdate userPermissionDtoForUpdate)
         {
             try
             {

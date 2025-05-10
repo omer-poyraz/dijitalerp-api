@@ -6,6 +6,7 @@ namespace Repositories.Contracts
     {
         Task<IEnumerable<UserPermission>> GetAllUserPermissionsAsync(bool? trackChanges);
         Task<UserPermission> GetUserPermissionByIdAsync(int id, bool? trackChanges);
+        Task<UserPermission> GetUserPermissionByUserAndServiceAsync(string userId, string service, bool? trackChanges);
         Task<IEnumerable<UserPermission>> GetUserPermissionsByUserIdAsync(string userId, bool? trackChanges);
         UserPermission CreateUserPermission(UserPermission userPermission);
         UserPermission UpdateUserPermission(UserPermission userPermission);

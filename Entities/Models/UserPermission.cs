@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json;
-
-namespace Entities.Models
+﻿namespace Entities.Models
 {
     public class UserPermission
     {

@@ -5,7 +5,7 @@ namespace Entities.DTOs.UserPermissionDto
 {
     public abstract record UserPermissionDtoForManipulation
     {
-        public string? UserId { get; init; }
+        public string? UserId { get; set; }
         public User? User { get; init; }
         public string? ServiceName { get; init; }
         public bool CanRead { get; init; }
