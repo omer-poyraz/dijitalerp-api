@@ -49,6 +49,21 @@ namespace DijitalErpAPI.Extensions
             services.AddScoped<IAssemblyQualityService, AssemblyQualityService>();
             services.AddScoped<IAssemblyQualityRepository, AssemblyQualityRepository>();
 
+            services.AddScoped<ICMMService, CMMService>();
+            services.AddScoped<ICMMRepository, CMMRepository>();
+
+            services.AddScoped<ICMMModuleService, CMMModuleService>();
+            services.AddScoped<ICMMModuleRepository, CMMModuleRepository>();
+            
+            services.AddScoped<ICMMFailureStateService, CMMFailureStateService>();
+            services.AddScoped<ICMMFailureStateRepository, CMMFailureStateRepository>();
+            
+            services.AddScoped<ICMMSuccessStateService, CMMSuccessStateService>();
+            services.AddScoped<ICMMSuccessStateRepository, CMMSuccessStateRepository>();
+            
+            services.AddScoped<ICMMNoteService, CMMNoteService>();
+            services.AddScoped<ICMMNoteRepository, CMMNoteRepository>();
+
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 

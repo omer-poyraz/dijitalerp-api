@@ -8,6 +8,11 @@
         IAssemblyVisualNoteRepository AssemblyVisualNoteRepository { get; }
         IAssemblySuccessStateRepository AssemblySuccessStateRepository { get; }
         IAssemblyQualityRepository AssemblyQualityRepository { get; }
+        ICMMFailureStateRepository CMMFailureStateRepository { get; }
+        ICMMRepository CMMRepository { get; }
+        ICMMModuleRepository CMMModuleRepository { get; }
+        ICMMNoteRepository CMMNoteRepository { get; }
+        ICMMSuccessStateRepository CMMSuccessStateRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
         ILogRepository LogRepository { get; }

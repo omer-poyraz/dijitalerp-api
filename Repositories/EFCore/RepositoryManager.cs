@@ -10,6 +10,11 @@ namespace Repositories.EFCore
         private readonly IAssemblyVisualNoteRepository _assemblyVisualNoteRepository;
         private readonly IAssemblySuccessStateRepository _assemblySuccessStateRepository;
         private readonly IAssemblyQualityRepository _assemblyQualityRepository;
+        private readonly ICMMRepository _cmmRepository;
+        private readonly ICMMModuleRepository _cmmModuleRepository;
+        private readonly ICMMFailureStateRepository _cmmFailureStateRepository;
+        private readonly ICMMSuccessStateRepository _cmmSuccessStateRepository;
+        private readonly ICMMNoteRepository _cmmNoteRepository;
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogRepository _logRepository;
@@ -28,22 +33,27 @@ namespace Repositories.EFCore
         public RepositoryManager(
             RepositoryContext context,
             ILogRepository logRepository,
-            IDepartmentRepository departmentRepository,
             IAssemblyFailureStateRepository assemblyFailureStateRepository,
             IAssemblyManuelRepository assemblyManuelRepository,
             IAssemblyNoteRepository assemblyNoteRepository,
             IAssemblyVisualNoteRepository assemblyVisualNoteRepository,
             IAssemblySuccessStateRepository assemblySuccessStateRepository,
             IAssemblyQualityRepository assemblyQualityRepository,
-            IProductRepository productRepository,
+            ICMMRepository cmmRepository,
+            ICMMModuleRepository cmmModuleRepository,
+            ICMMFailureStateRepository cmmFailureStateRepository,
+            ICMMSuccessStateRepository cmmSuccessStateRepository,
+            ICMMNoteRepository cmmNoteRepository,
+            IDepartmentRepository departmentRepository,
             IEmployeeRepository employeeRepository,
+            IProductRepository productRepository,
+            IServicesRepository servicesRepository,
             ITechnicalDrawingRepository technicalDrawingRepository,
             ITechnicalDrawingFailureStateRepository technicalDrawingFailureStateRepository,
             ITechnicalDrawingSuccessStateRepository technicalDrawingSuccessStateRepository,
             ITechnicalDrawingNoteRepository technicalDrawingNoteRepository,
             ITechnicalDrawingVisualNoteRepository technicalDrawingVisualNoteRepository,
             ITechnicalDrawingQualityRepository technicalDrawingQualityRepository,
-            IServicesRepository servicesRepository,
             IUserRepository userRepository,
             IUserPermissionRepository userPermissionRepository)
         {
@@ -54,6 +64,11 @@ namespace Repositories.EFCore
             _assemblySuccessStateRepository = assemblySuccessStateRepository;
             _assemblyQualityRepository = assemblyQualityRepository;
             _context = context;
+            _cmmRepository = cmmRepository;
+            _cmmModuleRepository = cmmModuleRepository;
+            _cmmFailureStateRepository = cmmFailureStateRepository;
+            _cmmSuccessStateRepository = cmmSuccessStateRepository;
+            _cmmNoteRepository = cmmNoteRepository;
             _departmentRepository = departmentRepository;
             _employeeRepository = employeeRepository;
             _logRepository = logRepository;
@@ -75,6 +90,11 @@ namespace Repositories.EFCore
         public IAssemblyVisualNoteRepository AssemblyVisualNoteRepository => _assemblyVisualNoteRepository;
         public IAssemblySuccessStateRepository AssemblySuccessStateRepository => _assemblySuccessStateRepository;
         public IAssemblyQualityRepository AssemblyQualityRepository => _assemblyQualityRepository;
+        public ICMMRepository CMMRepository => _cmmRepository;
+        public ICMMModuleRepository CMMModuleRepository => _cmmModuleRepository;
+        public ICMMFailureStateRepository CMMFailureStateRepository => _cmmFailureStateRepository;
+        public ICMMSuccessStateRepository CMMSuccessStateRepository => _cmmSuccessStateRepository;
+        public ICMMNoteRepository CMMNoteRepository => _cmmNoteRepository;
         public IDepartmentRepository DepartmentRepository => _departmentRepository;
         public IEmployeeRepository EmployeeRepository => _employeeRepository;
         public ILogRepository LogRepository => _logRepository;

@@ -11,6 +11,11 @@ namespace Services
         private readonly IAssemblyVisualNoteService _assemblyVisualNoteService;
         private readonly IAssemblySuccessStateService _assemblySuccessStateService;
         private readonly IAssemblyQualityService _assemblyQualityService;
+        private readonly ICMMService _cmmService;
+        private readonly ICMMModuleService _cmmModuleService;
+        private readonly ICMMFailureStateService _cmmFailureStateService;
+        private readonly ICMMSuccessStateService _cmmSuccessStateService;
+        private readonly ICMMNoteService _cmmNoteService;
         private readonly IDepartmentService _departmentService;
         private readonly IEmployeeService _employeeService;
         private readonly ILogService _logService;
@@ -26,35 +31,45 @@ namespace Services
         private readonly IUserPermissionService _userPermissionService;
 
         public ServiceManager(
-            IAuthenticationService authenticationService,
-            IServicesService servicesService,
-            IUserService userService,
-            IUserPermissionService userPermissionService,
-            ILogService logService,
-            IDepartmentService departmentService,
             IAssemblyFailureStateService assemblyFailureStateService,
             IAssemblyManuelService assemblyManuelService,
             IAssemblyNoteService assemblyNoteService,
             IAssemblyVisualNoteService assemblyVisualNoteService,
             IAssemblySuccessStateService assemblySuccessStateService,
             IAssemblyQualityService assemblyQualityService,
-            IProductService productService,
+            IAuthenticationService authenticationService,
+            ICMMService cmmService,
+            ICMMModuleService cmmModuleService,
+            ICMMFailureStateService cmmFailureStateService,
+            ICMMSuccessStateService cmmSuccessStateService,
+            ICMMNoteService cmmNoteService,
+            IDepartmentService departmentService,
             IEmployeeService employeeService,
+            ILogService logService,
+            IProductService productService,
+            IServicesService servicesService,
             ITechnicalDrawingService technicalDrawingService,
             ITechnicalDrawingFailureStateService technicalDrawingFailureStateService,
             ITechnicalDrawingSuccessStateService technicalDrawingSuccessStateService,
             ITechnicalDrawingNoteService technicalDrawingNoteService,
             ITechnicalDrawingVisualNoteService technicalDrawingVisualNoteService,
-            ITechnicalDrawingQualityService technicalDrawingQualityService
+            ITechnicalDrawingQualityService technicalDrawingQualityService,
+            IUserService userService,
+            IUserPermissionService userPermissionService
             )
         {
-            _authenticationService = authenticationService;
             _assemblyFailureStateService = assemblyFailureStateService;
             _assemblyManuelService = assemblyManuelService;
             _assemblyNoteService = assemblyNoteService;
             _assemblyVisualNoteService = assemblyVisualNoteService;
             _assemblySuccessStateService = assemblySuccessStateService;
             _assemblyQualityService = assemblyQualityService;
+            _authenticationService = authenticationService;
+            _cmmService = cmmService;
+            _cmmModuleService = cmmModuleService;
+            _cmmFailureStateService = cmmFailureStateService;
+            _cmmSuccessStateService = cmmSuccessStateService;
+            _cmmNoteService = cmmNoteService;
             _departmentService = departmentService;
             _employeeService = employeeService;
             _logService = logService;
@@ -70,13 +85,18 @@ namespace Services
             _userPermissionService = userPermissionService;
         }
 
-        public IAuthenticationService AuthenticationService => _authenticationService;
         public IAssemblyFailureStateService AssemblyFailureStateService => _assemblyFailureStateService;
         public IAssemblyManuelService AssemblyManuelService => _assemblyManuelService;
         public IAssemblyNoteService AssemblyNoteService => _assemblyNoteService;
         public IAssemblyVisualNoteService AssemblyVisualNoteService => _assemblyVisualNoteService;
         public IAssemblySuccessStateService AssemblySuccessStateService => _assemblySuccessStateService;
         public IAssemblyQualityService AssemblyQualityService => _assemblyQualityService;
+        public IAuthenticationService AuthenticationService => _authenticationService;
+        public ICMMService CMMService => _cmmService;
+        public ICMMModuleService CMMModuleService => _cmmModuleService;
+        public ICMMFailureStateService CMMFailureStateService => _cmmFailureStateService;
+        public ICMMSuccessStateService CMMSuccessStateService => _cmmSuccessStateService;
+        public ICMMNoteService CMMNoteService => _cmmNoteService;
         public IDepartmentService DepartmentService => _departmentService;
         public IEmployeeService EmployeeService => _employeeService;
         public ILogService LogService => _logService;

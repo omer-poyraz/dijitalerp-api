@@ -15,6 +15,11 @@ namespace Repositories.EFCore
         public DbSet<AssemblyVisualNote> AssemblyVisualNotes { get; set; }
         public DbSet<AssemblySuccessState> AssemblySuccessStates { get; set; }
         public DbSet<AssemblyQuality> AssemblyQualities { get; set; }
+        public DbSet<CMM> CMMs { get; set; }
+        public DbSet<CMMModule> CMMModules { get; set; }
+        public DbSet<CMMFailureState> CMMFailureStates { get; set; }
+        public DbSet<CMMNote> CMMNotes { get; set; }
+        public DbSet<CMMSuccessState> CMMSuccessStates { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }

@@ -323,6 +323,272 @@ namespace DijitalErpAPI.Migrations
                     b.ToTable("AssemblyVisualNotes");
                 });
 
+            modelBuilder.Entity("Entities.Models.CMM", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("CMMModuleID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Files")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("InstallResultDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("MeasuringPersonID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PersonInChargeID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("QualityOfficerID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ResponibleID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ResultFiles")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SolidModel")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Stand")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Time")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CMMModuleID");
+
+                    b.HasIndex("MeasuringPersonID");
+
+                    b.HasIndex("PersonInChargeID");
+
+                    b.HasIndex("QualityOfficerID");
+
+                    b.HasIndex("ResponibleID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CMMs");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMFailureState", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CMMID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Inappropriateness")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("PendingQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("QualityDescriptionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("QualityOfficerDescription")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("TechnicianID")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Total")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CMMID");
+
+                    b.HasIndex("TechnicianID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CMMFailureStates");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMModule", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("CMM")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Files")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CMMModules");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMNote", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CMMID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CMMID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CMMNotes");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMSuccessState", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Approval")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("CMMID")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PartCode")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("PendingQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("QualityDescription")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("TechnicianID")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CMMID");
+
+                    b.HasIndex("TechnicianID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CMMSuccessStates");
+                });
+
             modelBuilder.Entity("Entities.Models.Department", b =>
                 {
                     b.Property<int>("ID")
@@ -575,78 +841,108 @@ namespace DijitalErpAPI.Migrations
                         new
                         {
                             ID = 7,
+                            EndPoint = "/CMM",
+                            Name = "CMM"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            EndPoint = "/CMMModule",
+                            Name = "CMMModule"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            EndPoint = "/CMMFailureState",
+                            Name = "CMMFailureState"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            EndPoint = "/CMMSuccessState",
+                            Name = "CMMSuccessState"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            EndPoint = "/CMMNote",
+                            Name = "CMMNote"
+                        },
+                        new
+                        {
+                            ID = 12,
                             EndPoint = "/Department",
                             Name = "Department"
                         },
                         new
                         {
-                            ID = 8,
+                            ID = 13,
                             EndPoint = "/Employee",
                             Name = "Employee"
                         },
                         new
                         {
-                            ID = 9,
+                            ID = 14,
                             EndPoint = "/Log",
                             Name = "Log"
                         },
                         new
                         {
-                            ID = 10,
+                            ID = 15,
                             EndPoint = "/Product",
                             Name = "Product"
                         },
                         new
                         {
-                            ID = 11,
+                            ID = 16,
                             EndPoint = "/Services",
                             Name = "Services"
                         },
                         new
                         {
-                            ID = 12,
+                            ID = 17,
                             EndPoint = "/TechnicalDrawing",
                             Name = "TechnicalDrawing"
                         },
                         new
                         {
-                            ID = 13,
+                            ID = 18,
                             EndPoint = "/TechnicalDrawingFailureState",
                             Name = "TechnicalDrawingFailureState"
                         },
                         new
                         {
-                            ID = 14,
+                            ID = 19,
                             EndPoint = "/TechnicalDrawingNote",
                             Name = "TechnicalDrawingNote"
                         },
                         new
                         {
-                            ID = 15,
+                            ID = 20,
                             EndPoint = "/TechnicalDrawingQuality",
                             Name = "TechnicalDrawingQuality"
                         },
                         new
                         {
-                            ID = 16,
+                            ID = 21,
                             EndPoint = "/TechnicalDrawingSuccessState",
                             Name = "TechnicalDrawingSuccessState"
                         },
                         new
                         {
-                            ID = 17,
+                            ID = 22,
                             EndPoint = "/TechnicalDrawingVisualNote",
                             Name = "TechnicalDrawingVisualNote"
                         },
                         new
                         {
-                            ID = 18,
+                            ID = 23,
                             EndPoint = "/User",
                             Name = "User"
                         },
                         new
                         {
-                            ID = 19,
+                            ID = 24,
                             EndPoint = "/UserPermission",
                             Name = "UserPermission"
                         });
@@ -1163,19 +1459,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9c6cab87-aad9-40b9-bdc9-b4a769f5c614",
+                            Id = "28f1f2ba-c85c-412b-9c56-ddb52efcbc42",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "4b2faf7a-6c91-4489-9f7f-585d23465988",
+                            Id = "a888b4e8-8d30-4a6d-a736-68242ba100eb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cd9b0ef0-7c2a-44df-acd8-807054836195",
+                            Id = "eeb9bc5e-231c-4368-9ed8-54f5ab126b8d",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -1409,6 +1705,115 @@ namespace DijitalErpAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("AssemblyManuel");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMM", b =>
+                {
+                    b.HasOne("Entities.Models.CMMModule", "CMMModule")
+                        .WithMany()
+                        .HasForeignKey("CMMModuleID");
+
+                    b.HasOne("Entities.Models.User", "MeasuringPerson")
+                        .WithMany()
+                        .HasForeignKey("MeasuringPersonID");
+
+                    b.HasOne("Entities.Models.User", "PersonInCharge")
+                        .WithMany()
+                        .HasForeignKey("PersonInChargeID");
+
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("QualityOfficerID");
+
+                    b.HasOne("Entities.Models.User", "Responible")
+                        .WithMany()
+                        .HasForeignKey("ResponibleID");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("CMMModule");
+
+                    b.Navigation("MeasuringPerson");
+
+                    b.Navigation("PersonInCharge");
+
+                    b.Navigation("QualityOfficer");
+
+                    b.Navigation("Responible");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMFailureState", b =>
+                {
+                    b.HasOne("Entities.Models.CMM", "CMM")
+                        .WithMany("BasarisizDurumlar")
+                        .HasForeignKey("CMMID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianID");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("CMM");
+
+                    b.Navigation("Technician");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMModule", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMNote", b =>
+                {
+                    b.HasOne("Entities.Models.CMM", "CMM")
+                        .WithMany("CMMNotes")
+                        .HasForeignKey("CMMID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("CMM");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMMSuccessState", b =>
+                {
+                    b.HasOne("Entities.Models.CMM", "CMM")
+                        .WithMany("BasariliDurumlar")
+                        .HasForeignKey("CMMID");
+
+                    b.HasOne("Entities.Models.User", "Technician")
+                        .WithMany()
+                        .HasForeignKey("TechnicianID");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("CMM");
+
+                    b.Navigation("Technician");
 
                     b.Navigation("User");
                 });
@@ -1661,6 +2066,15 @@ namespace DijitalErpAPI.Migrations
                     b.Navigation("BasariliDurumlar");
 
                     b.Navigation("BasarisizDurumlar");
+                });
+
+            modelBuilder.Entity("Entities.Models.CMM", b =>
+                {
+                    b.Navigation("BasariliDurumlar");
+
+                    b.Navigation("BasarisizDurumlar");
+
+                    b.Navigation("CMMNotes");
                 });
 
             modelBuilder.Entity("Entities.Models.Department", b =>

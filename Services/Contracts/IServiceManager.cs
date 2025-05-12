@@ -9,6 +9,11 @@
         IAssemblyVisualNoteService AssemblyVisualNoteService { get; }
         IAssemblySuccessStateService AssemblySuccessStateService { get; }
         IAssemblyQualityService AssemblyQualityService { get; }
+        ICMMService CMMService { get; }
+        ICMMModuleService CMMModuleService { get; }
+        ICMMFailureStateService CMMFailureStateService { get; }
+        ICMMSuccessStateService CMMSuccessStateService { get; }
+        ICMMNoteService CMMNoteService { get; }
         IDepartmentService DepartmentService { get; }
         IEmployeeService EmployeeService { get; }
         ILogService LogService { get; }

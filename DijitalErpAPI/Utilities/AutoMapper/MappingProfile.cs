@@ -5,6 +5,11 @@ using Entities.DTOs.AssemblyNoteDto;
 using Entities.DTOs.AssemblyQualityDto;
 using Entities.DTOs.AssemblySuccessStateDto;
 using Entities.DTOs.AssemblyVisualNoteDto;
+using Entities.DTOs.CMMDto;
+using Entities.DTOs.CMMModuleDto;
+using Entities.DTOs.CMMFailureStateDto;
+using Entities.DTOs.CMMSuccessStateDto;
+using Entities.DTOs.CMMNoteDto;
 using Entities.DTOs.DepartmentDto;
 using Entities.DTOs.EmployeeDto;
 using Entities.DTOs.LogDto;
@@ -50,6 +55,28 @@ namespace DijitalErpAPI.Utilities.AutoMapper
             CreateMap<AssemblyQualityDtoForUpdate, AssemblyQuality>().ReverseMap();
             CreateMap<AssemblyQuality, AssemblyQualityDto>();
             CreateMap<AssemblyQualityDtoForInsertion, AssemblyQuality>();
+            
+            CreateMap<CMMDtoForAddFile, CMM>().ReverseMap();
+            CreateMap<CMMDtoForAddResultFile, CMM>().ReverseMap();
+            CreateMap<CMMDtoForUpdate, CMM>().ReverseMap();
+            CreateMap<CMM, CMMDto>();
+            CreateMap<CMMDtoForInsertion, CMM>();
+
+            CreateMap<CMMModuleDtoForUpdate, CMMModule>().ReverseMap();
+            CreateMap<CMMModule, CMMModuleDto>();
+            CreateMap<CMMModuleDtoForInsertion, CMMModule>();
+            
+            CreateMap<CMMFailureStateDtoForUpdate, CMMFailureState>().ReverseMap();
+            CreateMap<CMMFailureState, CMMFailureStateDto>();
+            CreateMap<CMMFailureStateDtoForInsertion, CMMFailureState>();
+            
+            CreateMap<CMMSuccessStateDtoForUpdate, CMMSuccessState>().ReverseMap();
+            CreateMap<CMMSuccessState, CMMSuccessStateDto>();
+            CreateMap<CMMSuccessStateDtoForInsertion, CMMSuccessState>();
+            
+            CreateMap<CMMNoteDtoForUpdate, CMMNote>().ReverseMap();
+            CreateMap<CMMNote, CMMNoteDto>();
+            CreateMap<CMMNoteDtoForInsertion, CMMNote>();
 
             CreateMap<DepartmentDtoForUpdate, Department>().ReverseMap();
             CreateMap<Department, DepartmentDto>();
