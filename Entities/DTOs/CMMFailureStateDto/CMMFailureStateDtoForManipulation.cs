@@ -11,6 +11,7 @@
         public bool? Status { get; init; }
         public int? PendingQuantity { get; init; }
         public int? Total { get; init; }
+        public string? QualityOfficerID { get; init; }
         public DateTime? Date { get; set; }
         public int CMMID { get; init; }
         public string? UserId { get; init; }

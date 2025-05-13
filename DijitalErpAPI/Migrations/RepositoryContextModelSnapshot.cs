@@ -331,8 +331,8 @@ namespace DijitalErpAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CMMModuleID")
-                        .HasColumnType("integer");
+                    b.Property<string>("CMMUserID")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -387,7 +387,7 @@ namespace DijitalErpAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CMMModuleID");
+                    b.HasIndex("CMMUserID");
 
                     b.HasIndex("MeasuringPersonID");
 
@@ -437,6 +437,9 @@ namespace DijitalErpAPI.Migrations
                     b.Property<string>("QualityOfficerDescription")
                         .HasColumnType("text");
 
+                    b.Property<string>("QualityOfficerID")
+                        .HasColumnType("text");
+
                     b.Property<bool?>("Status")
                         .HasColumnType("boolean");
 
@@ -455,6 +458,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CMMID");
+
+                    b.HasIndex("QualityOfficerID");
 
                     b.HasIndex("TechnicianID");
 
@@ -639,7 +644,7 @@ namespace DijitalErpAPI.Migrations
                         new
                         {
                             ID = 6,
-                            Name = "Tester"
+                            Name = "CMM"
                         });
                 });
 
@@ -1459,19 +1464,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28f1f2ba-c85c-412b-9c56-ddb52efcbc42",
+                            Id = "4488b11a-8860-4b31-82a2-a26ece530357",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "a888b4e8-8d30-4a6d-a736-68242ba100eb",
+                            Id = "3429179b-2667-4668-b1a5-daeb9c2ed105",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "eeb9bc5e-231c-4368-9ed8-54f5ab126b8d",
+                            Id = "b04a8b9f-aaf4-4dbd-8769-3825d9098e8b",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -1711,9 +1716,9 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.CMM", b =>
                 {
-                    b.HasOne("Entities.Models.CMMModule", "CMMModule")
+                    b.HasOne("Entities.Models.User", "CMMUser")
                         .WithMany()
-                        .HasForeignKey("CMMModuleID");
+                        .HasForeignKey("CMMUserID");
 
                     b.HasOne("Entities.Models.User", "MeasuringPerson")
                         .WithMany()
@@ -1735,7 +1740,7 @@ namespace DijitalErpAPI.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("CMMModule");
+                    b.Navigation("CMMUser");
 
                     b.Navigation("MeasuringPerson");
 
@@ -1756,6 +1761,10 @@ namespace DijitalErpAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Models.User", "QualityOfficer")
+                        .WithMany()
+                        .HasForeignKey("QualityOfficerID");
+
                     b.HasOne("Entities.Models.User", "Technician")
                         .WithMany()
                         .HasForeignKey("TechnicianID");
@@ -1765,6 +1774,8 @@ namespace DijitalErpAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("CMM");
+
+                    b.Navigation("QualityOfficer");
 
                     b.Navigation("Technician");
 

@@ -13,7 +13,7 @@
         public string? SolidModel { get; init; }
         public string? Description { get; init; }
         public string? MeasuringPersonID { get; init; }
-        public int? CMMModuleID { get; init; }
+        public string? CMMUserID { get; init; }
         public string? ResponibleID { get; init; }
         public string? PersonInChargeID { get; init; }
         public string? QualityOfficerID { get; init; }

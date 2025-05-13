@@ -15,6 +15,8 @@ namespace Entities.DTOs.CMMFailureStateDto
         public bool? Status { get; init; }
         public int? PendingQuantity { get; init; }
         public int? Total { get; init; }
+        public User? QualityOfficer { get; init; }
+        public string? QualityOfficerID { get; init; }
         public DateTime? Date { get; init; }
         public CMM? CMM { get; init; }
         public int CMMID { get; init; }

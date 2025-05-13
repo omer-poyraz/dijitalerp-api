@@ -47,6 +47,12 @@ namespace Repositories.EFCore
                 .SingleOrDefaultAsync();
         }
 
+        public CMMFailureState UpdateCMMFailureByQualityState(CMMFailureState cmmFailureState)
+        {
+            Update(cmmFailureState);
+            return cmmFailureState;
+        }
+
         public CMMFailureState UpdateCMMFailureState(CMMFailureState cmmFailureState)
         {
             Update(cmmFailureState);

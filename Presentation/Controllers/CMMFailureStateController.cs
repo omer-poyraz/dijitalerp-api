@@ -105,6 +105,21 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpPut("QualityDescription")]
+        [AuthorizePermission("CMMQuality", "Write")]
+        public async Task<IActionResult> UpdateQualityDescriptonAsync([FromBody] CMMFailureStateDtoForQuality cmmFailureStateDtoForQuality)
+        {
+            try
+            {
+                var cmmFailureState = await _manager.CMMFailureStateService.UpdateCMMFailureByQualityStateAsync(cmmFailureStateDtoForQuality);
+                return Ok(ApiResponse<CMMFailureStateDto>.CreateSuccess(_httpContextAccessor, cmmFailureState, "Success.Updated"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<CMMFailureStateDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
+            }
+        }
+
         [HttpDelete("Delete/{id:int}")]
         [AuthorizePermission("CMMFailureState", "Delete")]
         public async Task<IActionResult> DeleteOneCMMFailureStateAsync([FromRoute] int id)

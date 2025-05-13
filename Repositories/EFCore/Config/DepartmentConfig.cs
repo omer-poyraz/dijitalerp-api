@@ -15,7 +15,7 @@ namespace Repositories.EFCore.Config
                 new Department { ID = 3, Name = "Kalite" },
                 new Department { ID = 4, Name = "Mühendis" },
                 new Department { ID = 5, Name = "CNC Operator" },
-                new Department { ID = 6, Name = "Tester" }
+                new Department { ID = 6, Name = "CMM" }
             );
         }
     }

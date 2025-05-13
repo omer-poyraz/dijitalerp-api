@@ -9,6 +9,7 @@ namespace Services.Contracts
         Task<CMMFailureStateDto> GetCMMFailureStateByIdAsync(int id, bool? trackChanges);
         Task<CMMFailureStateDto> CreateCMMFailureStateAsync(CMMFailureStateDtoForInsertion cmmFailureStateDtoForInsertion);
         Task<CMMFailureStateDto> UpdateCMMFailureStateAsync(CMMFailureStateDtoForUpdate cmmFailureStateDtoForUpdate);
+        Task<CMMFailureStateDto> UpdateCMMFailureByQualityStateAsync(CMMFailureStateDtoForQuality cmmFailureStateDtoForQuality);
         Task<CMMFailureStateDto> DeleteCMMFailureStateAsync(int id, bool? trackChanges);
     }
 }

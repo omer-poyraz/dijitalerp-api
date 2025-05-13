@@ -16,6 +16,9 @@ namespace Entities.Models
         public bool? Status { get; set; }
         public int? PendingQuantity { get; set; }
         public int? Total { get; set; }
+        [ForeignKey("QualityOfficerID")]
+        public User? QualityOfficer { get; set; }
+        public string? QualityOfficerID { get; set; }
         public DateTime? Date { get; set; }
         [ForeignKey("CMMID")]
         public CMM? CMM { get; set; }

@@ -17,8 +17,8 @@ namespace Entities.DTOs.CMMDto
         public string? Description { get; init; }
         public User? MeasuringPerson { get; init; }
         public string? MeasuringPersonID { get; init; }
-        public CMMModule? CMMModule { get; init; }
-        public int? CMMModuleID { get; init; }
+        public User? CMMUser { get; init; }
+        public string? CMMUserID { get; init; }
         public User? Responible { get; init; }
         public string? ResponibleID { get; init; }
         public User? PersonInCharge { get; init; }

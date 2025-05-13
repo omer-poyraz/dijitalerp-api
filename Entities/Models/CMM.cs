@@ -18,9 +18,9 @@ namespace Entities.Models
         [ForeignKey("MeasuringPersonID")]
         public User? MeasuringPerson { get; set; }
         public string? MeasuringPersonID { get; set; }
-        [ForeignKey("CMMModuleID")]
-        public CMMModule? CMMModule { get; set; }
-        public int? CMMModuleID { get; set; }
+        [ForeignKey("CMMUserID")]
+        public User? CMMUser { get; set; }
+        public string? CMMUserID { get; set; }
         [ForeignKey("ResponibleID")]
         public User? Responible { get; set; }
         public string? ResponibleID { get; set; }

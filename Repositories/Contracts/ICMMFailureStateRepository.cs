@@ -9,6 +9,7 @@ namespace Repositories.Contracts
         Task<CMMFailureState> GetCMMFailureStateByIdAsync(int id, bool? trackChanges);
         CMMFailureState CreateCMMFailureState(CMMFailureState cmmFailureState);
         CMMFailureState UpdateCMMFailureState(CMMFailureState cmmFailureState);
+        CMMFailureState UpdateCMMFailureByQualityState(CMMFailureState cmmFailureState);
         CMMFailureState DeleteCMMFailureState(CMMFailureState cmmFailureState);
     }
 }
