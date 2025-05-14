@@ -23,6 +23,8 @@ namespace Entities.DTOs.TechnicalDrawingDto
         public DateTime? Date { get; init; }
         public string? Description { get; init; }
         public DateTime? OperatorDate { get; init; }
+        public User? CMMUser { get; init; }
+        public string? CMMUserID { get; init; }
         public ICollection<TechnicalDrawingNote>? TechnicalDrawingNotes { get; init; }
         public ICollection<TechnicalDrawingSuccessState>? BasariliDurumlar { get; init; }
         public ICollection<TechnicalDrawingFailureState>? BasarisizDurumlar { get; init; }

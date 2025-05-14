@@ -29,6 +29,14 @@ namespace Repositories.EFCore
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<TechnicalDrawingFailureState>> GetAllTechnicalDrawingFailureStateByCMMUserAsync(string userId, bool? trackChanges) =>
+            await FindAll(trackChanges)
+                .Where(s => s.TechnicalDrawing!.CMMUserID!.Equals(userId))
+                .OrderBy(s => s.ID)
+                .Include(s => s.Operator)
+                .Include(s => s.User)
+                .ToListAsync();
+
         public async Task<IEnumerable<TechnicalDrawingFailureState>> GetAllTechnicalDrawingFailureStateByDrawingAsync(int id, bool? trackChanges)
         {
             return await FindAll(trackChanges)
@@ -39,12 +47,26 @@ namespace Repositories.EFCore
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<TechnicalDrawingFailureState>> GetAllTechnicalDrawingFailureStateByQualityOfficerAsync(string userId, bool? trackChanges) =>
+            await FindAll(trackChanges)
+                .Where(s => s.TechnicalDrawing!.QualityOfficerID!.Equals(userId))
+                .OrderBy(s => s.ID)
+                .Include(s => s.Operator)
+                .Include(s => s.User)
+                .ToListAsync();
+
         public async Task<TechnicalDrawingFailureState> GetTechnicalDrawingFailureStateByIdAsync(int id, bool? trackChanges)
         {
             return await FindByCondition(s => s.ID.Equals(id), trackChanges)
                 .Include(s => s.Operator)
                 .Include(s => s.User)
                 .SingleOrDefaultAsync();
+        }
+
+        public TechnicalDrawingFailureState UpdateTechnicalDrawingFailureByCMMState(TechnicalDrawingFailureState technicalDrawingFailureState)
+        {
+            Update(technicalDrawingFailureState);
+            return technicalDrawingFailureState;
         }
 
         public TechnicalDrawingFailureState UpdateTechnicalDrawingFailureByQualityState(TechnicalDrawingFailureState technicalDrawingFailureState)

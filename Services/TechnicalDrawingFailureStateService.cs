@@ -40,16 +40,57 @@ namespace Services
             return _mapper.Map<IEnumerable<TechnicalDrawingFailureStateDto>>(technicalDrawingFailureState);
         }
 
+        public async Task<IEnumerable<TechnicalDrawingFailureStateDto>> GetAllTechnicalDrawingFailureStateByCMMUserAsync(string userId, bool? trackChanges)
+        {
+            var technicalDrawingFailureStates = await _manager.TechnicalDrawingFailureStateRepository.GetAllTechnicalDrawingFailureStateByCMMUserAsync(userId, trackChanges);
+            return _mapper.Map<IEnumerable<TechnicalDrawingFailureStateDto>>(technicalDrawingFailureStates);
+        }
+
         public async Task<IEnumerable<TechnicalDrawingFailureStateDto>> GetAllTechnicalDrawingFailureStateByDrawingAsync(int id, bool? trackChanges)
         {
             var technicalDrawingFailureState = await _manager.TechnicalDrawingFailureStateRepository.GetAllTechnicalDrawingFailureStateByDrawingAsync(id, trackChanges);
             return _mapper.Map<IEnumerable<TechnicalDrawingFailureStateDto>>(technicalDrawingFailureState);
         }
 
+        public async Task<IEnumerable<TechnicalDrawingFailureStateDto>> GetAllTechnicalDrawingFailureStateByQualityOfficerAsync(string userId, bool? trackChanges)
+        {
+            var technicalDrawingFailureStates = await _manager.TechnicalDrawingFailureStateRepository.GetAllTechnicalDrawingFailureStateByQualityOfficerAsync(userId, trackChanges);
+            return _mapper.Map<IEnumerable<TechnicalDrawingFailureStateDto>>(technicalDrawingFailureStates);
+        }
+
         public async Task<TechnicalDrawingFailureStateDto> GetTechnicalDrawingFailureStateByIdAsync(int id, bool? trackChanges)
         {
             var technicalDrawingFailureState = await _manager.TechnicalDrawingFailureStateRepository.GetTechnicalDrawingFailureStateByIdAsync(id, trackChanges);
             return _mapper.Map<TechnicalDrawingFailureStateDto>(technicalDrawingFailureState);
+        }
+
+        public async Task<TechnicalDrawingFailureStateDto> UpdateTechnicalDrawingFailureByCMMStateAsync(TechnicalDrawingFailureStateDtoForCMM technicalDrawingFailureStateDtoForCMM)
+        {
+            try
+            {
+                ConvertDatesToUtcCMM(technicalDrawingFailureStateDtoForCMM);
+                var technicalDrawingFailureState = await _manager.TechnicalDrawingFailureStateRepository.GetTechnicalDrawingFailureStateByIdAsync(technicalDrawingFailureStateDtoForCMM.ID, false);
+                var technicalDrawing = await _manager.TechnicalDrawingRepository.GetTechnicalDrawingByIdAsync((int)technicalDrawingFailureState.TechnicalDrawingID!, false);
+
+                if (technicalDrawing.CMMUserID == technicalDrawingFailureStateDtoForCMM.CMMID)
+                {
+                    technicalDrawingFailureState.CMMDescription = technicalDrawingFailureStateDtoForCMM.CMMDescription;
+                    technicalDrawingFailureState.CMMDescriptionDate = DateTime.UtcNow;
+                    technicalDrawingFailureState.CMMUserID = technicalDrawingFailureStateDtoForCMM.CMMID;
+                    _manager.TechnicalDrawingFailureStateRepository.UpdateTechnicalDrawingFailureByCMMState(technicalDrawingFailureState);
+                    await _manager.SaveAsync();
+                    return _mapper.Map<TechnicalDrawingFailureStateDto>(technicalDrawingFailureState);
+                }
+                else
+                {
+                    throw new Exception("CMM uzmanı değilsiniz!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task<TechnicalDrawingFailureStateDto> UpdateTechnicalDrawingFailureByQualityStateAsync(TechnicalDrawingFailureStateDtoForQuality technicalDrawingFailureStateDtoForQuality)
@@ -101,6 +142,12 @@ namespace Services
         {
             if (dto.QualityDescriptionDate.HasValue)
                 dto.QualityDescriptionDate = DateTime.SpecifyKind(dto.QualityDescriptionDate.Value, DateTimeKind.Utc);
+        }
+
+        private void ConvertDatesToUtcCMM<T>(T dto) where T : TechnicalDrawingFailureStateDtoForCMM
+        {
+            if (dto.CMMDescriptionDate.HasValue)
+                dto.CMMDescriptionDate = DateTime.SpecifyKind(dto.CMMDescriptionDate.Value, DateTimeKind.Utc);
         }
     }
 }

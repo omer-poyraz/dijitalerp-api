@@ -13,6 +13,7 @@
         public bool? Status { get; init; }
         public DateTime? Date { get; set; }
         public string? OperatorID { get; init; }
+        public string? CMMUserID { get; init; }
         public int? TechnicalDrawingID { get; init; }
         public string? UserId { get; init; }
     }

@@ -73,6 +73,36 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpGet("GetQualityOfficer/{userId}")]
+        [AuthorizePermission("TechnicalDrawingFailureState", "Read")]
+        public async Task<IActionResult> GetOneTechnicalDrawingFailureStateByQualityOfficerAsync([FromRoute] string userId)
+        {
+            try
+            {
+                var user = await _manager.TechnicalDrawingFailureStateService.GetAllTechnicalDrawingFailureStateByQualityOfficerAsync(userId, false);
+                return Ok(ApiResponse<IEnumerable<TechnicalDrawingFailureStateDto>>.CreateSuccess(_httpContextAccessor, user, "Success.Retrieved"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<TechnicalDrawingFailureStateDto>.CreateError(_httpContextAccessor, "Error.NotFound"));
+            }
+        }
+
+        [HttpGet("GetCMMUser/{userId}")]
+        [AuthorizePermission("TechnicalDrawingFailureState", "Read")]
+        public async Task<IActionResult> GetOneTechnicalDrawingFailureStateByCMMUserAsync([FromRoute] string userId)
+        {
+            try
+            {
+                var user = await _manager.TechnicalDrawingFailureStateService.GetAllTechnicalDrawingFailureStateByCMMUserAsync(userId, false);
+                return Ok(ApiResponse<IEnumerable<TechnicalDrawingFailureStateDto>>.CreateSuccess(_httpContextAccessor, user, "Success.Retrieved"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<TechnicalDrawingFailureStateDto>.CreateError(_httpContextAccessor, "Error.NotFound"));
+            }
+        }
+
         [HttpPost("Create")]
         [AuthorizePermission("TechnicalDrawingFailureState", "Write")]
         public async Task<IActionResult> CreateOneTechnicalDrawingFailureStateAsync([FromBody] TechnicalDrawingFailureStateDtoForInsertion technicalDrawingFailureStateDtoForInsertion)
@@ -97,6 +127,21 @@ namespace Presentation.Controllers
             try
             {
                 var user = await _manager.TechnicalDrawingFailureStateService.UpdateTechnicalDrawingFailureStateAsync(technicalDrawingFailureStateDtoForUpdate);
+                return Ok(ApiResponse<TechnicalDrawingFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<TechnicalDrawingFailureStateDto>.CreateError(_httpContextAccessor, "Error.ServerError"));
+            }
+        }
+
+        [HttpPut("CMMDescription")]
+        [AuthorizePermission("TechnicalDrawingQuality", "Write")]
+        public async Task<IActionResult> UpdateCMMDescriptionAsync([FromBody] TechnicalDrawingFailureStateDtoForCMM technicalDrawingFailureStateDtoForCMM)
+        {
+            try
+            {
+                var user = await _manager.TechnicalDrawingFailureStateService.UpdateTechnicalDrawingFailureByCMMStateAsync(technicalDrawingFailureStateDtoForCMM);
                 return Ok(ApiResponse<TechnicalDrawingFailureStateDto>.CreateSuccess(_httpContextAccessor, user, "Success.Updated"));
             }
             catch (Exception)

@@ -73,6 +73,21 @@ namespace Presentation.Controllers
             }
         }
 
+        [HttpGet("GetQualityOfficer/{userId}")]
+        [AuthorizePermission("AssemblyFailureState", "Read")]
+        public async Task<IActionResult> GetOneAssemblyFailureStateByQualityOfficerAsync([FromRoute] string userId)
+        {
+            try
+            {
+                var assemblyFailureState = await _manager.AssemblyFailureStateService.GetAllAssemblyFailureStateByQualityOfficerAsync(userId, false);
+                return Ok(ApiResponse<IEnumerable<AssemblyFailureStateDto>>.CreateSuccess(_httpContextAccessor, assemblyFailureState, "Success.Retrieved"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(ApiResponse<AssemblyFailureStateDto>.CreateError(_httpContextAccessor, "Error.NotFound"));
+            }
+        }
+
         [HttpPost("Create")]
         [AuthorizePermission("AssemblyFailureState", "Write")]
         public async Task<IActionResult> CreateOneAssemblyFailureStateAsync(

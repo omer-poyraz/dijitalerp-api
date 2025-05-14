@@ -18,6 +18,12 @@ namespace Entities.DTOs.TechnicalDrawingFailureStateDto
         public string? OperatorID { get; init; }
         public User? QualityOfficer { get; init; }
         public string? QualityOfficerID { get; init; }
+        public User? CMMUser { get; init; }
+        public string? CMMUserID { get; init; }
+        public string? QualityOfficerDescription { get; init; }
+        public string? CMMDescription { get; init; }
+        public DateTime? CMMDescriptionDate { get; set; }
+        public DateTime? QualityDescriptionDate { get; init; }
         public ICollection<TechnicalDrawingQuality>? QualityOfficerDescriptions { get; init; }
         public TechnicalDrawing? TechnicalDrawing { get; init; }
         public int? TechnicalDrawingID { get; init; }

@@ -48,6 +48,12 @@ namespace Services
             return _mapper.Map<IEnumerable<AssemblyFailureStateDto>>(assemblyFailureState);
         }
 
+        public async Task<IEnumerable<AssemblyFailureStateDto>> GetAllAssemblyFailureStateByQualityOfficerAsync(string userId, bool? trackChanges)
+        {
+            var assemblyFailureStates = await _manager.AssemblyFailureStateRepository.GetAllAssemblyFailureStateByQualityOfficerAsync(userId, trackChanges);
+            return _mapper.Map<IEnumerable<AssemblyFailureStateDto>>(assemblyFailureStates);
+        }
+
         public async Task<AssemblyFailureStateDto> GetAssemblyFailureStateByIdAsync(int id, bool? trackChanges)
         {
             var assemblyFailureState = await _manager.AssemblyFailureStateRepository.GetAssemblyFailureStateByIdAsync(id, trackChanges);

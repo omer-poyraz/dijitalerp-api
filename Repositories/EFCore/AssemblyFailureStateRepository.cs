@@ -39,6 +39,14 @@ namespace Repositories.EFCore
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<AssemblyFailureState>> GetAllAssemblyFailureStateByQualityOfficerAsync(string userId, bool? trackChanges) =>
+            await FindAll(trackChanges)
+                .Where(s => s.AssemblyManuel!.QualityOfficerID!.Equals(userId))
+                .OrderBy(s => s.ID)
+                .Include(s => s.Technician)
+                .Include(s => s.User)
+                .ToListAsync();
+
         public async Task<AssemblyFailureState> GetAssemblyFailureStateByIdAsync(int id, bool? trackChanges)
         {
             return await FindByCondition(s => s.ID.Equals(id), trackChanges)

@@ -961,6 +961,9 @@ namespace DijitalErpAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
+                    b.Property<string>("CMMUserID")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -1011,6 +1014,8 @@ namespace DijitalErpAPI.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CMMUserID");
+
                     b.HasIndex("PersonInChargeID");
 
                     b.HasIndex("QualityOfficerID");
@@ -1031,6 +1036,15 @@ namespace DijitalErpAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Approval")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CMMDescription")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("CMMDescriptionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CMMUserID")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -1082,6 +1096,8 @@ namespace DijitalErpAPI.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CMMUserID");
 
                     b.HasIndex("OperatorID");
 
@@ -1464,19 +1480,19 @@ namespace DijitalErpAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4488b11a-8860-4b31-82a2-a26ece530357",
+                            Id = "ede78f3a-6a25-4a87-a387-95670def5f43",
                             Name = "Super Admin",
                             NormalizedName = "SUPER ADMIN"
                         },
                         new
                         {
-                            Id = "3429179b-2667-4668-b1a5-daeb9c2ed105",
+                            Id = "77b9960b-3229-4036-8bab-08e1d2aea431",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "b04a8b9f-aaf4-4dbd-8769-3825d9098e8b",
+                            Id = "42dc9825-d2e0-44a4-8b32-4cb8d1484e72",
                             Name = "Personel",
                             NormalizedName = "PERSONEL"
                         });
@@ -1867,6 +1883,10 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.TechnicalDrawing", b =>
                 {
+                    b.HasOne("Entities.Models.User", "CMMUser")
+                        .WithMany()
+                        .HasForeignKey("CMMUserID");
+
                     b.HasOne("Entities.Models.User", "PersonInCharge")
                         .WithMany()
                         .HasForeignKey("PersonInChargeID");
@@ -1883,6 +1903,8 @@ namespace DijitalErpAPI.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
+                    b.Navigation("CMMUser");
+
                     b.Navigation("PersonInCharge");
 
                     b.Navigation("QualityOfficer");
@@ -1894,6 +1916,10 @@ namespace DijitalErpAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.TechnicalDrawingFailureState", b =>
                 {
+                    b.HasOne("Entities.Models.User", "CMMUser")
+                        .WithMany()
+                        .HasForeignKey("CMMUserID");
+
                     b.HasOne("Entities.Models.User", "Operator")
                         .WithMany()
                         .HasForeignKey("OperatorID");
@@ -1909,6 +1935,8 @@ namespace DijitalErpAPI.Migrations
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("CMMUser");
 
                     b.Navigation("Operator");
 

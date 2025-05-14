@@ -15,6 +15,9 @@ namespace Entities.Models
         [ForeignKey("PersonInChargeID")]
         public User? PersonInCharge { get; set; }
         public string? PersonInChargeID { get; set; }
+        [ForeignKey("CMMUserID")]
+        public User? CMMUser { get; set; }
+        public string? CMMUserID { get; set; }
         public string? SerialNumber { get; set; }
         public int? ProductionQuantity { get; set; }
         [ForeignKey("QualityOfficerID")]

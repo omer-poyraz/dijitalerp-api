@@ -6,6 +6,7 @@ namespace Repositories.Contracts
     {
         Task<IEnumerable<AssemblyFailureState>> GetAllAssemblyFailureStateAsync(bool? trackChanges);
         Task<IEnumerable<AssemblyFailureState>> GetAllAssemblyFailureStateByManualAsync(int id, bool? trackChanges);
+        Task<IEnumerable<AssemblyFailureState>> GetAllAssemblyFailureStateByQualityOfficerAsync(string userId, bool? trackChanges);
         Task<AssemblyFailureState> GetAssemblyFailureStateByIdAsync(int id, bool? trackChanges);
         AssemblyFailureState CreateAssemblyFailureState(AssemblyFailureState assemblyFailureState);
         AssemblyFailureState UpdateAssemblyFailureState(AssemblyFailureState assemblyFailureState);

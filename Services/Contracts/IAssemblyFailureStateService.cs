@@ -6,6 +6,7 @@ namespace Services.Contracts
     {
         Task<IEnumerable<AssemblyFailureStateDto>> GetAllAssemblyFailureStateAsync(bool? trackChanges);
         Task<IEnumerable<AssemblyFailureStateDto>> GetAllAssemblyFailureStateByManualAsync(int id, bool? trackChanges);
+        Task<IEnumerable<AssemblyFailureStateDto>> GetAllAssemblyFailureStateByQualityOfficerAsync(string userId, bool? trackChanges);
         Task<AssemblyFailureStateDto> GetAssemblyFailureStateByIdAsync(int id, bool? trackChanges);
         Task<AssemblyFailureStateDto> CreateAssemblyFailureStateAsync(AssemblyFailureStateDtoForInsertion assemblyFailureStateDtoForInsertion);
         Task<AssemblyFailureStateDto> UpdateAssemblyFailureStateAsync(AssemblyFailureStateDtoForUpdate assemblyFailureStateDtoForUpdate);

@@ -13,6 +13,7 @@
         public string? SerialNumber { get; init; }
         public int? ProductionQuantity { get; init; }
         public string? QualityOfficerID { get; init; }
+        public string? CMMUserID { get; init; }
         public int? Time { get; init; }
         public DateTime? Date { get; set; }
         public string? Description { get; init; }

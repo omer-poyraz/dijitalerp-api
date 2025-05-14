@@ -12,6 +12,8 @@ namespace Entities.Models
         public string? Description { get; set; }
         public string? QualityOfficerDescription { get; set; }
         public DateTime? QualityDescriptionDate { get; set; }
+        public string? CMMDescription { get; set; }
+        public DateTime? CMMDescriptionDate { get; set; }
         public int? ProductionQuantity { get; set; }
         public string? Approval { get; set; }
         public bool? Status { get; set; }
@@ -23,6 +25,9 @@ namespace Entities.Models
         [ForeignKey("QualityOfficerID")]
         public User? QualityOfficer { get; set; }
         public string? QualityOfficerID { get; set; }
+        [ForeignKey("CMMUserID")]
+        public User? CMMUser { get; set; }
+        public string? CMMUserID { get; set; }
         public ICollection<TechnicalDrawingQuality>? QualityOfficerDescriptions { get; set; }
         [ForeignKey("TechnicalDrawingID")]
         public TechnicalDrawing? TechnicalDrawing { get; set; }
