@@ -32,7 +32,6 @@ namespace Entities.Models
         [ForeignKey("TechnicalDrawingID")]
         public TechnicalDrawing? TechnicalDrawing { get; set; }
         public int? TechnicalDrawingID { get; set; }
-
         public User? User { get; set; }
         public string? UserId { get; set; }
         public DateTime? CreatedAt { get; set; }
